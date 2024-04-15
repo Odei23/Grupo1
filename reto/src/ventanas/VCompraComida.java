@@ -152,7 +152,7 @@ public class VCompraComida extends JDialog {
 		
 		BonguriAmarilla = new JButton("");
 		BonguriAmarilla.setBounds(283, 439, 95, 62);
-		ImageIcon bongurAmarilla = new ImageIcon(getClass().getResource("rojo.png"));
+		ImageIcon bongurAmarilla = new ImageIcon(getClass().getResource("amarillo.png"));
         ImageIcon imgBongurAmarilla = new ImageIcon(bongurAmarilla.getImage().getScaledInstance(BonguriAmarilla.getWidth(), BonguriAmarilla.getHeight(), Image.SCALE_SMOOTH));
         BonguriAmarilla.setIcon (imgBongurAmarilla);
 		contentPanel_1.add(BonguriAmarilla);

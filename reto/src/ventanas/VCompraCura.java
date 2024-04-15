@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Image;
 
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
+import javax.swing.SwingConstants;
 
 public class VCompraCura extends JDialog {
 
@@ -37,6 +39,11 @@ public class VCompraCura extends JDialog {
 	private JButton PolvoCura;
 	private JButton HierbaRev;
 	private JButton Leche;
+	private JLabel lblSuper;
+	private JLabel lblHiper;
+	private JLabel lblMax;
+	private JLabel lblRestaurar;
+	private JLabel lblCuraTotal;
 	
 
 	/**
@@ -56,7 +63,7 @@ public class VCompraCura extends JDialog {
 	 * Create the dialog.
 	 */
 	public VCompraCura() {
-		setBounds(100, 100, 906, 814);
+		setBounds(100, 100, 985, 1012);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -85,7 +92,9 @@ public class VCompraCura extends JDialog {
 		ImageIcon poke = new ImageIcon(getClass().getResource("pocion.png"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(Pocion.getWidth(), Pocion.getHeight(), Image.SCALE_SMOOTH));
         Pocion.setIcon (img2);
+        contentPanel.add(Pocion, BorderLayout.NORTH);
 		contentPanel.add(Pocion);
+		
 		
 		
 	    SuperPocion = new JButton("");
@@ -168,6 +177,7 @@ public class VCompraCura extends JDialog {
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(679, 155, 17, 349);
 		contentPanel.add(scrollBar);
+
 		
 		Refresco = new JButton("");
 		Refresco.setBounds(138, 529, 95, 62);
@@ -191,38 +201,74 @@ public class VCompraCura extends JDialog {
 		contentPanel.add(Revivir);
 		
 		MaxRevivir = new JButton("");
-		MaxRevivir.setBounds(138, 614, 95, 62);
+		MaxRevivir.setBounds(138, 643, 95, 62);
 		ImageIcon maxRevivir = new ImageIcon(getClass().getResource("revivirmaximo.png"));
         ImageIcon imgMaxRevivir = new ImageIcon(maxRevivir.getImage().getScaledInstance(MaxRevivir.getWidth(), MaxRevivir.getHeight(), Image.SCALE_SMOOTH));
         MaxRevivir.setIcon (imgMaxRevivir);
 		contentPanel.add(MaxRevivir);
 		
 		Restos = new JButton("");
-		Restos.setBounds(283, 614, 95, 62);
+		Restos.setBounds(283, 643, 95, 62);
 		ImageIcon restos = new ImageIcon(getClass().getResource("restos.png"));
         ImageIcon imgRestos = new ImageIcon(restos.getImage().getScaledInstance(Restos.getWidth(), Restos.getHeight(), Image.SCALE_SMOOTH));
         Restos.setIcon (imgRestos);
 		contentPanel.add(Restos);
 		
 		PolvoCura = new JButton("");
-		PolvoCura.setBounds(423, 614, 95, 62);
+		PolvoCura.setBounds(423, 643, 95, 62);
 		ImageIcon polvoCura = new ImageIcon(getClass().getResource("polvo.png"));
         ImageIcon imgPolvoCura = new ImageIcon(polvoCura.getImage().getScaledInstance(PolvoCura.getWidth(), PolvoCura.getHeight(), Image.SCALE_SMOOTH));
         PolvoCura.setIcon (imgPolvoCura);
 		contentPanel.add(PolvoCura);
 		
 		HierbaRev = new JButton("");
-		HierbaRev.setBounds(283, 702, 95, 62);
+		HierbaRev.setBounds(283, 747, 95, 62);
 		ImageIcon HierbaRevivir = new ImageIcon(getClass().getResource("hierba.png"));
         ImageIcon imgHierbaRevivir = new ImageIcon(HierbaRevivir.getImage().getScaledInstance(HierbaRev.getWidth(), HierbaRev.getHeight(), Image.SCALE_SMOOTH));
         HierbaRev.setIcon (imgHierbaRevivir);
 		contentPanel.add(HierbaRev);
 		
 		Leche = new JButton("");
-		Leche.setBounds(138, 702, 95, 62);
+		Leche.setBounds(138, 747, 95, 62);
 		ImageIcon leche = new ImageIcon(getClass().getResource("leche.png"));
         ImageIcon imgLeche = new ImageIcon(leche.getImage().getScaledInstance(Leche.getWidth(), Leche.getHeight(), Image.SCALE_SMOOTH));
         Leche.setIcon (imgLeche);
 		contentPanel.add(Leche);
+		
+		JLabel lblPocion = new JLabel("20€");
+		lblPocion.setBounds(159, 219, 59, 23);
+		lblPocion.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto horizontalmente
+		contentPanel.add(lblPocion, BorderLayout.CENTER);
+		contentPanel.add(lblPocion);
+	
+		
+		lblSuper = new JLabel("30€");
+		lblSuper.setBounds(293, 219, 59, 23);
+		lblSuper.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto horizontalmente
+		contentPanel.add(lblSuper, BorderLayout.CENTER);
+		contentPanel.add(lblSuper);
+		
+		
+		lblHiper = new JLabel("40€");
+		lblHiper.setBounds(433, 219, 59, 23);
+		lblHiper.setHorizontalAlignment(SwingConstants.CENTER); // Centrar el texto horizontalmente
+		contentPanel.add(lblHiper, BorderLayout.CENTER);
+		contentPanel.add(lblHiper);
+		
+		lblMax = new JLabel("60€");
+		lblMax.setBounds(159, 314, 59, 23);
+		lblMax.setHorizontalAlignment(SwingConstants.CENTER);
+		contentPanel.add(lblMax, BorderLayout.CENTER);
+		contentPanel.add(lblMax);
+		
+		lblRestaurar = new JLabel("60€");
+		lblRestaurar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRestaurar.setBounds(293, 314, 59, 23);
+		contentPanel.add(lblRestaurar);
+		
+		lblCuraTotal = new JLabel("70€");
+		lblCuraTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCuraTotal.setBounds(444, 314, 59, 23);
+		contentPanel.add(lblCuraTotal);
 	}
 }
