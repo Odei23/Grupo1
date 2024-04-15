@@ -133,7 +133,7 @@ public class VentanaCrear extends JDialog {
 		Usuarios nuevo;
 		
 		nuevo = new Usuarios(); 
-		System.out.println("Introduce los datos del coche");
+		System.out.println("Introduce los datos del usuario");
 		nuevo.setDni(Utilidades.introducirCadena("Introduce tu dni"));
 		nuevo.setNombre(Utilidades.introducirCadena("Introduce tu nombre"));
 		nuevo.setApellido(Utilidades.introducirCadena("Introduce tu apellido"));
@@ -141,7 +141,7 @@ public class VentanaCrear extends JDialog {
 		nuevo.setSaldo(Utilidades.leerFloat("Introduce tu saldo"));
 		nuevo.setContrasena(Utilidades.introducirCadena("Introduce tu contraseña"));
 
-		Controlador.altaCoche(nuevo);
+		Controlador.altaUsuario(nuevo);
 		
 	}
 	protected void iniciar() {

@@ -9,7 +9,7 @@ import modelo.ImplementacionBaseDeDatos;
 
 public class Controlador {
 
-	public static void altaCoche(Usuarios nuevo) {
+	public static void altaUsuario(Usuarios nuevo) {
 		
 		Dao imp = new ImplementacionBaseDeDatos();
 		imp.altaUsuarios(nuevo);
@@ -17,15 +17,20 @@ public class Controlador {
 	}
 
 
-	public static List<Usuarios> consultaCoches() {
-		Dao imp = new ImplementacionBaseDeDatos();
-		List <Usuarios> listaCoches = new ArrayList<>();
-		
-		listaCoches = imp.consultaUsuarios();
-		
-		return listaCoches;
-		
-		
+
+	    public static boolean usuarioExiste(String dni, String contrasena) {
+	        Dao imp = new ImplementacionBaseDeDatos();
+	        List<Usuarios> usuarios = imp.consultaUsuarios();
+
+	        // Check if there's a user with the provided DNI and password
+	        for (Usuarios usuario : usuarios) {
+	            if (usuario.getDni().equals(dni) && usuario.getContrasena().equals(contrasena)) {
+	                return true; // User found
+	            }
+	        }
+	        return false; // User not found
+	    }
 	}
 
-}
+
+
