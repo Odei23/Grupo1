@@ -12,11 +12,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
+
+import controlador.Controlador;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -123,10 +126,24 @@ public class VentanaPrincipal extends JFrame {
     }
 
     protected void iniciarMenu() {
-        this.setVisible(false);
-        VentanaMenuUsuario venMU = new VentanaMenuUsuario();
-        venMU.setVisible(true);
+        // Get the entered DNI and password
+        String dni = textField.getText();
+        String password = new String(passwordField.getPassword());
+
+        // Check if the user exists in the database
+        boolean userExists = Controlador.usuarioExiste(dni, password);
+
+        if (userExists) {
+            // User exists, proceed to the main menu
+            this.setVisible(false);
+            VentanaMenuUsuario venMU = new VentanaMenuUsuario();
+            venMU.setVisible(true);
+        } else {
+            // User doesn't exist, show an error message
+            JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
 
     protected void crear() {
         this.setVisible(false);
