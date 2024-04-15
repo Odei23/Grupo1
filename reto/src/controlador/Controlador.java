@@ -44,7 +44,7 @@ public class Controlador {
 	                return usuario.isEsAdmin();
 	            }
 	        }
-	        return false; // Usuario no encontrado o no es administrador
+	        return false; 
 	    }
 
 	}
