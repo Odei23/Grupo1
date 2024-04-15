@@ -6,7 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/1dam/Documents/jcalendar-1.4/lib/jcalendar-1.4.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -28,7 +27,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/1dam/Desktop/mysql-connector-j-8.2.0/mysql-connector-j-8.2.0.jar"/>
-=======
->>>>>>> f826602f0b8142467dc01c3148699fccc66841fa
 	<classpathentry kind="output" path="bin"/>
 </classpath>
