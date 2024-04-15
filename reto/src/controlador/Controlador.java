@@ -30,6 +30,23 @@ public class Controlador {
 	        }
 	        return false; // User not found
 	    }
+
+
+
+	    public static boolean usuarioEsAdmin(String dni, String contrasena) {
+	        Dao imp = new ImplementacionBaseDeDatos();
+	        List<Usuarios> usuarios = imp.consultaUsuarios();
+
+	        // Buscar al usuario por DNI y contraseña
+	        for (Usuarios usuario : usuarios) {
+	            if (usuario.getDni().equals(dni) && usuario.getContrasena().equals(contrasena)) {
+	                // Verificar si el usuario es administrador
+	                return usuario.isEsAdmin();
+	            }
+	        }
+	        return false; // Usuario no encontrado o no es administrador
+	    }
+
 	}
 
 

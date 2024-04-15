@@ -13,6 +13,7 @@ public class Usuarios implements Serializable{
 	private LocalDate fechaNac;
 	private Float Saldo;
 	private String contrasena;
+	private boolean esAdmin;
 	
 	
 	
@@ -65,12 +66,23 @@ public class Usuarios implements Serializable{
 		this.contrasena = contrasena;
 	}
 
+	
+	
+	public boolean isEsAdmin() {
+		return esAdmin;
+	}
+
+	public void setEsAdmin(boolean esAdmin) {
+		this.esAdmin = esAdmin;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuarios [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac
-				+ ", Saldo=" + Saldo + ", contrasena=" + contrasena + "]";
+				+ ", Saldo=" + Saldo + ", contrasena=" + contrasena + ", esAdmin=" + esAdmin + "]";
 	}
 
+	
 	
 	
 	

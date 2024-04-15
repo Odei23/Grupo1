@@ -126,23 +126,24 @@ public class VentanaPrincipal extends JFrame {
     }
 
     protected void iniciarMenu() {
-        // Get the entered DNI and password
+        // Obtener el DNI y la contraseña ingresados
         String dni = textField.getText();
         String password = new String(passwordField.getPassword());
 
-        // Check if the user exists in the database
-        boolean userExists = Controlador.usuarioExiste(dni, password);
+        // Verificar si el usuario existe en la base de datos y si es administrador
+        boolean userIsAdmin = Controlador.usuarioEsAdmin(dni, password);
 
-        if (userExists) {
-            // User exists, proceed to the main menu
+        if (userIsAdmin) {
+            // El usuario es administrador, proceder al menú de administrador
             this.setVisible(false);
-            VentanaMenuUsuario venMU = new VentanaMenuUsuario();
-            venMU.setVisible(true);
+            VentanaMenuAdmin venAD = new VentanaMenuAdmin();
+            venAD.setVisible(true);
         } else {
-            // User doesn't exist, show an error message
-            JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            // El usuario no es administrador o no existe, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de administrador", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
 
     protected void crear() {

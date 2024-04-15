@@ -19,7 +19,7 @@ public class ImplementacionBaseDeDatos implements Dao{
 	private Connection conect;
 	private PreparedStatement stat;
 	
-	final String INSERT_USUARIOS = "INSERT INTO cliente VALUES( ?, ?, ?, ?, ?, ?)";
+	final String INSERT_USUARIOS = "INSERT INTO cliente VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
 	private final String CONSULTA_USUARIOS = "SELECT * FROM cliente"; 
 	
@@ -46,12 +46,14 @@ public class ImplementacionBaseDeDatos implements Dao{
 	        stat.setDate(4, Date.valueOf(usuario.getFechaNac())); // Use Date.valueOf to convert LocalDate to SQL Date
 	        stat.setFloat(5, usuario.getSaldo());
 	        stat.setString(6, usuario.getContrasena());
+	        stat.setBoolean(7, usuario.isEsAdmin()); // Nuevo parámetro para esAdmin
 
 	        stat.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	}
+
 
 	@Override
 	public List<Usuarios> consultaUsuarios() {
@@ -66,20 +68,23 @@ public class ImplementacionBaseDeDatos implements Dao{
 			rs= stat.executeQuery();
 			
 			while (rs.next()) {
-				usuario = new Usuarios ();
-				usuario.setDni(rs.getString(1));
-				usuario.setNombre(rs.getString(2));
-				usuario.setApellido(rs.getString(3));
-				Date date = rs.getDate(4);
-				LocalDate localDate = date.toLocalDate();
-				usuario.setFechaNac(localDate);
-				usuario.setSaldo(rs.getFloat(5));
-				usuario.setContrasena(rs.getString(6));
+			    usuario = new Usuarios();
+			    usuario.setDni(rs.getString(1));
+			    usuario.setNombre(rs.getString(2));
+			    usuario.setApellido(rs.getString(3));
+			    Date date = rs.getDate(4);
+			    LocalDate localDate = date.toLocalDate();
+			    usuario.setFechaNac(localDate);
+			    usuario.setSaldo(rs.getFloat(5));
+			    usuario.setContrasena(rs.getString(6));
+			    usuario.setEsAdmin(rs.getBoolean(7)); // Establecer esAdmin con el valor de la base de datos
 
-				usuarios.add(usuario);
-				
-				
+			    usuarios.add(usuario);
 			}
+
+				
+				
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
