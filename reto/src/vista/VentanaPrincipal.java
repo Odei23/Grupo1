@@ -120,21 +120,15 @@ public class VentanaPrincipal extends JFrame {
     }
 
     protected void menuAdmin() {
-           this.setVisible(false);
-           VentanaMenuAdmin venAD = new VentanaMenuAdmin();
-           venAD.setVisible(true);        
-    }
-
-    protected void iniciarMenu() {
         // Obtener el DNI y la contraseña ingresados
         String dni = textField.getText();
         String password = new String(passwordField.getPassword());
 
-        // Verificar si el usuario existe en la base de datos y si es administrador
+        // Verificar si el usuario es administrador
         boolean userIsAdmin = Controlador.usuarioEsAdmin(dni, password);
 
         if (userIsAdmin) {
-            // El usuario es administrador, proceder al menú de administrador
+            // El usuario es administrador, permitir acceso al menú de administrador
             this.setVisible(false);
             VentanaMenuAdmin venAD = new VentanaMenuAdmin();
             venAD.setVisible(true);
@@ -143,6 +137,33 @@ public class VentanaPrincipal extends JFrame {
             JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de administrador", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
+    protected void iniciarMenu() {
+        // Obtener el DNI y la contraseña ingresados
+        String dni = textField.getText();
+        String password = new String(passwordField.getPassword());
+
+        // Verificar si el usuario existe en la base de datos y si no es administrador
+        boolean userExists = Controlador.usuarioExiste(dni, password);
+        boolean userIsAdmin = Controlador.usuarioEsAdmin(dni, password);
+
+        if (userExists && !userIsAdmin) {
+            // El usuario existe y no es administrador, proceder al menú de usuario normal
+            this.setVisible(false);
+            VentanaMenuUsuario venMenuUsuario = new VentanaMenuUsuario();
+            venMenuUsuario.setVisible(true);
+        } else if (userExists && userIsAdmin) {
+            // El usuario existe pero es administrador, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // El usuario no existe, mostrar un mensaje de error
+            JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    
+
 
 
 

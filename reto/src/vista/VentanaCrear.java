@@ -153,7 +153,9 @@ public class VentanaCrear extends JDialog {
         nuevo.setFechaNac(LocalDate.parse(textFieldFechNac.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         nuevo.setSaldo(Float.parseFloat(textFieldSaldo.getText()));
         nuevo.setContrasena(textFieldContra.getText());
-        nuevo.setEsAdmin(parseBoolean(Admin.getText())); // Convertir el texto a boolean
+        
+        // Establecer esAdmin dependiendo de si seleccionó "SI" o "NO"
+        nuevo.setEsAdmin(Admin.getText().equalsIgnoreCase("SI"));
 
         Controlador.altaUsuario(nuevo);
     }
