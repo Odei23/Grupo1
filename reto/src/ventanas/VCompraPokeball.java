@@ -52,7 +52,7 @@ public class VCompraPokeball extends JDialog {
 	 * Create the dialog.
 	 */
 	public VCompraPokeball() {
-		setBounds(100, 100, 913, 829);
+		setBounds(100, 100, 913, 1012);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
