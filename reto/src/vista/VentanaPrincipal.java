@@ -20,6 +20,10 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador;
+import javax.swing.JSeparator;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JEditorPane;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -28,6 +32,8 @@ public class VentanaPrincipal extends JFrame {
     private JTextField textField;
     private JPasswordField passwordField;
     private JButton btnMostrarContraseña;
+    private JLabel logo;
+    private JLabel gif;
 
     public static void main(String[] args) {
         try {
@@ -47,35 +53,35 @@ public class VentanaPrincipal extends JFrame {
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-        JButton iniciar = new JButton("Iniciar sesión");
+        JButton iniciar = new JButton("Cliente");
         iniciar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 iniciarMenu();
             }
         });
         iniciar.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-        iniciar.setBounds(201, 405, 183, 53);
+        iniciar.setBounds(409, 405, 183, 53);
         contentPanel.add(iniciar);
 
         textField = new JTextField();
         textField.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-        textField.setBounds(263, 218, 343, 53);
+        textField.setBounds(415, 219, 343, 53);
         contentPanel.add(textField);
         textField.setColumns(10);
 
         JLabel lblNewLabel = new JLabel("INTRODUCE TU DNI");
         lblNewLabel.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
-        lblNewLabel.setBounds(328, 181, 213, 26);
+        lblNewLabel.setBounds(478, 182, 213, 26);
         contentPanel.add(lblNewLabel);
 
         JLabel lblIntroduceTuContrasea = new JLabel("INTRODUCE TU CONTRASEÑA");
         lblIntroduceTuContrasea.setFont(new Font("Microsoft YaHei", Font.BOLD, 20));
-        lblIntroduceTuContrasea.setBounds(286, 283, 320, 26);
+        lblIntroduceTuContrasea.setBounds(438, 283, 320, 26);
         contentPanel.add(lblIntroduceTuContrasea);
 
         passwordField = new JPasswordField();
         passwordField.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-        passwordField.setBounds(263, 320, 343, 53);
+        passwordField.setBounds(415, 320, 343, 53);
         contentPanel.add(passwordField);
 
         // Botón para mostrar/ocultar contraseña
@@ -85,38 +91,67 @@ public class VentanaPrincipal extends JFrame {
                 mostrarOcultarContraseña();
             }
         });
-        btnMostrarContraseña.setBounds(616, 320, 100, 53);
+        btnMostrarContraseña.setBounds(783, 322, 100, 53);
         contentPanel.add(btnMostrarContraseña);
 
         JButton olvidado = new JButton("¿Has olvidado la contraseña?");
-        olvidado.setBounds(186, 485, 222, 23);
+        olvidado.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 18));
+        olvidado.setBounds(29, 351, 249, 53);
+        olvidado.setBackground(new Color(255, 255, 255));
+        olvidado.setOpaque(false);
+        olvidado.setBorderPainted(false);
+        olvidado.setFocusPainted(false);
         contentPanel.add(olvidado);
 
-        JLabel logo = new JLabel("");
-        logo.setBounds(368, 11, 155, 134);
+        logo = new JLabel("");
+        logo.setBounds(29, 11, 244, 210);
         ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         logo.setIcon(img2);
         contentPanel.add(logo);
 
         JButton crear = new JButton("Crear cuenta");
+        crear.setFont(new Font("Tw Cen MT", Font.BOLD, 22));
+        crear.setBackground(new Color(255, 255, 255));
+        crear.setOpaque(false);
+        crear.setBorderPainted(false);
+        crear.setFocusPainted(false);
         crear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 crear();
             }
         });
-        crear.setBounds(467, 485, 171, 23);
+        crear.setBounds(47, 305, 217, 56);
         contentPanel.add(crear);
         
-        JButton Admin = new JButton("Admin");
+        JButton Admin = new JButton("Administrador");
         Admin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 menuAdmin();
             }
         });
         Admin.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-        Admin.setBounds(455, 405, 183, 53);
+        Admin.setBounds(602, 405, 183, 53);
         contentPanel.add(Admin);
+        ImageIcon poke3 = new ImageIcon(getClass().getResource("logo.PNG"));
+        ImageIcon img3 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
+        logo.setIcon(img3);
+        
+        JEditorPane editorPane = new JEditorPane();
+        editorPane.setEditable(false);
+        editorPane.setBackground(new Color(202, 146, 239));
+        editorPane.setBounds(0, 0, 298, 568);
+        contentPanel.add(editorPane);
+        
+        gif = new JLabel("");
+        gif.setBounds(288, 0, 605, 568); // Establecer tamaño y ubicación adecuados para el JLabel
+        contentPanel.add(gif);
+
+        // Cargar y mostrar el gif
+        ImageIcon poke1 = new ImageIcon(getClass().getResource("fondo.gif"));
+        ImageIcon img1 = new ImageIcon(poke1.getImage().getScaledInstance(gif.getWidth(), gif.getHeight(), Image.SCALE_DEFAULT));
+        gif.setIcon(img1);
+
     }
 
     protected void menuAdmin() {

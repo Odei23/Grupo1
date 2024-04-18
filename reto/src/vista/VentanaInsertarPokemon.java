@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.TextField;
 
+import javax.management.loading.PrivateClassLoader;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +21,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -28,67 +31,67 @@ public class VentanaInsertarPokemon extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JLabel lblLogo;
-	private JButton Pocion;
-	private JButton SuperPocion;
-	private JButton HiperPocion;
-	private JButton MaximaPocion;
-	private JButton RestaurarTodo;
-	private JButton CuraTotal;
-	private JButton Antiquemar;
-	private JButton Antiparaliz;
-	private JButton Antidoto;
-	private JButton Antihielo;
-	private JButton Despertar;
-	private JButton AguaFresca;
-	private JButton Refresco;
-	private JButton Limonada;
-	private JButton Revivir;
-	private JButton MaxRevivir;
-	private JButton Restos;
-	private JButton PolvoCura;
-	private JButton HierbaRev;
-	private JButton Leche;
-	private JCheckBox checkSuper;
-	private JCheckBox checkHiper;
-	private JCheckBox checkMax;
-	private JCheckBox checkRestTodo;
-	private JCheckBox checkCuraTotal;
-	private JCheckBox checkAntidoto;
-	private JCheckBox checkAntiparaliz;
-	private JCheckBox checkAntiquemar;
-	private JCheckBox checkAntiHielo;
-	private JCheckBox checkDespertar;
-	private JCheckBox checkAguaFresca;
-	private JCheckBox checkRefresco;
-	private JCheckBox checkLimonada;
-	private JCheckBox checkRevivir;
-	private JCheckBox checkMaxRevivir;
-	private JCheckBox checkRestos;
-	private JCheckBox checkPolvoCura;
-	private JCheckBox checkLeche;
-	private JCheckBox checkHierba;
-	private JSpinner spinnerSuper;
-	private JSpinner spinnerHiper;
-	private JSpinner spinnerMax;
-	private JSpinner spinnerRestaurarTodo;
-	private JSpinner spinnerAntihielo;
-	private JSpinner spinnerAntiquemar;
-	private JSpinner spinnerAntiparaliz;
-	private JSpinner spinnerAntidoto;
-	private JSpinner spinnerCuraTotal;
-	private JSpinner spinnerDespertar;
-	private JSpinner spinnerAguaFresca;
-	private JSpinner spinnerRefresco;
-	private JSpinner spinnerLimonada;
-	private JSpinner spinnerRevivir;
-	private JSpinner spinnerHierba;
-	private JSpinner spinnerLeche;
-	private JSpinner spinnerPolvo;
-	private JSpinner spinnerRestos;
-	private JSpinner spinnerMaxRev;
+	private JButton P001;
+	private JButton P002;
+	private JButton P003;
+	private JButton P004;
+	private JButton P005;
+	private JButton P006;
+	private JButton P009;
+	private JButton P008;
+	private JButton P007;
+	private JButton P010;
+	private JButton P011;
+	private JButton P012;
+	private JButton P013;
+	private JButton P014;
+	private JButton P015;
+	private JButton P016;
+	private JButton P017;
+	private JButton P018;
+	private JButton P020;
+	private JButton P019;
+	private JCheckBox C001;
+ 	private JCheckBox C002;
+	private JCheckBox C003;
+	private JCheckBox C004;
+	private JCheckBox C005;
+	private JCheckBox C006;
+	private JCheckBox C007;
+	private JCheckBox C008;
+	private JCheckBox C009;
+	private JCheckBox C010;
+	private JCheckBox C011;
+	private JCheckBox C012;
+	private JCheckBox C013;
+	private JCheckBox C014;
+	private JCheckBox C015;
+	private JCheckBox C016;
+	private JCheckBox C017;
+	private JCheckBox C018;
+	private JCheckBox C019;
+	private JCheckBox C020;
+	private JSpinner S001;
+	private JSpinner S002;
+	private JSpinner S003;
+	private JSpinner S004;
+	private JSpinner S005;
+	private JSpinner S010;
+	private JSpinner S009;
+	private JSpinner S008;
+	private JSpinner S007;
+	private JSpinner S006;
+	private JSpinner S011;
+	private JSpinner S012;
+	private JSpinner S013;
+	private JSpinner S014;
+	private JSpinner S015;
+	private JSpinner S020;
+	private JSpinner S019;
+	private JSpinner S018;
+	private JSpinner S017;
+	private JSpinner S016;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
@@ -106,9 +109,11 @@ public class VentanaInsertarPokemon extends JDialog {
 	private JTextField textField_17;
 	private JTextField textField_18;
 	private JTextField textField_19;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	public VentanaInsertarPokemon() {
-		setBounds(100, 100, 985, 607);
+		setBounds(100, 100, 941, 741);
 		getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(new Color(255, 166, 128));
 
@@ -143,424 +148,623 @@ public class VentanaInsertarPokemon extends JDialog {
 	        contentPanel.add(lblLogo);
 		}
 		
-		Pocion = new JButton("");
-		Pocion.setBounds(138, 122, 113, 95);
+		P001 = new JButton("");
+		P001.setBounds(138, 122, 113, 95);
 		ImageIcon poke = new ImageIcon(getClass().getResource("001.png"));
-        ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(Pocion.getWidth(), Pocion.getHeight(), Image.SCALE_SMOOTH));
-        Pocion.setIcon (img2);
-        contentPanel.add(Pocion, BorderLayout.NORTH);
-		contentPanel.add(Pocion);
+        ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(P001.getWidth(), P001.getHeight(), Image.SCALE_SMOOTH));
+        P001.setIcon (img2);
+        contentPanel.add(P001, BorderLayout.NORTH);
+		contentPanel.add(P001);
 		
 		
 		
-	    SuperPocion = new JButton("");
-		SuperPocion.setBounds(283, 156, 95, 62);
+	    P002 = new JButton("");
+		P002.setBounds(283, 122, 113, 95);
 		ImageIcon superPoc = new ImageIcon(getClass().getResource("002.png"));
-        ImageIcon imgSuper = new ImageIcon(superPoc.getImage().getScaledInstance(SuperPocion.getWidth(), SuperPocion.getHeight(), Image.SCALE_SMOOTH));
-        SuperPocion.setIcon (imgSuper);
-		contentPanel.add(SuperPocion);
+        ImageIcon imgSuper = new ImageIcon(superPoc.getImage().getScaledInstance(P002.getWidth(), P002.getHeight(), Image.SCALE_SMOOTH));
+        P002.setIcon (imgSuper);
+		contentPanel.add(P002);
 		
-		HiperPocion = new JButton("");
-		HiperPocion.setBounds(423, 156, 95, 62);
+		P003 = new JButton("");
+		P003.setBounds(423, 122,113, 95);
 		ImageIcon hiperPoc = new ImageIcon(getClass().getResource("003.png"));
-        ImageIcon imgHiper = new ImageIcon(hiperPoc.getImage().getScaledInstance(HiperPocion.getWidth(), HiperPocion.getHeight(), Image.SCALE_SMOOTH));
-        HiperPocion.setIcon (imgHiper);
-		contentPanel.add(HiperPocion);
+        ImageIcon imgHiper = new ImageIcon(hiperPoc.getImage().getScaledInstance(P003.getWidth(), P003.getHeight(), Image.SCALE_SMOOTH));
+        P003.setIcon (imgHiper);
+		contentPanel.add(P003);
 		
-		MaximaPocion = new JButton("");
-		MaximaPocion.setBounds(557, 155, 95, 62);
+		P004 = new JButton("");
+		P004.setBounds(557, 122, 113, 95);
 		ImageIcon maxPoc = new ImageIcon(getClass().getResource("004.png"));
-        ImageIcon imgMax = new ImageIcon(maxPoc.getImage().getScaledInstance(MaximaPocion.getWidth(), MaximaPocion.getHeight(), Image.SCALE_SMOOTH));
-        MaximaPocion.setIcon (imgMax);
-		contentPanel.add(MaximaPocion);
+        ImageIcon imgMax = new ImageIcon(maxPoc.getImage().getScaledInstance(P004.getWidth(), P004.getHeight(), Image.SCALE_SMOOTH));
+        P004.setIcon (imgMax);
+		contentPanel.add(P004);
 		
-		RestaurarTodo = new JButton("");
-		RestaurarTodo.setBounds(699, 155, 95, 62);
+		P005 = new JButton("");
+		P005.setBounds(699, 122, 113, 95);
 		ImageIcon restTodo = new ImageIcon(getClass().getResource("005.png"));
-        ImageIcon imgRest = new ImageIcon(restTodo.getImage().getScaledInstance(RestaurarTodo.getWidth(), RestaurarTodo.getHeight(), Image.SCALE_SMOOTH));
-        RestaurarTodo.setIcon (imgRest);
-		contentPanel.add(RestaurarTodo);
-		
-		CuraTotal = new JButton("");
-		CuraTotal.setBounds(138, 253, 113, 95);
+        ImageIcon imgRest = new ImageIcon(restTodo.getImage().getScaledInstance(P005.getWidth(), P005.getHeight(), Image.SCALE_SMOOTH));
+        P005.setIcon (imgRest);
+		contentPanel.add(P005);
 		ImageIcon curaTotal = new ImageIcon(getClass().getResource("006.png"));
-        ImageIcon imgCuraTot = new ImageIcon(curaTotal.getImage().getScaledInstance(CuraTotal.getWidth(), CuraTotal.getHeight(), Image.SCALE_SMOOTH));
-        CuraTotal.setIcon (imgCuraTot);
-		contentPanel.add(CuraTotal);
-		
-		Antiquemar = new JButton("");
-		Antiquemar.setBounds(557, 253, 95, 62);
 		ImageIcon antiQuemar = new ImageIcon(getClass().getResource("007.png"));
-        ImageIcon imgAntiQuemar = new ImageIcon(antiQuemar.getImage().getScaledInstance(Antiquemar.getWidth(), Antiquemar.getHeight(), Image.SCALE_SMOOTH));
-        Antiquemar.setIcon (imgAntiQuemar);
-		contentPanel.add(Antiquemar);
-		
-		Antiparaliz = new JButton("");
-		Antiparaliz.setBounds(423, 253, 95, 62);
 		ImageIcon antiParaliz = new ImageIcon(getClass().getResource("008.png"));
-        ImageIcon imgAntiParaliz = new ImageIcon(antiParaliz.getImage().getScaledInstance(Antiparaliz.getWidth(), Antiparaliz.getHeight(), Image.SCALE_SMOOTH));
-        Antiparaliz.setIcon (imgAntiParaliz);
-		contentPanel.add(Antiparaliz);
-		
-		Antidoto = new JButton("");
-		Antidoto.setBounds(283, 253, 95, 62);
 		ImageIcon antidoto = new ImageIcon(getClass().getResource("009.png"));
-        ImageIcon imgAntidoto = new ImageIcon(antidoto.getImage().getScaledInstance(Antidoto.getWidth(), Antidoto.getHeight(), Image.SCALE_SMOOTH));
-        Antidoto.setIcon (imgAntidoto);
-		contentPanel.add(Antidoto);
 		
-		Antihielo = new JButton("");
-		Antihielo.setBounds(699, 253, 95, 62);
+		P010 = new JButton("");
+		P010.setBounds(699, 259, 113, 95);
 		ImageIcon antiHielo = new ImageIcon(getClass().getResource("010.png"));
-        ImageIcon imgAntiHielo = new ImageIcon(antiHielo.getImage().getScaledInstance(Antihielo.getWidth(), Antihielo.getHeight(), Image.SCALE_SMOOTH));
-        Antihielo.setIcon (imgAntiHielo);
-		contentPanel.add(Antihielo);
+        ImageIcon imgAntiHielo = new ImageIcon(antiHielo.getImage().getScaledInstance(P010.getWidth(), P010.getHeight(), Image.SCALE_SMOOTH));
+        P010.setIcon (imgAntiHielo);
+		contentPanel.add(P010);
 		
-		Despertar = new JButton("");
-		Despertar.setBounds(138, 347, 95, 62);
+		P011 = new JButton("");
+		P011.setBounds(138, 395, 113, 95);
 		ImageIcon despertar = new ImageIcon(getClass().getResource("011.png"));
-        ImageIcon imgDespertar = new ImageIcon(despertar.getImage().getScaledInstance(Despertar.getWidth(), Despertar.getHeight(), Image.SCALE_SMOOTH));
-        Despertar.setIcon (imgDespertar);
-		contentPanel.add(Despertar);
+        ImageIcon imgDespertar = new ImageIcon(despertar.getImage().getScaledInstance(P011.getWidth(), P011.getHeight(), Image.SCALE_SMOOTH));
+        P011.setIcon (imgDespertar);
+		contentPanel.add(P011);
 		
-		AguaFresca = new JButton("");
-		AguaFresca.setBounds(283, 347, 95, 62);
+		P012 = new JButton("");
+		P012.setBounds(283, 395,113, 95);
 		ImageIcon aguaFresca = new ImageIcon(getClass().getResource("012.png"));
-        ImageIcon imgAguaFresca = new ImageIcon(aguaFresca.getImage().getScaledInstance(AguaFresca.getWidth(), AguaFresca.getHeight(), Image.SCALE_SMOOTH));
-        AguaFresca.setIcon (imgAguaFresca);
-		contentPanel.add(AguaFresca);
+        ImageIcon imgAguaFresca = new ImageIcon(aguaFresca.getImage().getScaledInstance(P012.getWidth(), P012.getHeight(), Image.SCALE_SMOOTH));
+        P012.setIcon (imgAguaFresca);
+		contentPanel.add(P012);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(876, 171, 17, 367);
+		scrollBar.setBounds(876, 171, 17, 498);
 		contentPanel.add(scrollBar);
 
 		
-		Refresco = new JButton("");
-		Refresco.setBounds(423, 347, 95, 62);
+		P013 = new JButton("");
+		P013.setBounds(423, 395, 113, 95);
 		ImageIcon refresco = new ImageIcon(getClass().getResource("013.png"));
-        ImageIcon imgRefresco = new ImageIcon(refresco.getImage().getScaledInstance(Refresco.getWidth(), Refresco.getHeight(), Image.SCALE_SMOOTH));
-        Refresco.setIcon (imgRefresco);
-		contentPanel.add(Refresco);
+        ImageIcon imgRefresco = new ImageIcon(refresco.getImage().getScaledInstance(P013.getWidth(), P013.getHeight(), Image.SCALE_SMOOTH));
+        P013.setIcon (imgRefresco);
+		contentPanel.add(P013);
 		
-		Limonada = new JButton("");
-		Limonada.setBounds(557, 347, 95, 62);
+		P014 = new JButton("");
+		P014.setBounds(557, 395, 113, 95);
 		ImageIcon limonada = new ImageIcon(getClass().getResource("014.png"));
-        ImageIcon imgLimonada = new ImageIcon(limonada.getImage().getScaledInstance(Limonada.getWidth(), Limonada.getHeight(), Image.SCALE_SMOOTH));
-        Limonada.setIcon (imgLimonada);
-		contentPanel.add(Limonada);
+        ImageIcon imgLimonada = new ImageIcon(limonada.getImage().getScaledInstance(P014.getWidth(), P014.getHeight(), Image.SCALE_SMOOTH));
+        P014.setIcon (imgLimonada);
+		contentPanel.add(P014);
 		
-		Revivir = new JButton("");
-		Revivir.setBounds(699, 347, 95, 62);
+		P015 = new JButton("");
+		P015.setBounds(699, 395, 113, 95);
 		ImageIcon revivir = new ImageIcon(getClass().getResource("015.png"));
-        ImageIcon imgRevivir = new ImageIcon(revivir.getImage().getScaledInstance(Revivir.getWidth(), Revivir.getHeight(), Image.SCALE_SMOOTH));
-        Revivir.setIcon (imgRevivir);
-		contentPanel.add(Revivir);
+        ImageIcon imgRevivir = new ImageIcon(revivir.getImage().getScaledInstance(P015.getWidth(), P015.getHeight(), Image.SCALE_SMOOTH));
+        P015.setIcon (imgRevivir);
+		contentPanel.add(P015);
 		
-		MaxRevivir = new JButton("");
-		MaxRevivir.setBounds(138, 444, 95, 62);
+		P016 = new JButton("");
+		P016.setBounds(138, 544, 113, 95);
 		ImageIcon maxRevivir = new ImageIcon(getClass().getResource("016.png"));
-        ImageIcon imgMaxRevivir = new ImageIcon(maxRevivir.getImage().getScaledInstance(MaxRevivir.getWidth(), MaxRevivir.getHeight(), Image.SCALE_SMOOTH));
-        MaxRevivir.setIcon (imgMaxRevivir);
-		contentPanel.add(MaxRevivir);
+        ImageIcon imgMaxRevivir = new ImageIcon(maxRevivir.getImage().getScaledInstance(P016.getWidth(), P016.getHeight(), Image.SCALE_SMOOTH));
+        P016.setIcon (imgMaxRevivir);
+		contentPanel.add(P016);
 		
-		Restos = new JButton("");
-		Restos.setBounds(283, 444, 95, 62);
+		P017 = new JButton("");
+		P017.setBounds(283, 544, 113, 95);
 		ImageIcon restos = new ImageIcon(getClass().getResource("017.png"));
-        ImageIcon imgRestos = new ImageIcon(restos.getImage().getScaledInstance(Restos.getWidth(), Restos.getHeight(), Image.SCALE_SMOOTH));
-        Restos.setIcon (imgRestos);
-		contentPanel.add(Restos);
+        ImageIcon imgRestos = new ImageIcon(restos.getImage().getScaledInstance(P017.getWidth(), P017.getHeight(), Image.SCALE_SMOOTH));
+        P017.setIcon (imgRestos);
+		contentPanel.add(P017);
 		
-		PolvoCura = new JButton("");
-		PolvoCura.setBounds(423, 444, 95, 62);
+		P018 = new JButton("");
+		P018.setBounds(423, 544, 113, 95);
 		ImageIcon polvoCura = new ImageIcon(getClass().getResource("018.png"));
-        ImageIcon imgPolvoCura = new ImageIcon(polvoCura.getImage().getScaledInstance(PolvoCura.getWidth(), PolvoCura.getHeight(), Image.SCALE_SMOOTH));
-        PolvoCura.setIcon (imgPolvoCura);
-		contentPanel.add(PolvoCura);
+        ImageIcon imgPolvoCura = new ImageIcon(polvoCura.getImage().getScaledInstance(P018.getWidth(), P018.getHeight(), Image.SCALE_SMOOTH));
+        P018.setIcon (imgPolvoCura);
+		contentPanel.add(P018);
 		
-		HierbaRev = new JButton("");
-		HierbaRev.setBounds(699, 444, 95, 62);
+		P020 = new JButton("");
+		P020.setBounds(699, 544, 113, 95);
 		ImageIcon HierbaRevivir = new ImageIcon(getClass().getResource("019.png"));
-        ImageIcon imgHierbaRevivir = new ImageIcon(HierbaRevivir.getImage().getScaledInstance(HierbaRev.getWidth(), HierbaRev.getHeight(), Image.SCALE_SMOOTH));
-        HierbaRev.setIcon (imgHierbaRevivir);
-		contentPanel.add(HierbaRev);
+        ImageIcon imgHierbaRevivir = new ImageIcon(HierbaRevivir.getImage().getScaledInstance(P020.getWidth(), P020.getHeight(), Image.SCALE_SMOOTH));
+        P020.setIcon (imgHierbaRevivir);
+		contentPanel.add(P020);
 		
-		Leche = new JButton("");
-		Leche.setBounds(557, 444, 95, 62);
+		P019 = new JButton("");
+		P019.setBounds(557, 544, 113, 95);
 		ImageIcon leche = new ImageIcon(getClass().getResource("020.png"));
-        ImageIcon imgLeche = new ImageIcon(leche.getImage().getScaledInstance(Leche.getWidth(), Leche.getHeight(), Image.SCALE_SMOOTH));
-        Leche.setIcon (imgLeche);
-		contentPanel.add(Leche);
+        ImageIcon imgLeche = new ImageIcon(leche.getImage().getScaledInstance(P019.getWidth(), P019.getHeight(), Image.SCALE_SMOOTH));
+        P019.setIcon (imgLeche);
+		contentPanel.add(P019);
 		
-		JCheckBox checkPocion = new JCheckBox("");
-		checkPocion.setBounds(148, 219, 21, 23);
-		contentPanel.add(checkPocion);
+		C001 = new JCheckBox("");
+		C001.setBounds(148, 219, 21, 23);
+		contentPanel.add(C001);
 		
-		checkSuper = new JCheckBox("");
-		checkSuper.setBounds(293, 219, 21, 23);
-		contentPanel.add(checkSuper);
+		C001.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S001.setVisible(true);
+	            } else {
+	            	S001.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkHiper = new JCheckBox("");
-		checkHiper.setBounds(433, 219, 21, 23);
-		contentPanel.add(checkHiper);
+		C002 = new JCheckBox("");
+		C002.setBounds(293, 219, 21, 23);
+		contentPanel.add(C002);
 		
-		checkMax = new JCheckBox("");
-		checkMax.setBounds(567, 219, 21, 23);
-		contentPanel.add(checkMax);
+		C002.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S002.setVisible(true);
+	            } else {
+	            	S002.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkRestTodo = new JCheckBox("");
-		checkRestTodo.setBounds(709, 219, 21, 23);
-		contentPanel.add(checkRestTodo);
+		C003 = new JCheckBox("");
+		C003.setBounds(433, 219, 21, 23);
+		contentPanel.add(C003);
 		
-		checkCuraTotal = new JCheckBox("");
-		checkCuraTotal.setBounds(148, 317, 21, 23);
-		contentPanel.add(checkCuraTotal);
+		C003.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S003.setVisible(true);
+	            } else {
+	            	S003.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkAntidoto = new JCheckBox("");
-		checkAntidoto.setBounds(293, 317, 21, 23);
-		contentPanel.add(checkAntidoto);
+		C004 = new JCheckBox("");
+		C004.setBounds(567, 219, 21, 23);
+		contentPanel.add(C004);
 		
-		checkAntiparaliz = new JCheckBox("");
-		checkAntiparaliz.setBounds(433, 317, 21, 23);
-		contentPanel.add(checkAntiparaliz);
+		C004.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S004.setVisible(true);
+	            } else {
+	            	S004.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkAntiquemar = new JCheckBox("");
-		checkAntiquemar.setBounds(567, 317, 21, 23);
-		contentPanel.add(checkAntiquemar);
+		C005 = new JCheckBox("");
+		C005.setBounds(709, 219, 21, 23);
+		contentPanel.add(C005);
 		
-		checkAntiHielo = new JCheckBox("");
-		checkAntiHielo.setBounds(709, 317, 21, 23);
-		contentPanel.add(checkAntiHielo);
+		C005.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S005.setVisible(true);
+	            } else {
+	            	S005.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkDespertar = new JCheckBox("");
-		checkDespertar.setBounds(148, 410, 21, 23);
-		contentPanel.add(checkDespertar);
+		C006 = new JCheckBox("");
+		C006.setBounds(148, 361, 21, 23);
+		contentPanel.add(C006);
 		
-		checkAguaFresca = new JCheckBox("");
-		checkAguaFresca.setBounds(293, 410, 21, 23);
-		contentPanel.add(checkAguaFresca);
 		
-		checkRefresco = new JCheckBox("");
-		checkRefresco.setBounds(433, 410, 21, 23);
-		contentPanel.add(checkRefresco);
+		C006.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S006.setVisible(true);
+	            } else {
+	            	S006.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkLimonada = new JCheckBox("");
-		checkLimonada.setBounds(567, 410, 21, 23);
-		contentPanel.add(checkLimonada);
+		C007 = new JCheckBox("");
+		C007.setBounds(293, 361, 21, 23);
+		contentPanel.add(C007);
 		
-		checkRevivir = new JCheckBox("");
-		checkRevivir.setBounds(709, 410, 21, 23);
-		contentPanel.add(checkRevivir);
+		C007.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S007.setVisible(true);
+	            } else {
+	            	S007.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkMaxRevivir = new JCheckBox("");
-		checkMaxRevivir.setBounds(148, 508, 21, 23);
-		contentPanel.add(checkMaxRevivir);
+		C008 = new JCheckBox("");
+		C008.setBounds(433, 361, 21, 23);
+		contentPanel.add(C008);
 		
-		checkRestos = new JCheckBox("");
-		checkRestos.setBounds(293, 508, 21, 23);
-		contentPanel.add(checkRestos);
+		C008.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S008.setVisible(true);
+	            } else {
+	            	S008.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkPolvoCura = new JCheckBox("");
-		checkPolvoCura.setBounds(433, 510, 21, 23);
-		contentPanel.add(checkPolvoCura);
+		C009 = new JCheckBox("");
+		C009.setBounds(567, 361, 21, 23);
+		contentPanel.add(C009);
 		
-		checkLeche = new JCheckBox("");
-		checkLeche.setBounds(567, 508, 21, 23);
-		contentPanel.add(checkLeche);
+		C009.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S009.setVisible(true);
+	            } else {
+	            	S009.setVisible(false);
+	            }
+	        }
+	    });
 		
-		checkHierba = new JCheckBox("");
-		checkHierba.setBounds(709, 508, 21, 23);
-		contentPanel.add(checkHierba);
+		C010 = new JCheckBox("");
+		C010.setBounds(709, 361, 21, 23);
+		contentPanel.add(C010);
 		
-		JSpinner spinnerPocion = new JSpinner();
-		spinnerPocion.setBounds(203, 220, 48, 20);
+		C010.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S010.setVisible(true);
+	            } else {
+	            	S010.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C011 = new JCheckBox("");
+		C011.setBounds(148, 500, 21, 23);
+		contentPanel.add(C011);
+		
+		C011.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S011.setVisible(true);
+	            } else {
+	            	S011.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C012 = new JCheckBox("");
+		C012.setBounds(293, 500, 21, 23);
+		contentPanel.add(C012);
+		
+		C012.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S012.setVisible(true);
+	            } else {
+	            	S012.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C013 = new JCheckBox("");
+		C013.setBounds(433, 500, 21, 23);
+		contentPanel.add(C013);
+		
+		C013.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S013.setVisible(true);
+	            } else {
+	            	S013.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C014 = new JCheckBox("");
+		C014.setBounds(567, 500, 21, 23);
+		contentPanel.add(C014);
+		
+		
+		C014.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S014.setVisible(true);
+	            } else {
+	            	S014.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C015 = new JCheckBox("");
+		C015.setBounds(709, 500, 21, 23);
+		contentPanel.add(C015);
+		
+		C015.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S015.setVisible(true);
+	            } else {
+	            	S015.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C016 = new JCheckBox("");
+		C016.setBounds(138, 646, 21, 23);
+		contentPanel.add(C016);
+		
+		C016.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S016.setVisible(true);
+	            } else {
+	            	S016.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C017 = new JCheckBox("");
+		C017.setBounds(283, 646, 21, 23);
+		contentPanel.add(C017);
+		
+		C017.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S017.setVisible(true);
+	            } else {
+	            	S017.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C018 = new JCheckBox("");
+		C018.setBounds(423, 648, 21, 23);
+		contentPanel.add(C018);
+		
+		C018.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S018.setVisible(true);
+	            } else {
+	            	S018.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C019 = new JCheckBox("");
+		C019.setBounds(557, 646, 21, 23);
+		contentPanel.add(C019);
+		
+		C019.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S019.setVisible(true);
+	            } else {
+	            	S019.setVisible(false);
+	            }
+	        }
+	    });
+		
+		C020 = new JCheckBox("");
+		C020.setBounds(699, 646, 21, 23);
+		contentPanel.add(C020);
+		
+		C020.addItemListener((ItemListener) new ItemListener() {
+	        @Override
+	        public void itemStateChanged(ItemEvent e) {
+	            if (e.getStateChange() == ItemEvent.SELECTED) {
+	            	S001.setVisible(true);
+	            } else {
+	            	S001.setVisible(false);
+	            }
+	        }
+	    });
+		
+		JSpinner S001 = new JSpinner();
+		S001.setBounds(203, 220, 48, 20);
 		SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
-        spinnerPocion.setModel(spinnerModel);
-        
-		contentPanel.add(spinnerPocion);
+        S001.setModel(spinnerModel);
+        S001.setVisible(false);
+
+		contentPanel.add(S001);
 		
 		
 		SpinnerNumberModel spinnerModel1 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
-		spinnerSuper = new JSpinner();
-		spinnerSuper.setBounds(352, 220, 48, 20);
-        spinnerSuper.setModel(spinnerModel1);
-		contentPanel.add(spinnerSuper);
+		S002 = new JSpinner();
+		S002.setBounds(352, 220, 48, 20);
+        S002.setModel(spinnerModel1);
+        S002.setVisible(false);
+		contentPanel.add(S002);
 		
 		
 		SpinnerNumberModel spinnerModel2 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
-		spinnerHiper = new JSpinner();
-		spinnerHiper.setBounds(488, 220, 48, 20);
-		spinnerHiper.setModel(spinnerModel2);
-		contentPanel.add(spinnerHiper);
+		S003 = new JSpinner();
+		S003.setBounds(488, 220, 48, 20);
+		S003.setModel(spinnerModel2);
+        S003.setVisible(false);
+
+		contentPanel.add(S003);
 		
 		
 		SpinnerNumberModel spinnerModel3 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
-		spinnerMax = new JSpinner();
-		spinnerMax.setBounds(628, 220, 48, 20);
-		spinnerMax.setModel(spinnerModel3);
-		contentPanel.add(spinnerMax);
+		S004 = new JSpinner();
+		S004.setBounds(628, 220, 48, 20);
+		S004.setModel(spinnerModel3);
+		S004.setVisible(false);
+		contentPanel.add(S004);
 		
 		SpinnerNumberModel spinnerModel4 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerRestaurarTodo = new JSpinner();
-		spinnerRestaurarTodo.setBounds(769, 220, 48, 20);
-		spinnerRestaurarTodo.setModel(spinnerModel4);
-		contentPanel.add(spinnerRestaurarTodo);
+		S005 = new JSpinner();
+		S005.setBounds(769, 220, 48, 20);
+		S005.setModel(spinnerModel4);
+		S005.setVisible(false);
+		contentPanel.add(S005);
 		
 		SpinnerNumberModel spinnerModel5 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		
-		spinnerAntihielo = new JSpinner();
-		spinnerAntihielo.setBounds(769, 318, 48, 20);
-		spinnerAntihielo.setModel(spinnerModel5);
-		contentPanel.add(spinnerAntihielo);
+		S010 = new JSpinner();
+		S010.setBounds(769, 362, 48, 20);
+		S010.setModel(spinnerModel5);
+		S010.setVisible(false);
+		contentPanel.add(S010);
 		
 		
 		SpinnerNumberModel spinnerModel6 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerAntiquemar = new JSpinner();
-		spinnerAntiquemar.setBounds(628, 318, 48, 20);
-		spinnerAntiquemar.setModel(spinnerModel6);
-		contentPanel.add(spinnerAntiquemar);
+		S009 = new JSpinner();
+		S009.setBounds(628, 362, 48, 20);
+		S009.setModel(spinnerModel6);
+		S009.setVisible(false);
+		contentPanel.add(S009);
 		
 		SpinnerNumberModel spinnerModel7 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerAntiparaliz = new JSpinner();
-		spinnerAntiparaliz.setBounds(488, 318, 48, 20);
-		spinnerAntiparaliz.setModel(spinnerModel7);
-		contentPanel.add(spinnerAntiparaliz);
+		S008 = new JSpinner();
+		S008.setBounds(488, 362, 48, 20);
+		S008.setModel(spinnerModel7);
+		S008.setVisible(false);
+		contentPanel.add(S008);
 		
 		
 		SpinnerNumberModel spinnerModel8 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerAntidoto = new JSpinner();
-		spinnerAntidoto.setBounds(352, 318, 48, 20);
-		spinnerAntidoto.setModel(spinnerModel8);
-		contentPanel.add(spinnerAntidoto);
+		S007 = new JSpinner();
+		S007.setBounds(352, 362, 48, 20);
+		S007.setModel(spinnerModel8);
+		S007.setVisible(false);
+		contentPanel.add(S007);
 		
 		SpinnerNumberModel spinnerModel9 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerCuraTotal = new JSpinner();
-		spinnerCuraTotal.setBounds(203, 318, 48, 20);
-		spinnerCuraTotal.setModel(spinnerModel9);
-		contentPanel.add(spinnerCuraTotal);
+		S006 = new JSpinner();
+		S006.setBounds(203, 362, 48, 20);
+		S006.setModel(spinnerModel9);
+		S006.setVisible(false);
+		contentPanel.add(S006);
 		
 		SpinnerNumberModel spinnerModel10 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerDespertar = new JSpinner();
-		spinnerDespertar.setBounds(203, 411, 48, 20);
-		spinnerDespertar.setModel(spinnerModel10);
-		contentPanel.add(spinnerDespertar);
+		S011 = new JSpinner();
+		S011.setBounds(203, 501, 48, 20);
+		S011.setModel(spinnerModel10);
+		S011.setVisible(false);
+		contentPanel.add(S011);
 		
 		
 		SpinnerNumberModel spinnerModel11 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerAguaFresca = new JSpinner();
-		spinnerAguaFresca.setBounds(352, 411, 48, 20);
-		spinnerAguaFresca.setModel(spinnerModel11);
-		contentPanel.add(spinnerAguaFresca);
+		S012 = new JSpinner();
+		S012.setBounds(352, 501, 48, 20);
+		S012.setModel(spinnerModel11);
+		S012.setVisible(false);
+		contentPanel.add(S012);
 		
 		SpinnerNumberModel spinnerModel12 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerRefresco = new JSpinner();
-		spinnerRefresco.setBounds(488, 411, 48, 20);
-		spinnerRefresco.setModel(spinnerModel12);
-		contentPanel.add(spinnerRefresco);
+		S013 = new JSpinner();
+		S013.setBounds(488, 501, 48, 20);
+		S013.setModel(spinnerModel12);
+		S013.setVisible(false);
+		contentPanel.add(S013);
 		
 		
 		SpinnerNumberModel spinnerModel13 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
-		spinnerLimonada = new JSpinner();
-		spinnerLimonada.setBounds(628, 413, 48, 20);
-		spinnerLimonada.setModel(spinnerModel13);
-		contentPanel.add(spinnerLimonada);
+		S014 = new JSpinner();
+		S014.setBounds(628, 503, 48, 20);
+		S014.setModel(spinnerModel13);
+		S014.setVisible(false);
+		contentPanel.add(S014);
 		
 		
 		SpinnerNumberModel spinnerModel14 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
-		spinnerRevivir = new JSpinner();
-		spinnerRevivir.setBounds(769, 411, 48, 20);
-		spinnerRevivir.setModel(spinnerModel14);
-		contentPanel.add(spinnerRevivir);
+		S015 = new JSpinner();
+		S015.setBounds(769, 501, 48, 20);
+		S015.setModel(spinnerModel14);
+		S015.setVisible(false);
+		contentPanel.add(S015);
 		
 		SpinnerNumberModel spinnerModel15 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerHierba = new JSpinner();
-		spinnerHierba.setBounds(769, 509, 48, 20);
-		spinnerHierba.setModel(spinnerModel15);
-		contentPanel.add(spinnerHierba);
+		S020 = new JSpinner();
+		S020.setBounds(759, 647, 48, 20);
+		S020.setModel(spinnerModel15);
+		S020.setVisible(false);
+		contentPanel.add(S020);
 		
 		SpinnerNumberModel spinnerModel16 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerLeche = new JSpinner();
-		spinnerLeche.setBounds(628, 509, 48, 20);
-		spinnerLeche.setModel(spinnerModel16);
-		contentPanel.add(spinnerLeche);
+		S019 = new JSpinner();
+		S019.setBounds(618, 647, 48, 20);
+		S019.setModel(spinnerModel16);
+		S019.setVisible(false);
+		contentPanel.add(S019);
 		
 		SpinnerNumberModel spinnerModel17 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerPolvo = new JSpinner();
-		spinnerPolvo.setBounds(488, 509, 48, 20);
-		spinnerPolvo.setModel(spinnerModel17);
-		contentPanel.add(spinnerPolvo);
+		S018 = new JSpinner();
+		S018.setBounds(478, 647, 48, 20);
+		S018.setModel(spinnerModel17);
+		S018.setVisible(false);
+		contentPanel.add(S018);
 		
 		SpinnerNumberModel spinnerModel18 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerRestos = new JSpinner();
-		spinnerRestos.setBounds(352, 509, 48, 20);
-		spinnerRestos.setModel(spinnerModel18);
-		contentPanel.add(spinnerRestos);
+		JSpinner S017 = new JSpinner();
+		S017.setBounds(342, 647, 48, 20);
+		S017.setModel(spinnerModel18);
+		S017.setVisible(false);
+		contentPanel.add(S017);
 		
 		
 		SpinnerNumberModel spinnerModel19 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 
 		
-		spinnerMaxRev = new JSpinner();
-		spinnerMaxRev.setBounds(203, 509, 48, 20);
-		spinnerMaxRev.setModel(spinnerModel19);
-		contentPanel.add(spinnerMaxRev);
+		S016 = new JSpinner();
+		S016.setBounds(193, 647, 48, 20);
+		S016.setModel(spinnerModel19);
+		S016.setVisible(false);
+		contentPanel.add(S016);
 		
 		textField = new JTextField();
 		textField.setBackground(new Color(255, 166, 128));
 		textField.setEditable(false);
-		textField.setText("20€");
+		textField.setText("0€");
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setBorder(BorderFactory.createEmptyBorder());
 		textField.setBounds(169, 220, 35, 20);
 		contentPanel.add(textField);
 		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("20€");
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBorder(BorderFactory.createEmptyBorder());
-		textField_1.setBackground(new Color(255, 166, 128));
-		textField_1.setBounds(320, 220, 35, 20);
-		contentPanel.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setText("20€");
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBorder(BorderFactory.createEmptyBorder());
-		textField_2.setBackground(new Color(255, 166, 128));
-		textField_2.setBounds(460, 220, 35, 20);
-		contentPanel.add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setText("20€");
@@ -589,7 +793,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_5.setColumns(10);
 		textField_5.setBorder(BorderFactory.createEmptyBorder());
 		textField_5.setBackground(new Color(255, 166, 128));
-		textField_5.setBounds(169, 316, 35, 20);
+		textField_5.setBounds(169, 360, 35, 20);
 		contentPanel.add(textField_5);
 		
 		textField_6 = new JTextField();
@@ -599,7 +803,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_6.setColumns(10);
 		textField_6.setBorder(BorderFactory.createEmptyBorder());
 		textField_6.setBackground(new Color(255, 166, 128));
-		textField_6.setBounds(320, 318, 35, 20);
+		textField_6.setBounds(320, 362, 35, 20);
 		contentPanel.add(textField_6);
 		
 		textField_7 = new JTextField();
@@ -609,7 +813,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_7.setColumns(10);
 		textField_7.setBorder(BorderFactory.createEmptyBorder());
 		textField_7.setBackground(new Color(255, 166, 128));
-		textField_7.setBounds(460, 318, 35, 20);
+		textField_7.setBounds(460, 362, 35, 20);
 		contentPanel.add(textField_7);
 		
 		textField_8 = new JTextField();
@@ -619,7 +823,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_8.setColumns(10);
 		textField_8.setBorder(BorderFactory.createEmptyBorder());
 		textField_8.setBackground(new Color(255, 166, 128));
-		textField_8.setBounds(594, 318, 35, 20);
+		textField_8.setBounds(594, 362, 35, 20);
 		contentPanel.add(textField_8);
 		
 		textField_9 = new JTextField();
@@ -629,7 +833,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_9.setColumns(10);
 		textField_9.setBorder(BorderFactory.createEmptyBorder());
 		textField_9.setBackground(new Color(255, 166, 128));
-		textField_9.setBounds(735, 320, 35, 20);
+		textField_9.setBounds(735, 364, 35, 20);
 		contentPanel.add(textField_9);
 		
 		textField_10 = new JTextField();
@@ -639,7 +843,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_10.setColumns(10);
 		textField_10.setBorder(BorderFactory.createEmptyBorder());
 		textField_10.setBackground(new Color(255, 166, 128));
-		textField_10.setBounds(169, 413, 35, 20);
+		textField_10.setBounds(169, 503, 35, 20);
 		contentPanel.add(textField_10);
 		
 		textField_11 = new JTextField();
@@ -649,7 +853,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_11.setColumns(10);
 		textField_11.setBorder(BorderFactory.createEmptyBorder());
 		textField_11.setBackground(new Color(255, 166, 128));
-		textField_11.setBounds(320, 411, 35, 20);
+		textField_11.setBounds(320, 501, 35, 20);
 		contentPanel.add(textField_11);
 		
 		textField_12 = new JTextField();
@@ -659,7 +863,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_12.setColumns(10);
 		textField_12.setBorder(BorderFactory.createEmptyBorder());
 		textField_12.setBackground(new Color(255, 166, 128));
-		textField_12.setBounds(460, 411, 35, 20);
+		textField_12.setBounds(460, 501, 35, 20);
 		contentPanel.add(textField_12);
 		
 		textField_13 = new JTextField();
@@ -669,7 +873,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_13.setColumns(10);
 		textField_13.setBorder(BorderFactory.createEmptyBorder());
 		textField_13.setBackground(new Color(255, 166, 128));
-		textField_13.setBounds(594, 413, 35, 20);
+		textField_13.setBounds(594, 503, 35, 20);
 		contentPanel.add(textField_13);
 		
 		textField_14 = new JTextField();
@@ -679,7 +883,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_14.setColumns(10);
 		textField_14.setBorder(BorderFactory.createEmptyBorder());
 		textField_14.setBackground(new Color(255, 166, 128));
-		textField_14.setBounds(736, 413, 35, 20);
+		textField_14.setBounds(736, 503, 35, 20);
 		contentPanel.add(textField_14);
 		
 		textField_15 = new JTextField();
@@ -689,7 +893,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_15.setColumns(10);
 		textField_15.setBorder(BorderFactory.createEmptyBorder());
 		textField_15.setBackground(new Color(255, 166, 128));
-		textField_15.setBounds(169, 509, 35, 20);
+		textField_15.setBounds(159, 647, 35, 20);
 		contentPanel.add(textField_15);
 		
 		textField_16 = new JTextField();
@@ -699,7 +903,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_16.setColumns(10);
 		textField_16.setBorder(BorderFactory.createEmptyBorder());
 		textField_16.setBackground(new Color(255, 166, 128));
-		textField_16.setBounds(320, 509, 35, 20);
+		textField_16.setBounds(310, 647, 35, 20);
 		contentPanel.add(textField_16);
 		
 		textField_17 = new JTextField();
@@ -709,7 +913,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_17.setColumns(10);
 		textField_17.setBorder(BorderFactory.createEmptyBorder());
 		textField_17.setBackground(new Color(255, 166, 128));
-		textField_17.setBounds(460, 509, 35, 20);
+		textField_17.setBounds(450, 647, 35, 20);
 		contentPanel.add(textField_17);
 		
 		textField_18 = new JTextField();
@@ -719,7 +923,7 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_18.setColumns(10);
 		textField_18.setBorder(BorderFactory.createEmptyBorder());
 		textField_18.setBackground(new Color(255, 166, 128));
-		textField_18.setBounds(594, 509, 35, 20);
+		textField_18.setBounds(584, 647, 35, 20);
 		contentPanel.add(textField_18);
 		
 		textField_19 = new JTextField();
@@ -729,8 +933,52 @@ public class VentanaInsertarPokemon extends JDialog {
 		textField_19.setColumns(10);
 		textField_19.setBorder(BorderFactory.createEmptyBorder());
 		textField_19.setBackground(new Color(255, 166, 128));
-		textField_19.setBounds(735, 508, 35, 20);
+		textField_19.setBounds(725, 646, 35, 20);
 		contentPanel.add(textField_19);
+		
+		P006 = new JButton("");
+		P006.setBounds(138, 256, 113, 95);
+		ImageIcon imgCuraTot = new ImageIcon(curaTotal.getImage().getScaledInstance(P006.getWidth(), P006.getHeight(), Image.SCALE_SMOOTH));
+		P006.setIcon (imgCuraTot);
+		contentPanel.add(P006);
+		
+		P007 = new JButton("");
+		P007.setBounds(283, 256, 113, 95);
+		ImageIcon imgAntidoto = new ImageIcon(antidoto.getImage().getScaledInstance(P007.getWidth(), P007.getHeight(), Image.SCALE_SMOOTH));
+		P007.setIcon (imgAntidoto);
+		contentPanel.add(P007);
+		
+		P008 = new JButton("");
+		P008.setBounds(423, 256, 113, 95);
+		ImageIcon imgAntiParaliz = new ImageIcon(antiParaliz.getImage().getScaledInstance(P008.getWidth(), P008.getHeight(), Image.SCALE_SMOOTH));
+		P008.setIcon (imgAntiParaliz);
+		contentPanel.add(P008);
+		
+		P009 = new JButton("");
+		P009.setBounds(557, 256, 113, 95);
+		ImageIcon imgAntiQuemar = new ImageIcon(antiQuemar.getImage().getScaledInstance(P009.getWidth(), P009.getHeight(), Image.SCALE_SMOOTH));
+		P009.setIcon (imgAntiQuemar);
+		contentPanel.add(P009);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("0€");
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBorder(BorderFactory.createEmptyBorder());
+		textField_1.setBackground(new Color(255, 166, 128));
+		textField_1.setBounds(320, 222, 35, 20);
+		contentPanel.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setText("0€");
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBorder(BorderFactory.createEmptyBorder());
+		textField_2.setBackground(new Color(255, 166, 128));
+		textField_2.setBounds(460, 222, 35, 20);
+		contentPanel.add(textField_2);
 		
 		
 	}
