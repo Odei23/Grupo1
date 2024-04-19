@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import vista.VentanaInsertarPokemon;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -73,10 +72,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		
 		JButton btnInsertarPokemon = new JButton("INSERTAR POKEMON");
 		btnInsertarPokemon.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				insertarPokemon();
-			}
+		
 		});
 		btnInsertarPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,11 +90,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 	}
 
 
-	protected void insertarPokemon() {
-		this.setVisible(false);
-        VentanaInsertarPokemon venIns = new VentanaInsertarPokemon();
-        venIns.setVisible(true);		
-	}
+	
 
 
 	protected void cerrarSesion() {
