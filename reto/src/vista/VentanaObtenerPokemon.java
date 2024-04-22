@@ -78,26 +78,8 @@ public class VentanaObtenerPokemon extends JDialog {
 	private JSpinner S001, S002, S003, S004, S005, S006, S007, S008, S009, S010, S011, S012, S013, S014, S015, S016,
 			S017, S018, S019, S020;
 
-	private JTextField textField;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
-	private JTextField textField_19;
-	private JTextField textField_2;
-	private JTextField textField_20;
+	private JTextField textField,textField_2,textField_3,textField_4,textField_5,textField_6,textField_7,textField_8,textField_9, textField_10,
+	textField_11,textField_12,textField_13,textField_14,textField_15,textField_16,textField_17,textField_18,textField_19,textField_20;
 
 	public VentanaObtenerPokemon() {
 		setBounds(100, 100, 981, 775);
@@ -130,7 +112,7 @@ public class VentanaObtenerPokemon extends JDialog {
 		{
 			lblLogo = new JLabel("");
 			lblLogo.setBounds(423, 11, 79, 73);
-			ImageIcon poke = new ImageIcon(getClass().getResource("logo.png"));
+			ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.png"));
 	        ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH));
 	        lblLogo.setIcon (img2);
 	        contentPanel.add(lblLogo);
@@ -138,7 +120,7 @@ public class VentanaObtenerPokemon extends JDialog {
 		
 		P001 = new JButton("");
 		P001.setBounds(138, 122, 113, 95);
-		ImageIcon poke = new ImageIcon(getClass().getResource("001.png"));
+		ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/001.png"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(P001.getWidth(), P001.getHeight(), Image.SCALE_SMOOTH));
         P001.setIcon (img2);
         contentPanel.add(P001, BorderLayout.NORTH);
@@ -148,53 +130,53 @@ public class VentanaObtenerPokemon extends JDialog {
 		
 	    P002 = new JButton("");
 		P002.setBounds(283, 122, 113, 95);
-		ImageIcon superPoc = new ImageIcon(getClass().getResource("002.png"));
+		ImageIcon superPoc = new ImageIcon(getClass().getResource("../imagenes/002.png"));
         ImageIcon imgSuper = new ImageIcon(superPoc.getImage().getScaledInstance(P002.getWidth(), P002.getHeight(), Image.SCALE_SMOOTH));
         P002.setIcon (imgSuper);
 		contentPanel.add(P002);
 		
 		P003 = new JButton("");
 		P003.setBounds(423, 122,113, 95);
-		ImageIcon hiperPoc = new ImageIcon(getClass().getResource("003.png"));
+		ImageIcon hiperPoc = new ImageIcon(getClass().getResource("../imagenes/003.png"));
         ImageIcon imgHiper = new ImageIcon(hiperPoc.getImage().getScaledInstance(P003.getWidth(), P003.getHeight(), Image.SCALE_SMOOTH));
         P003.setIcon (imgHiper);
 		contentPanel.add(P003);
 		
 		P004 = new JButton("");
 		P004.setBounds(557, 122, 113, 95);
-		ImageIcon maxPoc = new ImageIcon(getClass().getResource("004.png"));
+		ImageIcon maxPoc = new ImageIcon(getClass().getResource("../imagenes/004.png"));
         ImageIcon imgMax = new ImageIcon(maxPoc.getImage().getScaledInstance(P004.getWidth(), P004.getHeight(), Image.SCALE_SMOOTH));
         P004.setIcon (imgMax);
 		contentPanel.add(P004);
 		
 		P005 = new JButton("");
 		P005.setBounds(699, 122, 113, 95);
-		ImageIcon restTodo = new ImageIcon(getClass().getResource("005.png"));
+		ImageIcon restTodo = new ImageIcon(getClass().getResource("../imagenes/005.png"));
         ImageIcon imgRest = new ImageIcon(restTodo.getImage().getScaledInstance(P005.getWidth(), P005.getHeight(), Image.SCALE_SMOOTH));
         P005.setIcon (imgRest);
 		contentPanel.add(P005);
-		ImageIcon curaTotal = new ImageIcon(getClass().getResource("006.png"));
-		ImageIcon antiQuemar = new ImageIcon(getClass().getResource("007.png"));
-		ImageIcon antiParaliz = new ImageIcon(getClass().getResource("008.png"));
-		ImageIcon antidoto = new ImageIcon(getClass().getResource("009.png"));
+		ImageIcon curaTotal = new ImageIcon(getClass().getResource("../imagenes/006.png"));
+		ImageIcon antiQuemar = new ImageIcon(getClass().getResource("../imagenes/007.png"));
+		ImageIcon antiParaliz = new ImageIcon(getClass().getResource("../imagenes/008.png"));
+		ImageIcon antidoto = new ImageIcon(getClass().getResource("../imagenes/009.png"));
 		
 		P010 = new JButton("");
 		P010.setBounds(699, 259, 113, 95);
-		ImageIcon antiHielo = new ImageIcon(getClass().getResource("010.png"));
+		ImageIcon antiHielo = new ImageIcon(getClass().getResource("../imagenes/010.png"));
         ImageIcon imgAntiHielo = new ImageIcon(antiHielo.getImage().getScaledInstance(P010.getWidth(), P010.getHeight(), Image.SCALE_SMOOTH));
         P010.setIcon (imgAntiHielo);
 		contentPanel.add(P010);
 		
 		P011 = new JButton("");
 		P011.setBounds(138, 395, 113, 95);
-		ImageIcon despertar = new ImageIcon(getClass().getResource("011.png"));
+		ImageIcon despertar = new ImageIcon(getClass().getResource("../imagenes/011.png"));
         ImageIcon imgDespertar = new ImageIcon(despertar.getImage().getScaledInstance(P011.getWidth(), P011.getHeight(), Image.SCALE_SMOOTH));
         P011.setIcon (imgDespertar);
 		contentPanel.add(P011);
 		
 		P012 = new JButton("");
 		P012.setBounds(283, 395,113, 95);
-		ImageIcon aguaFresca = new ImageIcon(getClass().getResource("012.png"));
+		ImageIcon aguaFresca = new ImageIcon(getClass().getResource("../imagenes/012.png"));
         ImageIcon imgAguaFresca = new ImageIcon(aguaFresca.getImage().getScaledInstance(P012.getWidth(), P012.getHeight(), Image.SCALE_SMOOTH));
         P012.setIcon (imgAguaFresca);
 		contentPanel.add(P012);
@@ -206,56 +188,56 @@ public class VentanaObtenerPokemon extends JDialog {
 		
 		P013 = new JButton("");
 		P013.setBounds(423, 395, 113, 95);
-		ImageIcon refresco = new ImageIcon(getClass().getResource("013.png"));
+		ImageIcon refresco = new ImageIcon(getClass().getResource("../imagenes/013.png"));
         ImageIcon imgRefresco = new ImageIcon(refresco.getImage().getScaledInstance(P013.getWidth(), P013.getHeight(), Image.SCALE_SMOOTH));
         P013.setIcon (imgRefresco);
 		contentPanel.add(P013);
 		
 		P014 = new JButton("");
 		P014.setBounds(557, 395, 113, 95);
-		ImageIcon limonada = new ImageIcon(getClass().getResource("014.png"));
+		ImageIcon limonada = new ImageIcon(getClass().getResource("../imagenes/014.png"));
         ImageIcon imgLimonada = new ImageIcon(limonada.getImage().getScaledInstance(P014.getWidth(), P014.getHeight(), Image.SCALE_SMOOTH));
         P014.setIcon (imgLimonada);
 		contentPanel.add(P014);
 		
 		P015 = new JButton("");
 		P015.setBounds(699, 395, 113, 95);
-		ImageIcon revivir = new ImageIcon(getClass().getResource("015.png"));
+		ImageIcon revivir = new ImageIcon(getClass().getResource("../imagenes/015.png"));
         ImageIcon imgRevivir = new ImageIcon(revivir.getImage().getScaledInstance(P015.getWidth(), P015.getHeight(), Image.SCALE_SMOOTH));
         P015.setIcon (imgRevivir);
 		contentPanel.add(P015);
 		
 		P016 = new JButton("");
 		P016.setBounds(138, 544, 113, 95);
-		ImageIcon maxRevivir = new ImageIcon(getClass().getResource("016.png"));
+		ImageIcon maxRevivir = new ImageIcon(getClass().getResource("../imagenes/016.png"));
         ImageIcon imgMaxRevivir = new ImageIcon(maxRevivir.getImage().getScaledInstance(P016.getWidth(), P016.getHeight(), Image.SCALE_SMOOTH));
         P016.setIcon (imgMaxRevivir);
 		contentPanel.add(P016);
 		
 		P017 = new JButton("");
 		P017.setBounds(283, 544, 113, 95);
-		ImageIcon restos = new ImageIcon(getClass().getResource("017.png"));
+		ImageIcon restos = new ImageIcon(getClass().getResource("../imagenes/017.png"));
         ImageIcon imgRestos = new ImageIcon(restos.getImage().getScaledInstance(P017.getWidth(), P017.getHeight(), Image.SCALE_SMOOTH));
         P017.setIcon (imgRestos);
 		contentPanel.add(P017);
 		
 		P018 = new JButton("");
 		P018.setBounds(423, 544, 113, 95);
-		ImageIcon polvoCura = new ImageIcon(getClass().getResource("018.png"));
+		ImageIcon polvoCura = new ImageIcon(getClass().getResource("../imagenes/018.png"));
         ImageIcon imgPolvoCura = new ImageIcon(polvoCura.getImage().getScaledInstance(P018.getWidth(), P018.getHeight(), Image.SCALE_SMOOTH));
         P018.setIcon (imgPolvoCura);
 		contentPanel.add(P018);
 		
 		P020 = new JButton("");
 		P020.setBounds(699, 544, 113, 95);
-		ImageIcon HierbaRevivir = new ImageIcon(getClass().getResource("019.png"));
+		ImageIcon HierbaRevivir = new ImageIcon(getClass().getResource("../imagenes/019.png"));
         ImageIcon imgHierbaRevivir = new ImageIcon(HierbaRevivir.getImage().getScaledInstance(P020.getWidth(), P020.getHeight(), Image.SCALE_SMOOTH));
         P020.setIcon (imgHierbaRevivir);
 		contentPanel.add(P020);
 		
 		P019 = new JButton("");
 		P019.setBounds(557, 544, 113, 95);
-		ImageIcon leche = new ImageIcon(getClass().getResource("020.png"));
+		ImageIcon leche = new ImageIcon(getClass().getResource("../imagenes/020.png"));
         ImageIcon imgLeche = new ImageIcon(leche.getImage().getScaledInstance(P019.getWidth(), P019.getHeight(), Image.SCALE_SMOOTH));
         P019.setIcon (imgLeche);
 		contentPanel.add(P019);
@@ -1123,6 +1105,9 @@ public class VentanaObtenerPokemon extends JDialog {
 		JButton btnNewButton = new JButton("Comprar");
 		btnNewButton.setBounds(402, 692, 134, 33);
 		contentPanel.add(btnNewButton);
+
+        // Cargar y mostrar el gif
+        ImageIcon poke1 = new ImageIcon(getClass().getResource("../imagenes/fondo.gif"));
 	}
 
 	

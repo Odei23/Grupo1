@@ -53,7 +53,7 @@ public class VentanaCrear extends JDialog {
     
         JLabel logo = new JLabel("");
         logo.setBounds(395, 27, 100, 97);
-        ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
+        ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         
         logo.setIcon (img2);

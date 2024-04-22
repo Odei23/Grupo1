@@ -44,7 +44,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		
 		JLabel logo = new JLabel("");
 		logo.setBounds(368, 11, 155, 134);
-		ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
+		ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         
         logo.setIcon (img2);
