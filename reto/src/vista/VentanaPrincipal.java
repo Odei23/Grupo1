@@ -174,7 +174,7 @@ public class VentanaPrincipal extends JFrame {
 
 
     protected void iniciarMenu() {
-        // Obtener el DNI y la contraseña ingresados
+        // Obtener el DNI ingresado
         String dni = textField.getText();
         String password = new String(passwordField.getPassword());
 
@@ -184,8 +184,9 @@ public class VentanaPrincipal extends JFrame {
         if (userExists && !userIsAdmin) {
             // El usuario existe y no es administrador, proceder al menú de usuario normal
             this.setVisible(false);
-            VentanaMenuUsuario venMenuUsuario = new VentanaMenuUsuario();
-            venMenuUsuario.setVisible(true);
+            // Pasar el DNI a la ventana de edición de datos
+            VentanaEditarDatos ventanaEditarDatos = new VentanaEditarDatos(dni);
+            ventanaEditarDatos.setVisible(true);
         } else if (userExists && userIsAdmin) {
             // El usuario existe pero es administrador, mostrar un mensaje de error
             JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de usuario", "Error", JOptionPane.ERROR_MESSAGE);

@@ -12,8 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
 import modelo.Usuarios;
+import controlador.Controlador;
 
 public class VentanaEditarDatos extends JDialog {
 
@@ -24,7 +28,7 @@ public class VentanaEditarDatos extends JDialog {
     private JTextField textField_3;
     private JTextField textField_4;
 
-    public VentanaEditarDatos() {
+    public VentanaEditarDatos(String dni) {
         setBounds(100, 100, 909, 607);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(new Color(255, 166, 128));
@@ -34,7 +38,7 @@ public class VentanaEditarDatos extends JDialog {
         
         JLabel logo = new JLabel("");
         logo.setBounds(368, 11, 155, 134);
-        ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
+        ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         logo.setIcon(img2);
         contentPanel.add(logo);
@@ -58,7 +62,7 @@ public class VentanaEditarDatos extends JDialog {
         contentPanel.add(btnCerrar);
         
         txta = new JTextField();
-        txta.setText("55555555A");
+        txta.setText("55555555A"); // Supongamos que este es el DNI del usuario actual
         txta.setBounds(340, 189, 162, 45);
         contentPanel.add(txta);
         txta.setColumns(10);
@@ -109,8 +113,29 @@ public class VentanaEditarDatos extends JDialog {
         contentPanel.add(lblContra);
         
         JButton btnGuardar = new JButton("Guardar Datos");
+        btnGuardar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                guardarDatos();
+            }
+        });
         btnGuardar.setBounds(673, 427, 155, 23);
         contentPanel.add(btnGuardar);
+
+        // Mostrar los datos del usuario actual
+        mostrarDatosUsuario(txta.getText());
+        mostrarDatosUsuario(dni);
+    }
+
+    protected void mostrarDatosUsuario(String dni) {
+        Usuarios usuario = Controlador.obtenerUsuarioPorDNI(dni);
+        if (usuario != null) {
+            // Mostrar los datos del usuario en los JTextField correspondientes
+            textField_1.setText(usuario.getNombre());
+            textField_2.setText(usuario.getApellido());
+            textField_3.setText(usuario.getFechaNac().toString()); // Suponiendo que la fecha se muestra como String
+            // No se recomienda mostrar la contraseña actual en un campo de texto, es solo para fines demostrativos
+            textField_4.setText(usuario.getContrasena());
+        }
     }
 
     protected void salir() {
@@ -125,5 +150,39 @@ public class VentanaEditarDatos extends JDialog {
         venPrin.setVisible(true);
     }
 
-   
+    protected void guardarDatos() {
+        String dni = txta.getText();
+        String nombre = textField_1.getText(); 
+        String apellido = textField_2.getText();
+        String fechaNac = textField_3.getText(); 
+        LocalDate fechaNacimiento = null;
+        try {
+            // Intentar parsear la fecha
+            fechaNacimiento = LocalDate.parse(fechaNac, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            // Manejar la excepción si la fecha no está en el formato correcto
+            System.out.println("La fecha no está en el formato correcto: " + fechaNac);
+            e.printStackTrace();
+            return; // Salir del método si hay un error de formato de fecha
+        }
+        String contrasena = textField_4.getText(); 
+
+        // Crear un objeto Usuarios con los datos modificados
+        Usuarios usuarioModificado = new Usuarios();
+        usuarioModificado.setDni(dni);
+        usuarioModificado.setNombre(nombre);
+        usuarioModificado.setApellido(apellido);
+        usuarioModificado.setFechaNac(fechaNacimiento);
+        usuarioModificado.setContrasena(contrasena);
+
+        // Guardar los datos modificados del usuario en la base de datos a través del Controlador
+        Controlador.actualizarUsuario(usuarioModificado);
+        
+        this.setVisible(false);
+		VentanaMenuUsuario vUS = new VentanaMenuUsuario();
+		vUS.setVisible(true);
+        
+    }
+
+
 }
