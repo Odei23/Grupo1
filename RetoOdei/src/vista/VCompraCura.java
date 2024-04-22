@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Usuario;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
@@ -110,8 +113,10 @@ public class VCompraCura extends JDialog {
 	private JTextField textFieldPolvo;
 	private JTextField textFieldLeche;
 	private JTextField textFieldHierba;
+	private JLabel lblDinero;
+	private Usuario usu;
 
-	public VCompraCura() {
+	public VCompraCura(Usuario usu) {
 		setBounds(100, 100, 985, 607);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -141,7 +146,7 @@ public class VCompraCura extends JDialog {
 		{
 			lblLogo = new JLabel("");
 			lblLogo.setBounds(342, 11, 155, 134);
-			ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.png"));
+			ImageIcon poke = new ImageIcon(getClass().getResource("logo.png"));
 			ImageIcon img2 = new ImageIcon(
 					poke.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH));
 			lblLogo.setIcon(img2);
@@ -150,7 +155,7 @@ public class VCompraCura extends JDialog {
 
 		Pocion = new JButton("");
 		Pocion.setBounds(138, 155, 95, 62);
-		ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/pocion.png"));
+		ImageIcon poke = new ImageIcon(getClass().getResource("pocion.png"));
 		ImageIcon img2 = new ImageIcon(
 				poke.getImage().getScaledInstance(Pocion.getWidth(), Pocion.getHeight(), Image.SCALE_SMOOTH));
 		Pocion.setIcon(img2);
@@ -159,7 +164,7 @@ public class VCompraCura extends JDialog {
 
 		SuperPocion = new JButton("");
 		SuperPocion.setBounds(283, 156, 95, 62);
-		ImageIcon superPoc = new ImageIcon(getClass().getResource("../imagenes/super.png"));
+		ImageIcon superPoc = new ImageIcon(getClass().getResource("super.png"));
 		ImageIcon imgSuper = new ImageIcon(superPoc.getImage().getScaledInstance(SuperPocion.getWidth(),
 				SuperPocion.getHeight(), Image.SCALE_SMOOTH));
 		SuperPocion.setIcon(imgSuper);
@@ -167,7 +172,7 @@ public class VCompraCura extends JDialog {
 
 		HiperPocion = new JButton("");
 		HiperPocion.setBounds(423, 156, 95, 62);
-		ImageIcon hiperPoc = new ImageIcon(getClass().getResource("../imagenes/hiper.png"));
+		ImageIcon hiperPoc = new ImageIcon(getClass().getResource("hiper.png"));
 		ImageIcon imgHiper = new ImageIcon(hiperPoc.getImage().getScaledInstance(HiperPocion.getWidth(),
 				HiperPocion.getHeight(), Image.SCALE_SMOOTH));
 		HiperPocion.setIcon(imgHiper);
@@ -175,7 +180,7 @@ public class VCompraCura extends JDialog {
 
 		MaximaPocion = new JButton("");
 		MaximaPocion.setBounds(557, 155, 95, 62);
-		ImageIcon maxPoc = new ImageIcon(getClass().getResource("../imagenes/max.png"));
+		ImageIcon maxPoc = new ImageIcon(getClass().getResource("max.png"));
 		ImageIcon imgMax = new ImageIcon(maxPoc.getImage().getScaledInstance(MaximaPocion.getWidth(),
 				MaximaPocion.getHeight(), Image.SCALE_SMOOTH));
 		MaximaPocion.setIcon(imgMax);
@@ -183,7 +188,7 @@ public class VCompraCura extends JDialog {
 
 		RestaurarTodo = new JButton("");
 		RestaurarTodo.setBounds(699, 155, 95, 62);
-		ImageIcon restTodo = new ImageIcon(getClass().getResource("../imagenes/restaurar.png"));
+		ImageIcon restTodo = new ImageIcon(getClass().getResource("restaurar.png"));
 		ImageIcon imgRest = new ImageIcon(restTodo.getImage().getScaledInstance(RestaurarTodo.getWidth(),
 				RestaurarTodo.getHeight(), Image.SCALE_SMOOTH));
 		RestaurarTodo.setIcon(imgRest);
@@ -191,7 +196,7 @@ public class VCompraCura extends JDialog {
 
 		CuraTotal = new JButton("");
 		CuraTotal.setBounds(138, 253, 95, 62);
-		ImageIcon curaTotal = new ImageIcon(getClass().getResource("../imagenes/curatotal.png"));
+		ImageIcon curaTotal = new ImageIcon(getClass().getResource("curatotal.png"));
 		ImageIcon imgCuraTot = new ImageIcon(curaTotal.getImage().getScaledInstance(CuraTotal.getWidth(),
 				CuraTotal.getHeight(), Image.SCALE_SMOOTH));
 		CuraTotal.setIcon(imgCuraTot);
@@ -199,7 +204,7 @@ public class VCompraCura extends JDialog {
 
 		Antiquemar = new JButton("");
 		Antiquemar.setBounds(557, 253, 95, 62);
-		ImageIcon antiQuemar = new ImageIcon(getClass().getResource("../imagenes/antiquemar.png"));
+		ImageIcon antiQuemar = new ImageIcon(getClass().getResource("antiquemar.png"));
 		ImageIcon imgAntiQuemar = new ImageIcon(antiQuemar.getImage().getScaledInstance(Antiquemar.getWidth(),
 				Antiquemar.getHeight(), Image.SCALE_SMOOTH));
 		Antiquemar.setIcon(imgAntiQuemar);
@@ -207,7 +212,7 @@ public class VCompraCura extends JDialog {
 
 		Antiparaliz = new JButton("");
 		Antiparaliz.setBounds(423, 253, 95, 62);
-		ImageIcon antiParaliz = new ImageIcon(getClass().getResource("../imagenes/antiparaliz.png"));
+		ImageIcon antiParaliz = new ImageIcon(getClass().getResource("antiparaliz.png"));
 		ImageIcon imgAntiParaliz = new ImageIcon(antiParaliz.getImage().getScaledInstance(Antiparaliz.getWidth(),
 				Antiparaliz.getHeight(), Image.SCALE_SMOOTH));
 		Antiparaliz.setIcon(imgAntiParaliz);
@@ -215,7 +220,7 @@ public class VCompraCura extends JDialog {
 
 		Antidoto = new JButton("");
 		Antidoto.setBounds(283, 253, 95, 62);
-		ImageIcon antidoto = new ImageIcon(getClass().getResource("../imagenes/antidoto.png"));
+		ImageIcon antidoto = new ImageIcon(getClass().getResource("antidoto.png"));
 		ImageIcon imgAntidoto = new ImageIcon(
 				antidoto.getImage().getScaledInstance(Antidoto.getWidth(), Antidoto.getHeight(), Image.SCALE_SMOOTH));
 		Antidoto.setIcon(imgAntidoto);
@@ -223,7 +228,7 @@ public class VCompraCura extends JDialog {
 
 		Antihielo = new JButton("");
 		Antihielo.setBounds(699, 253, 95, 62);
-		ImageIcon antiHielo = new ImageIcon(getClass().getResource("../imagenes/antihielo.png"));
+		ImageIcon antiHielo = new ImageIcon(getClass().getResource("antihielo.png"));
 		ImageIcon imgAntiHielo = new ImageIcon(antiHielo.getImage().getScaledInstance(Antihielo.getWidth(),
 				Antihielo.getHeight(), Image.SCALE_SMOOTH));
 		Antihielo.setIcon(imgAntiHielo);
@@ -231,7 +236,7 @@ public class VCompraCura extends JDialog {
 
 		Despertar = new JButton("");
 		Despertar.setBounds(138, 347, 95, 62);
-		ImageIcon despertar = new ImageIcon(getClass().getResource("../imagenes/despertar.png"));
+		ImageIcon despertar = new ImageIcon(getClass().getResource("despertar.png"));
 		ImageIcon imgDespertar = new ImageIcon(despertar.getImage().getScaledInstance(Despertar.getWidth(),
 				Despertar.getHeight(), Image.SCALE_SMOOTH));
 		Despertar.setIcon(imgDespertar);
@@ -239,7 +244,7 @@ public class VCompraCura extends JDialog {
 
 		AguaFresca = new JButton("");
 		AguaFresca.setBounds(283, 347, 95, 62);
-		ImageIcon aguaFresca = new ImageIcon(getClass().getResource("../imagenes/aguafresca.png"));
+		ImageIcon aguaFresca = new ImageIcon(getClass().getResource("aguafresca.png"));
 		ImageIcon imgAguaFresca = new ImageIcon(aguaFresca.getImage().getScaledInstance(AguaFresca.getWidth(),
 				AguaFresca.getHeight(), Image.SCALE_SMOOTH));
 		AguaFresca.setIcon(imgAguaFresca);
@@ -247,7 +252,7 @@ public class VCompraCura extends JDialog {
 
 		Refresco = new JButton("");
 		Refresco.setBounds(423, 347, 95, 62);
-		ImageIcon refresco = new ImageIcon(getClass().getResource("../imagenes/refresco.png"));
+		ImageIcon refresco = new ImageIcon(getClass().getResource("refresco.png"));
 		ImageIcon imgRefresco = new ImageIcon(
 				refresco.getImage().getScaledInstance(Refresco.getWidth(), Refresco.getHeight(), Image.SCALE_SMOOTH));
 		Refresco.setIcon(imgRefresco);
@@ -255,7 +260,7 @@ public class VCompraCura extends JDialog {
 
 		Limonada = new JButton("");
 		Limonada.setBounds(557, 347, 95, 62);
-		ImageIcon limonada = new ImageIcon(getClass().getResource("../imagenes/limonada.png"));
+		ImageIcon limonada = new ImageIcon(getClass().getResource("limonada.png"));
 		ImageIcon imgLimonada = new ImageIcon(
 				limonada.getImage().getScaledInstance(Limonada.getWidth(), Limonada.getHeight(), Image.SCALE_SMOOTH));
 		Limonada.setIcon(imgLimonada);
@@ -263,7 +268,7 @@ public class VCompraCura extends JDialog {
 
 		Revivir = new JButton("");
 		Revivir.setBounds(699, 347, 95, 62);
-		ImageIcon revivir = new ImageIcon(getClass().getResource("../imagenes/revivir.png"));
+		ImageIcon revivir = new ImageIcon(getClass().getResource("revivir.png"));
 		ImageIcon imgRevivir = new ImageIcon(
 				revivir.getImage().getScaledInstance(Revivir.getWidth(), Revivir.getHeight(), Image.SCALE_SMOOTH));
 		Revivir.setIcon(imgRevivir);
@@ -271,7 +276,7 @@ public class VCompraCura extends JDialog {
 
 		MaxRevivir = new JButton("");
 		MaxRevivir.setBounds(138, 444, 95, 62);
-		ImageIcon maxRevivir = new ImageIcon(getClass().getResource("../imagenes/revivirmaximo.png"));
+		ImageIcon maxRevivir = new ImageIcon(getClass().getResource("revivirmaximo.png"));
 		ImageIcon imgMaxRevivir = new ImageIcon(maxRevivir.getImage().getScaledInstance(MaxRevivir.getWidth(),
 				MaxRevivir.getHeight(), Image.SCALE_SMOOTH));
 		MaxRevivir.setIcon(imgMaxRevivir);
@@ -279,7 +284,7 @@ public class VCompraCura extends JDialog {
 
 		Restos = new JButton("");
 		Restos.setBounds(283, 444, 95, 62);
-		ImageIcon restos = new ImageIcon(getClass().getResource("../imagenes/restos.png"));
+		ImageIcon restos = new ImageIcon(getClass().getResource("restos.png"));
 		ImageIcon imgRestos = new ImageIcon(
 				restos.getImage().getScaledInstance(Restos.getWidth(), Restos.getHeight(), Image.SCALE_SMOOTH));
 		Restos.setIcon(imgRestos);
@@ -287,7 +292,7 @@ public class VCompraCura extends JDialog {
 
 		PolvoCura = new JButton("");
 		PolvoCura.setBounds(423, 444, 95, 62);
-		ImageIcon polvoCura = new ImageIcon(getClass().getResource("../imagenes/polvo.png"));
+		ImageIcon polvoCura = new ImageIcon(getClass().getResource("polvo.png"));
 		ImageIcon imgPolvoCura = new ImageIcon(polvoCura.getImage().getScaledInstance(PolvoCura.getWidth(),
 				PolvoCura.getHeight(), Image.SCALE_SMOOTH));
 		PolvoCura.setIcon(imgPolvoCura);
@@ -295,7 +300,7 @@ public class VCompraCura extends JDialog {
 
 		HierbaRev = new JButton("");
 		HierbaRev.setBounds(699, 444, 95, 62);
-		ImageIcon HierbaRevivir = new ImageIcon(getClass().getResource("../imagenes/hierba.png"));
+		ImageIcon HierbaRevivir = new ImageIcon(getClass().getResource("hierba.png"));
 		ImageIcon imgHierbaRevivir = new ImageIcon(HierbaRevivir.getImage().getScaledInstance(HierbaRev.getWidth(),
 				HierbaRev.getHeight(), Image.SCALE_SMOOTH));
 		HierbaRev.setIcon(imgHierbaRevivir);
@@ -303,7 +308,7 @@ public class VCompraCura extends JDialog {
 
 		Leche = new JButton("");
 		Leche.setBounds(557, 444, 95, 62);
-		ImageIcon leche = new ImageIcon(getClass().getResource("../imagenes/leche.png"));
+		ImageIcon leche = new ImageIcon(getClass().getResource("leche.png"));
 		ImageIcon imgLeche = new ImageIcon(
 				leche.getImage().getScaledInstance(Leche.getWidth(), Leche.getHeight(), Image.SCALE_SMOOTH));
 		Leche.setIcon(imgLeche);
@@ -946,6 +951,20 @@ public class VCompraCura extends JDialog {
 		textFieldHierba.setBackground(UIManager.getColor("Button.background"));
 		textFieldHierba.setBounds(699, 509, 95, 20);
 		contentPanel.add(textFieldHierba);
+		
+		JLabel lblDolar = new JLabel("");
+		lblDolar.setBounds(775, 70, 75, 48);
+		contentPanel.add(lblDolar);
+		ImageIcon dolar = new ImageIcon(getClass().getResource("pokedolar.png"));
+		ImageIcon imgDolar = new ImageIcon(
+				dolar.getImage().getScaledInstance(lblDolar.getWidth(), lblDolar.getHeight(), Image.SCALE_SMOOTH));
+		lblDolar.setIcon(imgDolar);
+		
+		lblDinero = new JLabel("");
+		lblDinero.setBounds(771, 122, 79, 23);
+		contentPanel.add(lblDinero);
+		lblDinero.setText(""+usu.getSaldo());
+		
 	}
 
 	protected void cerrarSesion() {
@@ -956,7 +975,7 @@ public class VCompraCura extends JDialog {
 
 	protected void salir() {
 		this.setVisible(false);
-		VCompraObjetos venObjeto = new VCompraObjetos();
+		VCompraObjetos venObjeto = new VCompraObjetos(usu);
 		venObjeto.setVisible(true);
 	}
 }

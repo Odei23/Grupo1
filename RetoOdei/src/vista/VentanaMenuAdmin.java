@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import vista.VentanaInsertarPokemon;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -44,7 +45,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		
 		JLabel logo = new JLabel("");
 		logo.setBounds(368, 11, 155, 134);
-		ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
+		ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         
         logo.setIcon (img2);
@@ -72,7 +73,10 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		
 		JButton btnInsertarPokemon = new JButton("INSERTAR POKEMON");
 		btnInsertarPokemon.addMouseListener(new MouseAdapter() {
-		
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				insertarPokemon();
+			}
 		});
 		btnInsertarPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,7 +94,11 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 	}
 
 
-	
+	protected void insertarPokemon() {
+		this.setVisible(false);
+        VentanaInsertarPokemon venIns = new VentanaInsertarPokemon();
+        venIns.setVisible(true);		
+	}
 
 
 	protected void cerrarSesion() {

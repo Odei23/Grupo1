@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Usuario;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,9 +19,11 @@ public class VCompraObjetos extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Usuario usu;
 
 
-	public VCompraObjetos() {
+	public VCompraObjetos(Usuario usu) {
+		this.usu = usu;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 905, 615);
 		contentPane = new JPanel();
@@ -48,7 +53,7 @@ public class VCompraObjetos extends JFrame {
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setBounds(352, 11, 155, 134);
-	        ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.png"));
+	        ImageIcon poke = new ImageIcon(getClass().getResource("logo.png"));
 	        ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH));
 	        lblLogo.setIcon (img2);
 		contentPane.add(lblLogo);
@@ -99,7 +104,7 @@ public class VCompraObjetos extends JFrame {
 	protected void botonCura() {
 		// TODO Auto-generated method stub
 		this.setVisible(false);
-		VCompraCura venCompraCura = new VCompraCura();
+		VCompraCura venCompraCura = new VCompraCura(usu);
 		venCompraCura.setVisible(true);
 	}
 
@@ -115,7 +120,7 @@ public class VCompraObjetos extends JFrame {
 
 	protected void salir() {
 		this.setVisible(false);
-		VentanaMenuUsuario venCliente = new VentanaMenuUsuario();
+		VentanaMenuUsuario venCliente = new VentanaMenuUsuario(usu);
 		venCliente.setVisible(true);
 		
 	}

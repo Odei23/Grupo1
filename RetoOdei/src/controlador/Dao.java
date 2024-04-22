@@ -2,14 +2,12 @@ package controlador;
 
 import java.util.List;
 
-import modelo.Usuarios;
+import modelo.Usuario;
 
 public interface Dao {
 
 	
-	public void altaUsuarios(Usuarios usuario);
+	public void altaUsuarios(Usuario usuario);
 	
-	List<Usuarios> consultaUsuarios();
-
-	public void actualizarUsuario(Usuarios usuario);
+	List<Usuario> consultaUsuarios();
 }

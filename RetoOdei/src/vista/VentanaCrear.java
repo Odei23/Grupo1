@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import java.awt.Scrollbar;
 import java.awt.TextField;
 
-import com.toedter.calendar.JCalendar;
+
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 import controlador.Controlador;
 import controlador.Dao;
-import modelo.Usuarios;
+import modelo.Usuario;
 import utilidades.Utilidades;
 
 public class VentanaCrear extends JDialog {
@@ -53,7 +53,7 @@ public class VentanaCrear extends JDialog {
     
         JLabel logo = new JLabel("");
         logo.setBounds(395, 27, 100, 97);
-        ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
+        ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         
         logo.setIcon (img2);
@@ -146,7 +146,7 @@ public class VentanaCrear extends JDialog {
 
     
     private void altaUsuarios() {
-        Usuarios nuevo = new Usuarios(); 
+        Usuario nuevo = new Usuario(); 
         nuevo.setDni(textFieldDNI.getText());
         nuevo.setNombre(textFieldNombre.getText());
         nuevo.setApellido(textFieldApellido.getText());

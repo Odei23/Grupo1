@@ -13,14 +13,19 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Usuario;
+
 import java.awt.Font;
 
 public class VentanaMenuUsuario extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
+	private Usuario per;
 
 
-	public VentanaMenuUsuario() {
+	public VentanaMenuUsuario(Usuario per) {
+		this.per = per;
 		setBounds(100, 100, 909, 607);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 166, 128));
@@ -40,33 +45,26 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		
 		JLabel logo = new JLabel("");
 		logo.setBounds(368, 11, 155, 134);
-		ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
+		ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         
         logo.setIcon (img2);
 		contentPanel.add(logo);
 		
 		JButton btnObtenerPokemon = new JButton("OBTENER POKEMON");
-		btnObtenerPokemon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				obtenerPokemon();
-			}
-		});
 		btnObtenerPokemon.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-		
 		btnObtenerPokemon.setBounds(170, 205, 240, 115);
-		
 		contentPanel.add(btnObtenerPokemon);
 		
 		JButton btnComprarObjeto = new JButton("COMPRAR OBJETO");
-		btnComprarObjeto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				comprarObjetos();
-			}
-		});
 		btnComprarObjeto.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
 		btnComprarObjeto.setBounds(479, 205, 240, 115);
 		contentPanel.add(btnComprarObjeto);
+		btnComprarObjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				irVentanaCura();
+			}
+		});
 		
 		JButton btneditarDatos = new JButton("EDITAR DATOS");
 		btneditarDatos.addActionListener(new ActionListener() {
@@ -84,21 +82,18 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		contentPanel.add(btnVisObjetos);
 	}
 
-
-	protected void editarDatos() {
-	    this.setVisible(false);
-	    // Obtener el DNI del usuario actual, si está disponible en VentanaMenuUsuario
-	    String dniUsuario = obtenerDniUsuario();
-	    // Crear una nueva instancia de VentanaEditarDatos y pasar el DNI del usuario como argumento
-	    VentanaEditarDatos venEditar = new VentanaEditarDatos(dniUsuario);
-	    venEditar.setVisible(true);     
+	protected void irVentanaCura() {
+		// TODO Auto-generated method stub
+		this.setVisible(false);
+		VCompraObjetos vObjecto = new VCompraObjetos(per);
+		vObjecto.setVisible(true);
 	}
 
 
-
-	private String obtenerDniUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+	protected void editarDatos() {
+		this.setVisible(false);
+        VentanaEditarDatos venEditar = new VentanaEditarDatos(per);
+        venEditar.setVisible(true);		
 	}
 
 
@@ -107,18 +102,6 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
         VentanaPrincipal venPrin = new VentanaPrincipal();
         venPrin.setVisible(true);
 		
-	}
-	
-	protected void obtenerPokemon() {
-		this.setVisible(false);
-        VentanaObtenerPokemon venOB = new VentanaObtenerPokemon();
-        venOB.setVisible(true);		
-	}
-	
-	protected void comprarObjetos() {
-		this.setVisible(false);
-		VCompraObjetos vObjecto = new VCompraObjetos();
-		vObjecto.setVisible(true);
 	}
 
 

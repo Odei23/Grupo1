@@ -26,19 +26,14 @@ public class ImplementacionBaseDeDatos implements Dao{
 	
 	private void openConnection() {
 	    try {
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_pokemon?serverTimezone=Europe/Madrid&useSSL=false&allowPublicKeyRetrieval=true", "root", "abcd*1234");
-	    } catch (ClassNotFoundException e) {
-	        System.out.println("Error al cargar el controlador JDBC");
-	        e.printStackTrace();
+	        conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_pokemon?serverTimezone=Europe/Madrid&useSSL=false", "root", "abcd*1234");
 	    } catch (SQLException e) {
-	        System.out.println("Error al intentar abrir la conexión a la BD");
-	        e.printStackTrace();
+	        System.out.println("Error al intentar abrir la BD");
 	    }
 	}
-
+	
 	@Override
-	public void altaUsuarios(Usuarios usuario) {
+	public void altaUsuarios(Usuario usuario) {
 	    openConnection();
 	    
 	    try {
@@ -61,10 +56,10 @@ public class ImplementacionBaseDeDatos implements Dao{
 
 
 	@Override
-	public List<Usuarios> consultaUsuarios() {
+	public List<Usuario> consultaUsuarios() {
 		ResultSet rs;
-		List <Usuarios> usuarios = new ArrayList<Usuarios>();
-		Usuarios usuario;
+		List <Usuario> usuarios = new ArrayList<Usuario>();
+		Usuario usuario;
 		
 		openConnection();
 		
@@ -73,7 +68,7 @@ public class ImplementacionBaseDeDatos implements Dao{
 			rs= stat.executeQuery();
 			
 			while (rs.next()) {
-			    usuario = new Usuarios();
+			    usuario = new Usuario();
 			    usuario.setDni(rs.getString(1));
 			    usuario.setNombre(rs.getString(2));
 			    usuario.setApellido(rs.getString(3));
@@ -99,13 +94,6 @@ public class ImplementacionBaseDeDatos implements Dao{
 		return usuarios
 				
 				;
-	}
-
-	
-	@Override
-	public void actualizarUsuario(Usuarios usuario) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	
