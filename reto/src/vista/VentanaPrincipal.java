@@ -105,7 +105,7 @@ public class VentanaPrincipal extends JFrame {
 
         logo = new JLabel("");
         logo.setBounds(29, 11, 244, 210);
-        ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
+        ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         logo.setIcon(img2);
         contentPanel.add(logo);
@@ -133,7 +133,7 @@ public class VentanaPrincipal extends JFrame {
         Admin.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
         Admin.setBounds(602, 405, 183, 53);
         contentPanel.add(Admin);
-        ImageIcon poke3 = new ImageIcon(getClass().getResource("logo.PNG"));
+        ImageIcon poke3 = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img3 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         logo.setIcon(img3);
         
@@ -148,7 +148,7 @@ public class VentanaPrincipal extends JFrame {
         contentPanel.add(gif);
 
         // Cargar y mostrar el gif
-        ImageIcon poke1 = new ImageIcon(getClass().getResource("fondo.gif"));
+        ImageIcon poke1 = new ImageIcon(getClass().getResource("../imagenes/fondo.gif"));
         ImageIcon img1 = new ImageIcon(poke1.getImage().getScaledInstance(gif.getWidth(), gif.getHeight(), Image.SCALE_DEFAULT));
         gif.setIcon(img1);
 
@@ -168,7 +168,6 @@ public class VentanaPrincipal extends JFrame {
             VentanaMenuAdmin venAD = new VentanaMenuAdmin();
             venAD.setVisible(true);
         } else {
-            // El usuario no es administrador o no existe, mostrar un mensaje de error
             JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de administrador", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -179,7 +178,6 @@ public class VentanaPrincipal extends JFrame {
         String dni = textField.getText();
         String password = new String(passwordField.getPassword());
 
-        // Verificar si el usuario existe en la base de datos y si no es administrador
         boolean userExists = Controlador.usuarioExiste(dni, password);
         boolean userIsAdmin = Controlador.usuarioEsAdmin(dni, password);
 

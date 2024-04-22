@@ -40,7 +40,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		
 		JLabel logo = new JLabel("");
 		logo.setBounds(368, 11, 155, 134);
-		ImageIcon poke = new ImageIcon(getClass().getResource("logo.PNG"));
+		ImageIcon poke = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img2 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         
         logo.setIcon (img2);
@@ -59,6 +59,11 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		contentPanel.add(btnObtenerPokemon);
 		
 		JButton btnComprarObjeto = new JButton("COMPRAR OBJETO");
+		btnComprarObjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				comprarObjetos();
+			}
+		});
 		btnComprarObjeto.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
 		btnComprarObjeto.setBounds(479, 205, 240, 115);
 		contentPanel.add(btnComprarObjeto);
@@ -98,6 +103,12 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		this.setVisible(false);
         VentanaObtenerPokemon venOB = new VentanaObtenerPokemon();
         venOB.setVisible(true);		
+	}
+	
+	protected void comprarObjetos() {
+		this.setVisible(false);
+		VCompraObjetos vObjecto = new VCompraObjetos();
+		vObjecto.setVisible(true);
 	}
 
 
