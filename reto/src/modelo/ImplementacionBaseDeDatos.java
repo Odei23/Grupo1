@@ -26,12 +26,17 @@ public class ImplementacionBaseDeDatos implements Dao{
 	
 	private void openConnection() {
 	    try {
-	        conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_pokemon?serverTimezone=Europe/Madrid&useSSL=false", "root", "abcd*1234");
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_pokemon?serverTimezone=Europe/Madrid&useSSL=false&allowPublicKeyRetrieval=true", "root", "abcd*1234");
+	    } catch (ClassNotFoundException e) {
+	        System.out.println("Error al cargar el controlador JDBC");
+	        e.printStackTrace();
 	    } catch (SQLException e) {
-	        System.out.println("Error al intentar abrir la BD");
+	        System.out.println("Error al intentar abrir la conexión a la BD");
+	        e.printStackTrace();
 	    }
 	}
-	
+
 	@Override
 	public void altaUsuarios(Usuarios usuario) {
 	    openConnection();
@@ -94,6 +99,13 @@ public class ImplementacionBaseDeDatos implements Dao{
 		return usuarios
 				
 				;
+	}
+
+	
+	@Override
+	public void actualizarUsuario(Usuarios usuario) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
