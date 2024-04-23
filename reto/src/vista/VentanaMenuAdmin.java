@@ -84,6 +84,11 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		contentPanel.add(btnInsertarPokemon);
 		
 		JButton btnVisualizarUsuarios = new JButton("VISUALIZAR USUARIOS");
+		btnVisualizarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				visualizarUsuarios();
+			}
+		});
 		btnVisualizarUsuarios.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
 		btnVisualizarUsuarios.setBounds(601, 382, 240, 115);
 		contentPanel.add(btnVisualizarUsuarios);
@@ -91,6 +96,16 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 
 
 	
+
+
+	protected void visualizarUsuarios() {
+		this.setVisible(false);
+        VVisualizarUsuarios venVU = new VVisualizarUsuarios();
+        venVU.setVisible(true);		
+	}
+
+
+
 
 
 	protected void cerrarSesion() {
@@ -104,9 +119,6 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		cerrarSesion();
-		
-		
-		
-		
+
 	}
 }

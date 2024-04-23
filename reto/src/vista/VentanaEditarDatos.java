@@ -62,10 +62,10 @@ public class VentanaEditarDatos extends JDialog {
         contentPanel.add(btnCerrar);
         
         txta = new JTextField();
-        txta.setText("55555555A"); // Supongamos que este es el DNI del usuario actual
+        txta.setColumns(10);
+
         txta.setBounds(340, 189, 162, 45);
         contentPanel.add(txta);
-        txta.setColumns(10);
         
         textField_1 = new JTextField();
         textField_1.setColumns(10);
@@ -124,12 +124,13 @@ public class VentanaEditarDatos extends JDialog {
         // Mostrar los datos del usuario actual
         mostrarDatosUsuario(txta.getText());
         mostrarDatosUsuario(dni);
-    }
+        }
 
     protected void mostrarDatosUsuario(String dni) {
         Usuarios usuario = Controlador.obtenerUsuarioPorDNI(dni);
         if (usuario != null) {
             // Mostrar los datos del usuario en los JTextField correspondientes
+        	txta.setText(usuario.getDni());
             textField_1.setText(usuario.getNombre());
             textField_2.setText(usuario.getApellido());
             textField_3.setText(usuario.getFechaNac().toString()); // Suponiendo que la fecha se muestra como String
@@ -149,6 +150,8 @@ public class VentanaEditarDatos extends JDialog {
         VentanaPrincipal venPrin = new VentanaPrincipal();
         venPrin.setVisible(true);
     }
+
+ // En la clase VentanaEditarDatos
 
     protected void guardarDatos() {
         String dni = txta.getText();
@@ -178,11 +181,9 @@ public class VentanaEditarDatos extends JDialog {
         // Guardar los datos modificados del usuario en la base de datos a través del Controlador
         Controlador.actualizarUsuario(usuarioModificado);
         
-        this.setVisible(false);
-		VentanaMenuUsuario vUS = new VentanaMenuUsuario();
-		vUS.setVisible(true);
-        
+        // Cerrar la ventana de edición y volver al menú de usuario
+        this.dispose(); // Cerrar la ventana actual
+        VentanaMenuUsuario vUS = new VentanaMenuUsuario();
+        vUS.setVisible(true);
     }
-
-
 }

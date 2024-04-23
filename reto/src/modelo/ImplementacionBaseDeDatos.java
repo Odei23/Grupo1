@@ -101,12 +101,31 @@ public class ImplementacionBaseDeDatos implements Dao{
 				;
 	}
 
-	
+	// En la clase ImplementacionBaseDeDatos
+
 	@Override
 	public void actualizarUsuario(Usuarios usuario) {
-		// TODO Auto-generated method stub
-		
+	    openConnection();
+	    
+	    try {
+	        String UPDATE_USUARIO = "UPDATE cliente SET nombre=?, apellido=?, fecha_nac=?, contrasena=? WHERE dni=?";
+	        stat = conect.prepareStatement(UPDATE_USUARIO);
+	        
+	        // Establecer los valores para los parámetros de la sentencia SQL
+	        stat.setString(1, usuario.getNombre());
+	        stat.setString(2, usuario.getApellido());
+	        stat.setDate(3, Date.valueOf(usuario.getFechaNac())); // Suponiendo que la fecha se almacena en formato SQL DATE
+	        stat.setString(4, usuario.getContrasena());
+	        stat.setString(5, usuario.getDni());
+	        
+	        // Ejecutar la actualización
+	        stat.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } 
 	}
+
+	
 
 	
 	
