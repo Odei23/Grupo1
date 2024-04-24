@@ -6,10 +6,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.ResourceBundle;
 
 import controlador.Dao;
 
@@ -18,16 +19,25 @@ public class ImplementacionBaseDeDatos implements Dao{
 
 	private Connection conect;
 	private PreparedStatement stat;
-	
+	private ResourceBundle fichConfBundle;
+	private String url;
+	private String user;
+	private String passwd;
+
 	final String INSERT_USUARIOS = "INSERT INTO cliente VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
 	private final String CONSULTA_USUARIOS = "SELECT * FROM cliente"; 
 	
 	
 	private void openConnection() {
+		fichConfBundle = ResourceBundle.getBundle("modelo.config");
+		this.url = fichConfBundle.getString("URL");
+		this.user = fichConfBundle.getString("USER");
+		this.passwd = fichConfBundle.getString("PASSWD");
+
 	    try {
 	        Class.forName("com.mysql.cj.jdbc.Driver");
-	        conect = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda_pokemon?serverTimezone=Europe/Madrid&useSSL=false&allowPublicKeyRetrieval=true", "root", "abcd*1234");
+	        conect = DriverManager.getConnection(url, user, passwd);
 	    } catch (ClassNotFoundException e) {
 	        System.out.println("Error al cargar el controlador JDBC");
 	        e.printStackTrace();
@@ -49,7 +59,15 @@ public class ImplementacionBaseDeDatos implements Dao{
 	        stat.setString(2, usuario.getNombre());
 	        stat.setString(3, usuario.getApellido());
 	        stat.setDate(4, Date.valueOf(usuario.getFechaNac())); // Use Date.valueOf to convert LocalDate to SQL Date
-	        stat.setFloat(5, usuario.getSaldo());
+	        
+	        // Verificar si el saldo es nulo antes de establecerlo en la sentencia SQL
+	        if (usuario.getSaldo() != null) {
+	            stat.setFloat(5, usuario.getSaldo());
+	        } else {
+	            // Si el saldo es nulo, establecer un valor predeterminado o dejarlo como NULL en la base de datos, dependiendo de tus requisitos
+	            stat.setNull(5, Types.FLOAT);
+	        }
+	        
 	        stat.setString(6, usuario.getContrasena());
 	        stat.setBoolean(7, usuario.isEsAdmin()); // Nuevo parámetro para esAdmin
 
@@ -58,6 +76,7 @@ public class ImplementacionBaseDeDatos implements Dao{
 	        e.printStackTrace();
 	    }
 	}
+
 
 
 	@Override

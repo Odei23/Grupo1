@@ -87,9 +87,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 
 	protected void editarDatos() {
 	    this.setVisible(false);
-	    // Obtener el DNI del usuario actual, si está disponible en VentanaMenuUsuario
 	    String dniUsuario = obtenerDniUsuario();
-	    // Crear una nueva instancia de VentanaEditarDatos y pasar el DNI del usuario como argumento
 	    VentanaEditarDatos venEditar = new VentanaEditarDatos(dniUsuario);
 	    venEditar.setVisible(true);     
 	}
@@ -97,7 +95,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 
 
 	private String obtenerDniUsuario() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

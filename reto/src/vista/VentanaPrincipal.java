@@ -144,13 +144,15 @@ public class VentanaPrincipal extends JFrame {
         contentPanel.add(editorPane);
         
         gif = new JLabel("");
+        
         gif.setBounds(288, 0, 605, 568); // Establecer tamaño y ubicación adecuados para el JLabel
-        contentPanel.add(gif);
-
-        // Cargar y mostrar el gif
         ImageIcon poke1 = new ImageIcon(getClass().getResource("../imagenes/fondo.gif"));
         ImageIcon img1 = new ImageIcon(poke1.getImage().getScaledInstance(gif.getWidth(), gif.getHeight(), Image.SCALE_DEFAULT));
         gif.setIcon(img1);
+        contentPanel.add(gif);
+
+        // Cargar y mostrar el gif
+        
 
     }
 
@@ -174,7 +176,6 @@ public class VentanaPrincipal extends JFrame {
 
 
     protected void iniciarMenu() {
-        // Obtener el DNI ingresado
         String dni = textField.getText();
         String password = new String(passwordField.getPassword());
 
