@@ -12,4 +12,6 @@ public interface Dao {
 	List<Usuarios> consultaUsuarios();
 
 	public void actualizarUsuario(Usuarios usuario);
+
+	public Usuarios obtenerUsuarioPorDNI(String dni);
 }

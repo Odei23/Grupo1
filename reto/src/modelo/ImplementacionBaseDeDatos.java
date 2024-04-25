@@ -127,7 +127,7 @@ public class ImplementacionBaseDeDatos implements Dao{
 	    openConnection();
 	    
 	    try {
-	        String UPDATE_USUARIO = "UPDATE cliente SET nombre=?, apellido=?, fecha_nac=?, contrasena=? WHERE dni=?";
+	        String UPDATE_USUARIO = "UPDATE cliente SET nombre=?, apellido=?, fecha_nac=?, contrasena=?, saldo=? WHERE dni=?";
 	        stat = conect.prepareStatement(UPDATE_USUARIO);
 	        
 	        // Establecer los valores para los parámetros de la sentencia SQL
@@ -135,13 +135,61 @@ public class ImplementacionBaseDeDatos implements Dao{
 	        stat.setString(2, usuario.getApellido());
 	        stat.setDate(3, Date.valueOf(usuario.getFechaNac())); // Suponiendo que la fecha se almacena en formato SQL DATE
 	        stat.setString(4, usuario.getContrasena());
-	        stat.setString(5, usuario.getDni());
+	        stat.setFloat(5, usuario.getSaldo());
+	        stat.setString(6, usuario.getDni());
 	        
 	        // Ejecutar la actualización
 	        stat.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } 
+	}
+	
+
+	@Override
+	public Usuarios obtenerUsuarioPorDNI(String dni) {
+	    openConnection();
+	    Usuarios usuario = null;
+	    ResultSet rs = null;
+
+	    try {
+	        String CONSULTA_USUARIO_POR_DNI = "SELECT * FROM cliente WHERE dni=?";
+	        stat = conect.prepareStatement(CONSULTA_USUARIO_POR_DNI);
+	        stat.setString(1, dni);
+	        rs = stat.executeQuery();
+
+	        if (rs.next()) {
+	            usuario = new Usuarios();
+	            usuario.setDni(rs.getString(1));
+	            usuario.setNombre(rs.getString(2));
+	            usuario.setApellido(rs.getString(3));
+	            Date date = rs.getDate(4);
+	            LocalDate localDate = date.toLocalDate();
+	            usuario.setFechaNac(localDate);
+	            usuario.setSaldo(rs.getFloat(5));
+	            usuario.setContrasena(rs.getString(6));
+	            usuario.setEsAdmin(rs.getBoolean(7));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Cerrar la conexión y los recursos
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stat != null) {
+	                stat.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+
+	    return usuario;
 	}
 
 	

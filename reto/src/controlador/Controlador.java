@@ -36,7 +36,7 @@ public class Controlador {
                 return usuario.isEsAdmin();
             }
         }
-        return false; // Usuario no encontrado o no es administrador
+        return false; 
     }
 
 
@@ -48,7 +48,7 @@ public class Controlador {
 	        // Buscar al usuario por su DNI
 	        for (Usuarios usuario : usuarios) {
 	            if (usuario.getDni().equals(dni)) {
-	                return usuario; // Devolver el usuario encontrado
+	                return usuario; 
 	            }
 	        }
 	        return null; // Usuario no encontrado		return null;
@@ -61,5 +61,43 @@ public class Controlador {
 	    // Llamar al método para actualizar el usuario en la base de datos
 	    imp.actualizarUsuario(usuarioModificado);
 	}
+
+	public static float obtenerSaldoUsuario(String dni) {
+	    // Obtener la implementación del DAO
+	    Dao imp = new ImplementacionBaseDeDatos();
+	    
+	    // Llamar al método en la implementación de la base de datos para obtener el saldo del usuario por su DNI
+	    Usuarios usuario = imp.obtenerUsuarioPorDNI(dni);
+	    
+	    // Verificar si se encontró al usuario
+	    if (usuario != null) {
+	        // Devolver el saldo del usuario encontrado
+	        return usuario.getSaldo();
+	    } else {
+	        // Usuario no encontrado, devolver un valor predeterminado o manejar la situación según sea necesario
+	        return 0.0f; // Por ejemplo, devolver 0 si el usuario no existe
+	    }
+	}
+
+	public static void actualizarSaldoUsuario(String dni, float saldoActualizado) {
+	    // Obtener la implementación del DAO
+	    Dao imp = new ImplementacionBaseDeDatos();
+	    
+	    // Obtener el usuario por su DNI
+	    Usuarios usuario = obtenerUsuarioPorDNI(dni);
+	    
+	    // Verificar si se encontró al usuario
+	    if (usuario != null) {
+	        // Actualizar el saldo del usuario
+	        usuario.setSaldo(saldoActualizado);
+	        
+	        // Llamar al método en la implementación de la base de datos para actualizar el usuario
+	        imp.actualizarUsuario(usuario);
+	    } else {
+	        // Manejar la situación si el usuario no existe (lanzar una excepción, registrar un error, etc.)
+	        System.out.println("El usuario con DNI " + dni + " no existe.");
+	    }
+	}
+
 
 }

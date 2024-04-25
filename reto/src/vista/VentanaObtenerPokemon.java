@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.TextField;
 
@@ -16,6 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import controlador.Controlador;
+
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
@@ -35,51 +39,15 @@ public class VentanaObtenerPokemon extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JLabel lblLogo;
-	private JButton P001;
-	private JButton P002;
-	private JButton P003;
-	private JButton P004;
-	private JButton P005;
-	private JButton P006;
-	private JButton P009;
-	private JButton P008;
-	private JButton P007;
-	private JButton P010;
-	private JButton P011;
-	private JButton P012;
-	private JButton P013;
-	private JButton P014;
-	private JButton P015;
-	private JButton P016;
-	private JButton P017;
-	private JButton P018;
-	private JButton P020;
-	private JButton P019;
-	private JCheckBox C001;
-	private JCheckBox C002;
-	private JCheckBox C003;
-	private JCheckBox C004;
-	private JCheckBox C005;
-	private JCheckBox C006;
-	private JCheckBox C007;
-	private JCheckBox C008;
-	private JCheckBox C009;
-	private JCheckBox C010;
-	private JCheckBox C011;
-	private JCheckBox C012;
-	private JCheckBox C013;
-	private JCheckBox C014;
-	private JCheckBox C015;
-	private JCheckBox C016;
-	private JCheckBox C017;
-	private JCheckBox C018;
-	private JCheckBox C019;
-	private JCheckBox C020;
+	private JButton P001, P002, P003, P004, P005, P006, P007, P008, P009, P010, P011, P012, P013, P014, P015, P016, P017, P018, P019, P020;
+	private JCheckBox C001, C002, C003, C004, C005, C006, C007, C008, C009, C010, C011, C012, C013, C014, C015, C016, C017, C018, C019, C020;
 	private JSpinner S001, S002, S003, S004, S005, S006, S007, S008, S009, S010, S011, S012, S013, S014, S015, S016,
 			S017, S018, S019, S020;
-
+	private JLabel lblSaldo;
 	private JTextField textField,textField_2,textField_3,textField_4,textField_5,textField_6,textField_7,textField_8,textField_9, textField_10,
 	textField_11,textField_12,textField_13,textField_14,textField_15,textField_16,textField_17,textField_18,textField_19,textField_20;
+	
+	private int precioFinal = 0;
 
 	public VentanaObtenerPokemon(String dni) {
 		setBounds(100, 100, 981, 775);
@@ -89,6 +57,14 @@ public class VentanaObtenerPokemon extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		lblSaldo = new JLabel();
+		lblSaldo.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
+		lblSaldo.setBounds(750, 80, 150, 30);
+		contentPanel.add(lblSaldo);
+
+		 float saldo = Controlador.obtenerSaldoUsuario(dni); // Suponiendo que haya un método en Controlador para obtener el saldo del usuario
+		    lblSaldo.setText("Saldo: " + saldo + "€");
 		{
 			JButton btnSalir = new JButton("Salir");
 			btnSalir.addActionListener(new ActionListener() {
@@ -609,6 +585,8 @@ public class VentanaObtenerPokemon extends JDialog {
 		        int precio = obtenerPrecioEstablecido_5();
 		        int precioTotal = cantidad * precio;
 		        textField_5.setText(precioTotal + "€");
+		        precioFinal += precioTotal;
+
 		    }
 		});
 
@@ -1103,7 +1081,14 @@ public class VentanaObtenerPokemon extends JDialog {
 		contentPanel.add(textField_20);
 		
 		JButton btnNewButton = new JButton("Comprar");
+		
+		btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                comprar(dni);
+            }
+        });
 		btnNewButton.setBounds(402, 692, 134, 33);
+		
 		contentPanel.add(btnNewButton);
 
         // Cargar y mostrar el gif
@@ -1111,7 +1096,14 @@ public class VentanaObtenerPokemon extends JDialog {
 	}
 
 	
-	 protected int obtenerPrecioEstablecido_11() {
+	 protected void comprar(String dni) {
+		 this.setVisible(false);
+	        VentanaMenuUsuario venUs = new VentanaMenuUsuario(dni);
+	        venUs.setVisible(true);		
+	}
+
+
+	protected int obtenerPrecioEstablecido_11() {
 			// TODO Auto-generated method stub
 			return 80;
 		}
@@ -1201,6 +1193,8 @@ public class VentanaObtenerPokemon extends JDialog {
     	return 750;
 	}
 
+	
+	
 	protected void salir(String dni) {
         this.setVisible(false);
         VentanaMenuUsuario venUs = new VentanaMenuUsuario(dni);
