@@ -111,7 +111,7 @@ public class VCompraCura extends JDialog {
 	private JTextField textFieldLeche;
 	private JTextField textFieldHierba;
 
-	public VCompraCura() {
+	public VCompraCura(String dni) {
 		setBounds(100, 100, 985, 607);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -123,7 +123,7 @@ public class VCompraCura extends JDialog {
 			contentPanel.add(btnSalir);
 			btnSalir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					salir();
+					salir(dni);
 				}
 			});
 		}
@@ -954,9 +954,9 @@ public class VCompraCura extends JDialog {
 		venPrin.setVisible(true);
 	}
 
-	protected void salir() {
+	protected void salir(String dni) {
 		this.setVisible(false);
-		VCompraObjetos venObjeto = new VCompraObjetos();
+		VCompraObjetos venObjeto = new VCompraObjetos(dni);
 		venObjeto.setVisible(true);
 	}
 }

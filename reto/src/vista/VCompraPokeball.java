@@ -94,7 +94,7 @@ public class VCompraPokeball extends JDialog {
 	private JTextField textAmorball;
 	private JTextField textVelozball;
 
-	public VCompraPokeball() {
+	public VCompraPokeball(String dni) {
 		setBounds(100, 100, 981, 775);
 		getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(new Color(255, 166, 128));
@@ -106,11 +106,22 @@ public class VCompraPokeball extends JDialog {
 			JButton btnSalir = new JButton("Salir");
 			btnSalir.setBounds(10, 11, 140, 48);
 			contentPanel.add(btnSalir);
+			btnSalir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					salir(dni);
+				}
+			});
 		}
 		{
 			JButton btnCerrarSesion = new JButton("Cerrar Sesion");
-			btnCerrarSesion.setBounds(706, 11, 140, 48);
+			btnCerrarSesion.setBounds(738, 11, 140, 48);
 			contentPanel.add(btnCerrarSesion);
+			btnCerrarSesion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cerrarSesion();
+				}
+			});
+
 		}
 		{
 			JLabel lblLogo = new JLabel("");
@@ -1000,6 +1011,17 @@ public class VCompraPokeball extends JDialog {
 		textVelozball.setBackground(UIManager.getColor("Button.background"));
 		textVelozball.setBounds(666, 660, 30, 19);
 		contentPanel.add(textVelozball);
+	}
+	protected void cerrarSesion() {
+		this.setVisible(false);
+		VentanaPrincipal venPrin = new VentanaPrincipal();
+		venPrin.setVisible(true);
+	}
+
+	protected void salir(String dni) {
+		this.setVisible(false);
+		VCompraObjetos venObjeto = new VCompraObjetos(dni);
+		venObjeto.setVisible(true);
 	}
 }
 

@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 // Importa las clases necesarias
@@ -16,7 +18,7 @@ public class VVisualizarUsuarios extends JFrame {
     private JTable table;
     private JLabel gif;
 
-    public VVisualizarUsuarios() {
+    public VVisualizarUsuarios(String dni) {
         setBounds(100, 100, 909, 607);
         contentPanel = new JPanel();
         contentPanel.setBackground(new Color(255, 166, 128));
@@ -24,6 +26,28 @@ public class VVisualizarUsuarios extends JFrame {
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
+        
+        {
+			JButton btnSalir = new JButton("Salir");
+			btnSalir.setBounds(10, 11, 140, 48);
+			contentPanel.add(btnSalir);
+			btnSalir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					salir(dni);
+				}
+			});
+		}
+		{
+			JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+			btnCerrarSesion.setBounds(738, 11, 140, 48);
+			contentPanel.add(btnCerrarSesion);
+			btnCerrarSesion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cerrarSesion();
+				}
+			});
+
+		}
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -68,7 +92,19 @@ public class VVisualizarUsuarios extends JFrame {
         contentPanel.add(gif);
     }
 
-    // Método para obtener los usuarios desde la base de datos
+    protected void cerrarSesion() {
+		this.setVisible(false);
+		VentanaPrincipal venPrin = new VentanaPrincipal();
+		venPrin.setVisible(true);
+	}
+
+	protected void salir(String dni) {
+		this.setVisible(false);
+		VentanaMenuAdmin vAD = new VentanaMenuAdmin(dni);
+		vAD.setVisible(true);
+	}
+
+	// Método para obtener los usuarios desde la base de datos
     private ArrayList<Usuarios> obtenerUsuariosDesdeBD() {
         ImplementacionBaseDeDatos baseDeDatos = new ImplementacionBaseDeDatos();
         return (ArrayList<Usuarios>) baseDeDatos.consultaUsuarios();

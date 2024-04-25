@@ -46,7 +46,7 @@ public class VentanaEditarDatos extends JDialog {
         JButton btnSalir = new JButton("<---- Salir");
         btnSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                salir();
+                salir(dni);
             }
         });
         btnSalir.setBounds(10, 11, 119, 45);
@@ -139,9 +139,9 @@ public class VentanaEditarDatos extends JDialog {
         }
     }
 
-    protected void salir() {
+    protected void salir(String dni) {
         this.setVisible(false);
-        VentanaMenuUsuario venMU = new VentanaMenuUsuario();
+        VentanaMenuUsuario venMU = new VentanaMenuUsuario(dni);
         venMU.setVisible(true);
     }
 
@@ -183,7 +183,7 @@ public class VentanaEditarDatos extends JDialog {
         
         // Cerrar la ventana de edición y volver al menú de usuario
         this.dispose(); // Cerrar la ventana actual
-        VentanaMenuUsuario vUS = new VentanaMenuUsuario();
+        VentanaMenuUsuario vUS = new VentanaMenuUsuario(dni);
         vUS.setVisible(true);
     }
 }

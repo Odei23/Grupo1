@@ -20,7 +20,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 	private final JPanel contentPanel = new JPanel();
 
 
-	public VentanaMenuUsuario() {
+	public VentanaMenuUsuario(String dni) {
 		setBounds(100, 100, 909, 607);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 166, 128));
@@ -49,7 +49,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		JButton btnObtenerPokemon = new JButton("OBTENER POKEMON");
 		btnObtenerPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				obtenerPokemon();
+				obtenerPokemon(dni);
 			}
 		});
 		btnObtenerPokemon.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
@@ -61,7 +61,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		JButton btnComprarObjeto = new JButton("COMPRAR OBJETO");
 		btnComprarObjeto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				comprarObjetos();
+				comprarObjetos(dni);
 			}
 		});
 		btnComprarObjeto.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
@@ -71,7 +71,7 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		JButton btneditarDatos = new JButton("EDITAR DATOS");
 		btneditarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				editarDatos();
+				editarDatos(dni);
 			}
 		});
 		btneditarDatos.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
@@ -85,19 +85,12 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 	}
 
 
-	protected void editarDatos() {
+	protected void editarDatos(String dni) {
 	    this.setVisible(false);
-	    String dniUsuario = obtenerDniUsuario();
-	    VentanaEditarDatos venEditar = new VentanaEditarDatos(dniUsuario);
+	    VentanaEditarDatos venEditar = new VentanaEditarDatos(dni);
 	    venEditar.setVisible(true);     
 	}
 
-
-
-	private String obtenerDniUsuario() {
-
-		return null;
-	}
 
 
 	protected void cerrarSesion() {
@@ -107,15 +100,15 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 		
 	}
 	
-	protected void obtenerPokemon() {
+	protected void obtenerPokemon(String dni) {
 		this.setVisible(false);
-        VentanaObtenerPokemon venOB = new VentanaObtenerPokemon();
+        VentanaObtenerPokemon venOB = new VentanaObtenerPokemon(dni);
         venOB.setVisible(true);		
 	}
 	
-	protected void comprarObjetos() {
+	protected void comprarObjetos(String dni) {
 		this.setVisible(false);
-		VCompraObjetos vObjecto = new VCompraObjetos();
+		VCompraObjetos vObjecto = new VCompraObjetos(dni);
 		vObjecto.setVisible(true);
 	}
 
@@ -123,7 +116,6 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		cerrarSesion();
-		editarDatos();
 		
 		
 		

@@ -3,6 +3,8 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
@@ -105,12 +107,34 @@ public class VCompraComida extends JDialog {
 	private JSpinner spinnerBayaframbu;
 
 
-	public VCompraComida() {
-		setBounds(100, 100, 747, 811);
+	public VCompraComida(String dni) {
+		setBounds(100, 100, 985, 607);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		{
+			JButton btnSalir = new JButton("Salir");
+			btnSalir.setBounds(10, 11, 140, 48);
+			contentPanel.add(btnSalir);
+			btnSalir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					salir(dni);
+				}
+			});
+		}
+		{
+			JButton btnCerrarSesion = new JButton("Cerrar Sesion");
+			btnCerrarSesion.setBounds(738, 11, 140, 48);
+			contentPanel.add(btnCerrarSesion);
+			btnCerrarSesion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					cerrarSesion();
+				}
+			});
+
+		}
+		
 		
 		JPanel contentPanel_1 = new JPanel();
 		contentPanel_1.setLayout(null);
@@ -873,6 +897,22 @@ public class VCompraComida extends JDialog {
 		}
 		
 		}
-	}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+	}
+
+
+	protected void cerrarSesion() {
+		this.setVisible(false);
+		VentanaPrincipal venPrin = new VentanaPrincipal();
+		venPrin.setVisible(true);
+	}
+
+	protected void salir(String dni) {
+		this.setVisible(false);
+		VCompraObjetos venObjeto = new VCompraObjetos(dni);
+		venObjeto.setVisible(true);
+	}
+	
+	
+  
 }
 

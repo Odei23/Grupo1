@@ -167,7 +167,7 @@ public class VentanaPrincipal extends JFrame {
         if (userIsAdmin) {
             // El usuario es administrador, permitir acceso al menú de administrador
             this.setVisible(false);
-            VentanaMenuAdmin venAD = new VentanaMenuAdmin();
+            VentanaMenuAdmin venAD = new VentanaMenuAdmin(dni);
             venAD.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de administrador", "Error", JOptionPane.ERROR_MESSAGE);
@@ -186,8 +186,8 @@ public class VentanaPrincipal extends JFrame {
             // El usuario existe y no es administrador, proceder al menú de usuario normal
             this.setVisible(false);
             // Pasar el DNI a la ventana de edición de datos
-            VentanaEditarDatos ventanaEditarDatos = new VentanaEditarDatos(dni);
-            ventanaEditarDatos.setVisible(true);
+            VentanaMenuUsuario vMU = new VentanaMenuUsuario(dni);
+            vMU.setVisible(true);
         } else if (userExists && userIsAdmin) {
             // El usuario existe pero es administrador, mostrar un mensaje de error
             JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de usuario", "Error", JOptionPane.ERROR_MESSAGE);

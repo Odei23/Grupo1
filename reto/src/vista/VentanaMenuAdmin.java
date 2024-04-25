@@ -24,7 +24,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 	private final JPanel contentPanel = new JPanel();
 
 
-	public VentanaMenuAdmin() {
+	public VentanaMenuAdmin(String dni) {
 		setBounds(100, 100, 909, 607);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 166, 128));
@@ -86,7 +86,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		JButton btnVisualizarUsuarios = new JButton("VISUALIZAR USUARIOS");
 		btnVisualizarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				visualizarUsuarios();
+				visualizarUsuarios(dni);
 			}
 		});
 		btnVisualizarUsuarios.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
@@ -98,9 +98,9 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 	
 
 
-	protected void visualizarUsuarios() {
+	protected void visualizarUsuarios(String dni) {
 		this.setVisible(false);
-        VVisualizarUsuarios venVU = new VVisualizarUsuarios();
+        VVisualizarUsuarios venVU = new VVisualizarUsuarios(dni);
         venVU.setVisible(true);		
 	}
 

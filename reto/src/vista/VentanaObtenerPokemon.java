@@ -81,7 +81,7 @@ public class VentanaObtenerPokemon extends JDialog {
 	private JTextField textField,textField_2,textField_3,textField_4,textField_5,textField_6,textField_7,textField_8,textField_9, textField_10,
 	textField_11,textField_12,textField_13,textField_14,textField_15,textField_16,textField_17,textField_18,textField_19,textField_20;
 
-	public VentanaObtenerPokemon() {
+	public VentanaObtenerPokemon(String dni) {
 		setBounds(100, 100, 981, 775);
 		getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(new Color(255, 166, 128));
@@ -93,7 +93,7 @@ public class VentanaObtenerPokemon extends JDialog {
 			JButton btnSalir = new JButton("Salir");
 			btnSalir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					salir();				}
+					salir(dni);				}
 			});
 			btnSalir.setBounds(10, 11, 140, 48);
 			contentPanel.add(btnSalir);
@@ -1201,9 +1201,9 @@ public class VentanaObtenerPokemon extends JDialog {
     	return 750;
 	}
 
-	protected void salir() {
+	protected void salir(String dni) {
         this.setVisible(false);
-        VentanaMenuUsuario venUs = new VentanaMenuUsuario();
+        VentanaMenuUsuario venUs = new VentanaMenuUsuario(dni);
         venUs.setVisible(true);
     }
 

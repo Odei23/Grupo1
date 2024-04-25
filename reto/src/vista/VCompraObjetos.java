@@ -18,7 +18,7 @@ public class VCompraObjetos extends JFrame {
 	private JPanel contentPane;
 
 
-	public VCompraObjetos() {
+	public VCompraObjetos(String dni) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 905, 615);
 		contentPane = new JPanel();
@@ -33,7 +33,7 @@ public class VCompraObjetos extends JFrame {
 		contentPane.add(btnSalir);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				salir();
+				salir(dni);
 			}
 		});
 		
@@ -58,7 +58,7 @@ public class VCompraObjetos extends JFrame {
 		contentPane.add(btnCompraCura);
 		btnCompraCura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				botonCura();
+				botonCura(dni);
 			}
 		});
 		JButton btnCompraPokeball = new JButton("Comprar Pokeballs");
@@ -66,7 +66,7 @@ public class VCompraObjetos extends JFrame {
 		contentPane.add(btnCompraPokeball);
 		btnCompraPokeball.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				botonPokeball();
+				botonPokeball( dni);
 			}
 		});
 		JButton btnCompraComida = new JButton("Comprar Comida");
@@ -74,32 +74,32 @@ public class VCompraObjetos extends JFrame {
 		contentPane.add(btnCompraComida);
 		btnCompraComida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				botonComida();
+				botonComida(dni);
 			}
 		});
 	}
 
 
-	protected void botonComida() {
+	protected void botonComida(String dni) {
 		// TODO Auto-generated method stub
 		this.setVisible(false);
-		VCompraComida venCompraComida = new VCompraComida();
+		VCompraComida venCompraComida = new VCompraComida(dni);
 		venCompraComida.setVisible(true);
 	}
 
 
-	protected void botonPokeball() {
+	protected void botonPokeball(String dni) {
 		// TODO Auto-generated method stub
 		this.setVisible(false);
-		VCompraPokeball venCompraPokeball = new VCompraPokeball();
+		VCompraPokeball venCompraPokeball = new VCompraPokeball(dni);
 		venCompraPokeball.setVisible(true);
 	}
 
 
-	protected void botonCura() {
+	protected void botonCura(String dni) {
 		// TODO Auto-generated method stub
 		this.setVisible(false);
-		VCompraCura venCompraCura = new VCompraCura();
+		VCompraCura venCompraCura = new VCompraCura(dni);
 		venCompraCura.setVisible(true);
 	}
 
@@ -113,9 +113,9 @@ public class VCompraObjetos extends JFrame {
 	
 
 
-	protected void salir() {
+	protected void salir(String dni) {
 		this.setVisible(false);
-		VentanaMenuUsuario venCliente = new VentanaMenuUsuario();
+		VentanaMenuUsuario venCliente = new VentanaMenuUsuario(dni);
 		venCliente.setVisible(true);
 		
 	}
