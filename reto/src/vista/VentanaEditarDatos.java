@@ -124,6 +124,7 @@ public class VentanaEditarDatos extends JDialog {
         // Mostrar los datos del usuario actual
         mostrarDatosUsuario(txta.getText());
         mostrarDatosUsuario(dni);
+        
         }
 
     protected void mostrarDatosUsuario(String dni) {

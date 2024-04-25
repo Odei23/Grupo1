@@ -13,11 +13,15 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+
 import java.awt.Font;
 
 public class VentanaMenuUsuario extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
+	private JLabel lblSaldo;
 
 
 	public VentanaMenuUsuario(String dni) {
@@ -45,7 +49,16 @@ public class VentanaMenuUsuario extends JDialog implements ActionListener{
         
         logo.setIcon (img2);
 		contentPanel.add(logo);
-		
+
+		// Dentro del constructor de la clase VentanaMenuUsuario
+		lblSaldo = new JLabel();
+		lblSaldo.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
+		lblSaldo.setBounds(750, 80, 150, 30);
+		contentPanel.add(lblSaldo);
+
+		 float saldo = Controlador.obtenerSaldoUsuario(dni); // Suponiendo que haya un método en Controlador para obtener el saldo del usuario
+		    lblSaldo.setText("Saldo: " + saldo + "€");
+
 		JButton btnObtenerPokemon = new JButton("OBTENER POKEMON");
 		btnObtenerPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
