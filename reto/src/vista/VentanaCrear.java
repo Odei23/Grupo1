@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
-import modelo.Usuarios;
+import modelo.Usuario;
 
 public class VentanaCrear extends JDialog {
 
@@ -115,11 +115,6 @@ public class VentanaCrear extends JDialog {
         textFieldSaldo.setBounds(150, 345, 155, 32);
         contentPanel.add(textFieldSaldo);
 
-        JLabel lblContrasena = new JLabel("Quieres ser admin?");
-        lblContrasena.setFont(new Font("Microsoft YaHei", Font.BOLD, 18));
-        lblContrasena.setBounds(455, 285, 178, 30);
-        contentPanel.add(lblContrasena);
-
         textFieldContra = new JTextField();
         textFieldContra.setColumns(10);
         textFieldContra.setBounds(579, 231, 155, 32);
@@ -130,55 +125,19 @@ public class VentanaCrear extends JDialog {
         lblContrasena_1.setBounds(455, 229, 114, 30);
         contentPanel.add(lblContrasena_1);
 
-        JRadioButton bSi = new JRadioButton("Si");
-        bSi.setBounds(648, 281, 43, 23);
-        contentPanel.add(bSi);
-
-        JRadioButton bNo = new JRadioButton("No");
-        bNo.setBounds(648, 311, 43, 23);
-        contentPanel.add(bNo);
-
         // Agrupar los botones de radio para que solo uno pueda ser seleccionado a la vez
         group = new ButtonGroup();
-        group.add(bSi);
-        group.add(bNo);
-
-        // Agregar un listener al botón "No" para deshabilitar el campo de saldo cuando se seleccione
-        bSi.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                textFieldSaldo.setEnabled(false);
-            }
-        });
-
-        // Agregar un listener al botón "Si" para habilitar el campo de saldo cuando se seleccione
-        bNo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Si se selecciona "Si", habilitar el campo de saldo
-                textFieldSaldo.setEnabled(true);
-            }
-        });
 
     }
 
     private void altaUsuarios() {
-        Usuarios nuevo = new Usuarios();
+        Usuario nuevo = new Usuario();
         nuevo.setDni(textFieldDNI.getText());
         nuevo.setNombre(textFieldNombre.getText());
         nuevo.setApellido(textFieldApellido.getText());
         nuevo.setFechaNac(LocalDate.parse(textFieldFechNac.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         nuevo.setContrasena(textFieldContra.getText());
-
-        if (getSelectedButtonText().equalsIgnoreCase("Si")) {
-            // Si el usuario selecciona "Sí" para ser administrador, establecer el saldo a cero
-            nuevo.setSaldo(0.0f);
-        } else {
-            // Si el usuario selecciona "No" para ser administrador, verificar y establecer el saldo si se proporciona
-            if (!textFieldSaldo.getText().isEmpty()) {
-                nuevo.setSaldo(Float.parseFloat(textFieldSaldo.getText()));
-            }
-        }
-
-        nuevo.setEsAdmin(getSelectedButtonText().equalsIgnoreCase("No"));
+        nuevo.setSaldo(Float.parseFloat(textFieldSaldo.getText()));
 
         Controlador.altaUsuario(nuevo);
     }

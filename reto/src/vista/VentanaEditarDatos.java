@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.awt.event.ActionEvent;
-import modelo.Usuarios;
+import modelo.Usuario;
 import controlador.Controlador;
 
 public class VentanaEditarDatos extends JDialog {
@@ -128,7 +128,7 @@ public class VentanaEditarDatos extends JDialog {
         }
 
     protected void mostrarDatosUsuario(String dni) {
-        Usuarios usuario = Controlador.obtenerUsuarioPorDNI(dni);
+        Usuario usuario = Controlador.obtenerUsuarioPorDNI(dni);
         if (usuario != null) {
             // Mostrar los datos del usuario en los JTextField correspondientes
         	txta.setText(usuario.getDni());
@@ -172,7 +172,7 @@ public class VentanaEditarDatos extends JDialog {
         String contrasena = textField_4.getText(); 
 
         // Crear un objeto Usuarios con los datos modificados
-        Usuarios usuarioModificado = new Usuarios();
+        Usuario usuarioModificado = new Usuario();
         usuarioModificado.setDni(dni);
         usuarioModificado.setNombre(nombre);
         usuarioModificado.setApellido(apellido);

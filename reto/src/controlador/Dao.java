@@ -2,16 +2,18 @@ package controlador;
 
 import java.util.List;
 
-import modelo.Usuarios;
+import modelo.Usuario;
 
 public interface Dao {
 
 	
-	public void altaUsuarios(Usuarios usuario);
+	public void altaUsuarios(Usuario usuario);
 	
-	List<Usuarios> consultaUsuarios();
+	List<Usuario> consultaUsuarios();
 
-	public void actualizarUsuario(Usuarios usuario);
+	public void actualizarUsuario(Usuario usuario);
 
-	public Usuarios obtenerUsuarioPorDNI(String dni);
+	public Usuario obtenerUsuarioPorDNI(String dni);
+
+	public Usuario consultaUsuario(String dni, String contrasena);
 }
