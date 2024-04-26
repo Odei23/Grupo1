@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import javax.management.loading.PrivateClassLoader;
 
-public class Usuarios implements Serializable{
+public class Usuario implements Serializable{
 	private String dni;
 	private String nombre;
 	private String apellido;
@@ -15,6 +15,10 @@ public class Usuarios implements Serializable{
 	private String contrasena;
 	private boolean esAdmin;
 	
+	
+	public void Usuario() {
+		this.setEsAdmin(false);
+	}
 	
 	
 	public String getDni() {

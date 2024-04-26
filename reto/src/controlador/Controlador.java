@@ -2,35 +2,28 @@ package controlador;
 
 import java.util.List;
 
-import modelo.Usuarios;
+import modelo.Usuario;
 import modelo.ImplementacionBaseDeDatos;
 
 public class Controlador {
 
-    public static void altaUsuario(Usuarios nuevo) {
+    public static void altaUsuario(Usuario nuevo) {
         Dao imp = new ImplementacionBaseDeDatos();
         imp.altaUsuarios(nuevo);
     }
 
-    public static boolean usuarioExiste(String dni, String contrasena) {
+    public static Usuario usuarioExiste(String dni, String contrasena) {
         Dao imp = new ImplementacionBaseDeDatos();
-        List<Usuarios> usuarios = imp.consultaUsuarios();
-
-        // Comprobar si hay un usuario con el DNI y la contraseña proporcionados
-        for (Usuarios usuario : usuarios) {
-            if (usuario.getDni().equals(dni) && usuario.getContrasena().equals(contrasena)) {
-                return true; // Usuario encontrado
-            }
-        }
-        return false; // Usuario no encontrado
+       
+        return imp.consultaUsuario(dni, contrasena);  // Usuario no encontrado
     }
 
     public static boolean usuarioEsAdmin(String dni, String contrasena) {
         Dao imp = new ImplementacionBaseDeDatos();
-        List<Usuarios> usuarios = imp.consultaUsuarios();
+        List<Usuario> usuarios = imp.consultaUsuarios();
 
         // Buscar al usuario por DNI y contraseña
-        for (Usuarios usuario : usuarios) {
+        for (Usuario usuario : usuarios) {
             if (usuario.getDni().equals(dni) && usuario.getContrasena().equals(contrasena)) {
                 // Verificar si el usuario es administrador
                 return usuario.isEsAdmin();
@@ -41,12 +34,12 @@ public class Controlador {
 
 
 
-	public static Usuarios obtenerUsuarioPorDNI(String dni) {
+	public static Usuario obtenerUsuarioPorDNI(String dni) {
 		 Dao imp = new ImplementacionBaseDeDatos();
-	        List<Usuarios> usuarios = imp.consultaUsuarios();
+	        List<Usuario> usuarios = imp.consultaUsuarios();
 
 	        // Buscar al usuario por su DNI
-	        for (Usuarios usuario : usuarios) {
+	        for (Usuario usuario : usuarios) {
 	            if (usuario.getDni().equals(dni)) {
 	                return usuario; 
 	            }
@@ -54,7 +47,7 @@ public class Controlador {
 	        return null; // Usuario no encontrado		return null;
 	}
 
-	public static void actualizarUsuario(Usuarios usuarioModificado) {
+	public static void actualizarUsuario(Usuario usuarioModificado) {
 	    // Obtener la implementación del DAO
 	    Dao imp = new ImplementacionBaseDeDatos();
 	    
@@ -67,7 +60,7 @@ public class Controlador {
 	    Dao imp = new ImplementacionBaseDeDatos();
 	    
 	    // Llamar al método en la implementación de la base de datos para obtener el saldo del usuario por su DNI
-	    Usuarios usuario = imp.obtenerUsuarioPorDNI(dni);
+	    Usuario usuario = imp.obtenerUsuarioPorDNI(dni);
 	    
 	    // Verificar si se encontró al usuario
 	    if (usuario != null) {
@@ -84,7 +77,7 @@ public class Controlador {
 	    Dao imp = new ImplementacionBaseDeDatos();
 	    
 	    // Obtener el usuario por su DNI
-	    Usuarios usuario = obtenerUsuarioPorDNI(dni);
+	    Usuario usuario = obtenerUsuarioPorDNI(dni);
 	    
 	    // Verificar si se encontró al usuario
 	    if (usuario != null) {
@@ -98,6 +91,23 @@ public class Controlador {
 	        System.out.println("El usuario con DNI " + dni + " no existe.");
 	    }
 	}
+
+	
+	  public static boolean cambiarContraseña(String dni, String nuevaContraseña) {
+	        ImplementacionBaseDeDatos db = new ImplementacionBaseDeDatos();
+	        Usuario usuario = db.obtenerUsuarioPorDNI(dni);
+
+	        if (usuario != null) {
+	            // Actualizar la contraseña del usuario en la base de datos
+	            usuario.setContrasena(nuevaContraseña);
+	            db.actualizarUsuario(usuario);
+	            return true; // Contraseña cambiada con éxito
+	        } else {
+	            return false; // Usuario no encontrado
+	        }
+	    }
+
+	
 
 
 }

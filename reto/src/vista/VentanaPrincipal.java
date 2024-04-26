@@ -20,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import controlador.Controlador;
+import modelo.Usuario;
+
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -53,15 +55,15 @@ public class VentanaPrincipal extends JFrame {
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-        JButton iniciar = new JButton("Cliente");
-        iniciar.addActionListener(new ActionListener() {
+        JButton btnIniciar = new JButton("Iniciar");
+        btnIniciar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 iniciarMenu();
             }
         });
-        iniciar.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-        iniciar.setBounds(409, 405, 183, 53);
-        contentPanel.add(iniciar);
+        btnIniciar.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
+        btnIniciar.setBounds(508, 405, 183, 53);
+        contentPanel.add(btnIniciar);
 
         textField = new JTextField();
         textField.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
@@ -100,6 +102,11 @@ public class VentanaPrincipal extends JFrame {
         olvidado.setBackground(new Color(255, 255, 255));
         olvidado.setOpaque(false);
         olvidado.setBorderPainted(false);
+        olvidado.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                olvidado();
+            }
+        });
         olvidado.setFocusPainted(false);
         contentPanel.add(olvidado);
 
@@ -123,16 +130,6 @@ public class VentanaPrincipal extends JFrame {
         });
         crear.setBounds(47, 305, 217, 56);
         contentPanel.add(crear);
-        
-        JButton Admin = new JButton("Administrador");
-        Admin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                menuAdmin();
-            }
-        });
-        Admin.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
-        Admin.setBounds(602, 405, 183, 53);
-        contentPanel.add(Admin);
         ImageIcon poke3 = new ImageIcon(getClass().getResource("../imagenes/logo.PNG"));
         ImageIcon img3 = new ImageIcon(poke.getImage().getScaledInstance(logo.getWidth(), logo.getHeight(), Image.SCALE_SMOOTH));
         logo.setIcon(img3);
@@ -156,46 +153,34 @@ public class VentanaPrincipal extends JFrame {
 
     }
 
-    protected void menuAdmin() {
-        // Obtener el DNI y la contraseña ingresados
-        String dni = textField.getText();
-        String password = new String(passwordField.getPassword());
-
-        // Verificar si el usuario es administrador
-        boolean userIsAdmin = Controlador.usuarioEsAdmin(dni, password);
-
-        if (userIsAdmin) {
-            // El usuario es administrador, permitir acceso al menú de administrador
-            this.setVisible(false);
-            VentanaMenuAdmin venAD = new VentanaMenuAdmin(dni);
-            venAD.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de administrador", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    protected void olvidado() {
+    	this.setVisible(false);
+        VCambioContrasena vOL = new VCambioContrasena();
+        vOL.setVisible(true);		
+	}
 
 
     protected void iniciarMenu() {
         String dni = textField.getText();
         String password = new String(passwordField.getPassword());
 
-        boolean userExists = Controlador.usuarioExiste(dni, password);
-        boolean userIsAdmin = Controlador.usuarioEsAdmin(dni, password);
+        Usuario user = Controlador.usuarioExiste(dni, password);
 
-        if (userExists && !userIsAdmin) {
-            // El usuario existe y no es administrador, proceder al menú de usuario normal
-            this.setVisible(false);
-            // Pasar el DNI a la ventana de edición de datos
-            VentanaMenuUsuario vMU = new VentanaMenuUsuario(dni);
-            vMU.setVisible(true);
-        } else if (userExists && userIsAdmin) {
-            // El usuario existe pero es administrador, mostrar un mensaje de error
-            JOptionPane.showMessageDialog(null, "No tienes permiso para acceder al menú de usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        if (user != null) {
+            if (user.isEsAdmin()) {
+            	this.setVisible(false);
+                VentanaMenuAdmin vMA = new VentanaMenuAdmin(dni);
+                vMA.setVisible(true);   
+            } else {
+            	 this.setVisible(false);
+                 VentanaMenuUsuario vMU = new VentanaMenuUsuario(dni);
+                 vMU.setVisible(true);
+            }
         } else {
-            // El usuario no existe, mostrar un mensaje de error
-            JOptionPane.showMessageDialog(null, "El usuario no existe en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
 
     
 

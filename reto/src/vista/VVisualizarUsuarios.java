@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 // Importa las clases necesarias
 import modelo.ImplementacionBaseDeDatos;
-import modelo.Usuarios;
+import modelo.Usuario;
 
 public class VVisualizarUsuarios extends JFrame {
 
@@ -55,7 +55,7 @@ public class VVisualizarUsuarios extends JFrame {
         contentPanel.add(scrollPane);
 
         // Obtener la lista de usuarios desde la base de datos
-        ArrayList<Usuarios> usuarios = obtenerUsuariosDesdeBD();
+        ArrayList<Usuario> usuarios = obtenerUsuariosDesdeBD();
 
         // Crear un modelo de tabla
         DefaultTableModel model = new DefaultTableModel();
@@ -68,7 +68,7 @@ public class VVisualizarUsuarios extends JFrame {
         model.addColumn("Es Admin");
 
         // Agregar filas a la tabla con los datos de los usuarios
-        for (Usuarios usuario : usuarios) {
+        for (Usuario usuario : usuarios) {
             model.addRow(new Object[]{
                 usuario.getDni(),
                 usuario.getNombre(),
@@ -79,7 +79,7 @@ public class VVisualizarUsuarios extends JFrame {
                 usuario.isEsAdmin()
             });
         }
-
+ 
         table = new JTable(model);
         scrollPane.setViewportView(table);
         
@@ -105,9 +105,9 @@ public class VVisualizarUsuarios extends JFrame {
 	}
 
 	// Método para obtener los usuarios desde la base de datos
-    private ArrayList<Usuarios> obtenerUsuariosDesdeBD() {
+    private ArrayList<Usuario> obtenerUsuariosDesdeBD() {
         ImplementacionBaseDeDatos baseDeDatos = new ImplementacionBaseDeDatos();
-        return (ArrayList<Usuarios>) baseDeDatos.consultaUsuarios();
+        return (ArrayList<Usuario>) baseDeDatos.consultaUsuarios();
     }
     }
 
