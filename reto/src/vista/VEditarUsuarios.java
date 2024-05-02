@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,7 +20,7 @@ import java.awt.event.ActionEvent;
 import modelo.Usuario;
 import controlador.Controlador;
 
-public class VentanaEditarDatos extends JDialog {
+public class VEditarUsuarios extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
     private JTextField txta;
@@ -28,7 +29,7 @@ public class VentanaEditarDatos extends JDialog {
     private JTextField textField_3;
     private JTextField textField_4;
 
-    public VentanaEditarDatos(String dni) {
+    public VEditarUsuarios(String dni) {
         setBounds(100, 100, 909, 607);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(new Color(255, 166, 128));
@@ -63,7 +64,6 @@ public class VentanaEditarDatos extends JDialog {
         
         txta = new JTextField();
         txta.setColumns(10);
-
         txta.setBounds(340, 189, 162, 45);
         contentPanel.add(txta);
         
@@ -120,20 +120,23 @@ public class VentanaEditarDatos extends JDialog {
         });
         btnGuardar.setBounds(673, 427, 155, 23);
         contentPanel.add(btnGuardar);
-
-        // Mostrar los datos del usuario actual
+        
+        JComboBox<String> comboBoxDNIs = new JComboBox<>();
+        comboBoxDNIs.setBounds(340, 189, 168, 22);
+        contentPanel.add(comboBoxDNIs);
         mostrarDatosUsuario(dni);
         
-        }
+    }
 
     protected void mostrarDatosUsuario(String dni) {
         Usuario usuario = Controlador.obtenerUsuarioPorDNI(dni);
         if (usuario != null) {
             // Mostrar los datos del usuario en los JTextField correspondientes
-        	txta.setText(usuario.getDni());
+            txta.setText(usuario.getDni());
             textField_1.setText(usuario.getNombre());
             textField_2.setText(usuario.getApellido());
             textField_3.setText(usuario.getFechaNac().toString()); // Suponiendo que la fecha se muestra como String
+            // No se recomienda mostrar la contraseña actual en un campo de texto, es solo para fines demostrativos
             textField_4.setText(usuario.getContrasena());
         }
     }
@@ -167,7 +170,7 @@ public class VentanaEditarDatos extends JDialog {
         }
         String contrasena = textField_4.getText(); 
 
-        // Crear un objeto Usuarios con los datos modificados
+        // Crear un objeto Usuario con los datos modificados
         Usuario usuarioModificado = new Usuario();
         usuarioModificado.setDni(dni);
         usuarioModificado.setNombre(nombre);

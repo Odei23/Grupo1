@@ -119,27 +119,50 @@ public class ImplementacionBaseDeDatos implements Dao {
 
 	@Override
 	public void actualizarUsuario(Usuario usuario) {
-		openConnection();
+	    openConnection();
 
-		try {
-			String UPDATE_USUARIO = "UPDATE cliente SET nombre=?, apellido=?, fecha_nac=?, contrasena=?, saldo=? WHERE dni=?";
-			stat = conect.prepareStatement(UPDATE_USUARIO);
+	    try {
+	        String UPDATE_USUARIO = "UPDATE cliente SET nombre=?, apellido=?, fecha_nac=?, contrasena=?, saldo=? WHERE dni=?";
+	        stat = conect.prepareStatement(UPDATE_USUARIO);
 
-			// Establecer los valores para los parámetros de la sentencia SQL
-			stat.setString(1, usuario.getNombre());
-			stat.setString(2, usuario.getApellido());
-			stat.setDate(3, Date.valueOf(usuario.getFechaNac())); // Suponiendo que la fecha se almacena en formato SQL
-																	// DATE
-			stat.setString(4, usuario.getContrasena());
-			stat.setFloat(5, usuario.getSaldo());
-			stat.setString(6, usuario.getDni());
+	        // Establecer los valores para los parámetros de la sentencia SQL
+	        stat.setString(1, usuario.getNombre());
+	        stat.setString(2, usuario.getApellido());
+	        stat.setDate(3, Date.valueOf(usuario.getFechaNac())); // Suponiendo que la fecha se almacena en formato SQL DATE
+	        stat.setString(4, usuario.getContrasena());
+	        
+	        // Verificar si el saldo es nulo antes de establecerlo en la sentencia SQL
+	        if (usuario.getSaldo() != null) {
+	            stat.setFloat(5, usuario.getSaldo());
+	        } else {
+	            // Dejar el saldo como está en la base de datos
+	            // Esto se hace pasando el valor actual del saldo al parámetro de la sentencia SQL
+	            stat.setFloat(5, obtenerSaldoActual(usuario.getDni()));
+	        }
+	        
+	        stat.setString(6, usuario.getDni());
 
-			// Ejecutar la actualización
-			stat.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	        // Ejecutar la actualización
+	        stat.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
+
+	// Método para obtener el saldo actual de un usuario por su DNI
+	private float obtenerSaldoActual(String dni) throws SQLException {
+	    String CONSULTA_SALDO = "SELECT saldo FROM cliente WHERE dni=?";
+	    PreparedStatement statSaldo = conect.prepareStatement(CONSULTA_SALDO);
+	    statSaldo.setString(1, dni);
+	    ResultSet rs = statSaldo.executeQuery();
+	    float saldoActual = 0.0f;
+	    if (rs.next()) {
+	        saldoActual = rs.getFloat("saldo");
+	    }
+	    return saldoActual;
+	}
+
+
 
 	@Override
 	public Usuario obtenerUsuarioPorDNI(String dni) {
@@ -234,21 +257,33 @@ public class ImplementacionBaseDeDatos implements Dao {
 		return usuario;
 	}
 
-	private boolean cambiarContrasenaEnBaseDeDatos(String dni, String nuevaContrasena) {
-		String sql = "UPDATE usuarios SET contrasena = ? WHERE dni = ?";
-		try (Connection conn = DriverManager.getConnection(url, user, passwd);
-				PreparedStatement statement = conn.prepareStatement(sql)) {
-			statement.setString(1, nuevaContrasena);
-			statement.setString(2, dni);
+	public boolean cambiarContrasenaEnBaseDeDatos(String dni, String nuevaContrasena) {
+	    openConnection(); // Inicializar la conexión a la base de datos
 
-			int rowsUpdated = statement.executeUpdate();
+	    String sql = "UPDATE cliente SET contrasena = ? WHERE dni = ?";
+	    try (Connection conn = DriverManager.getConnection(url, user, passwd);
+	            PreparedStatement statement = conn.prepareStatement(sql)) {
+	        statement.setString(1, nuevaContrasena);
+	        statement.setString(2, dni);
 
-			return rowsUpdated > 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+	        int rowsUpdated = statement.executeUpdate();
 
+	        return rowsUpdated > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    } finally {
+	        // Asegúrate de cerrar la conexión después de su uso
+	        try {
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
 	}
+
+
 
 }
