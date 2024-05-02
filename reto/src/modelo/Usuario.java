@@ -1,99 +1,83 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDate;
 
-import javax.management.loading.PrivateClassLoader;
+public class Usuario implements Serializable {
+    private String dni;
+    private String nombre;
+    private String apellido;
+    private LocalDate fechaNac;
+    private Float saldo;
+    private String contrasena;
+    private boolean esAdmin;
 
-public class Usuario implements Serializable{
-	private String dni;
-	private String nombre;
-	private String apellido;
-	private LocalDate fechaNac;
-	private Float Saldo;
-	private String contrasena;
-	private boolean esAdmin;
-	
-	
-	public void Usuario() {
-		this.setEsAdmin(false);
-	}
-	
-	
-	public String getDni() {
-		return dni;
-	}
+    // Constructor
+    public Usuario() {
+        this.esAdmin = false;
+    }
 
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
+    // Getters y setters
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getDni() {
+        return dni;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
 
-	public String getApellido() {
-		return apellido;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public LocalDate getFechaNac() {
-		return fechaNac;
-	}
+    public String getApellido() {
+        return apellido;
+    }
 
-	public void setFechaNac(LocalDate localDate) {
-		this.fechaNac = localDate;
-	}
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-	public Float getSaldo() {
-		return Saldo;
-	}
+    public LocalDate getFechaNac() {
+        return fechaNac;
+    }
 
-	public void setSaldo(Float saldo) {
-		Saldo = saldo;
-	}
+    public void setFechaNac(LocalDate fechaNac) {
+        this.fechaNac = fechaNac;
+    }
 
-	
-	public String getContrasena() {
-		return contrasena;
-	}
+    public Float getSaldo() {
+        return saldo;
+    }
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
+    public void setSaldo(Float saldo) {
+        this.saldo = saldo;
+    }
 
-	
-	
-	public boolean isEsAdmin() {
-		return esAdmin;
-	}
+    public String getContrasena() {
+        return contrasena;
+    }
 
-	public void setEsAdmin(boolean esAdmin) {
-		this.esAdmin = esAdmin;
-	}
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
-	@Override
-	public String toString() {
-		return "Usuarios [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac
-				+ ", Saldo=" + Saldo + ", contrasena=" + contrasena + ", esAdmin=" + esAdmin + "]";
-	}
+    public boolean isEsAdmin() {
+        return esAdmin;
+    }
 
-	
-	
-	
-	
-	
+    public void setEsAdmin(boolean esAdmin) {
+        this.esAdmin = esAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNac=" + fechaNac
+                + ", saldo=" + saldo + ", contrasena=" + contrasena + ", esAdmin=" + esAdmin + "]";
+    }
 }
-
-
-
-	
-	
