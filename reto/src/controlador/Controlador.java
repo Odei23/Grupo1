@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Usuario;
@@ -8,18 +9,18 @@ import modelo.ImplementacionBaseDeDatos;
 public class Controlador {
 
     public static void altaUsuario(Usuario nuevo) {
-        Dao imp = new ImplementacionBaseDeDatos();
+        Dao imp = (Dao) new ImplementacionBaseDeDatos();
         imp.altaUsuarios(nuevo);
     }
 
     public static Usuario usuarioExiste(String dni, String contrasena) {
-        Dao imp = new ImplementacionBaseDeDatos();
+        Dao imp = (Dao) new ImplementacionBaseDeDatos();
        
         return imp.consultaUsuario(dni, contrasena);  // Usuario no encontrado
     }
 
     public static boolean usuarioEsAdmin(String dni, String contrasena) {
-        Dao imp = new ImplementacionBaseDeDatos();
+        Dao imp = (Dao) new ImplementacionBaseDeDatos();
         List<Usuario> usuarios = imp.consultaUsuarios();
 
         // Buscar al usuario por DNI y contraseña
@@ -35,7 +36,7 @@ public class Controlador {
 
 
 	public static Usuario obtenerUsuarioPorDNI(String dni) {
-		 Dao imp = new ImplementacionBaseDeDatos();
+		 Dao imp = (Dao) new ImplementacionBaseDeDatos();
 	        List<Usuario> usuarios = imp.consultaUsuarios();
 
 	        // Buscar al usuario por su DNI
@@ -49,7 +50,7 @@ public class Controlador {
 
 	public static void actualizarUsuario(Usuario usuarioModificado) {
 	    // Obtener la implementación del DAO
-	    Dao imp = new ImplementacionBaseDeDatos();
+	    Dao imp = (Dao) new ImplementacionBaseDeDatos();
 	    
 	    // Llamar al método para actualizar el usuario en la base de datos
 	    imp.actualizarUsuario(usuarioModificado);
@@ -57,7 +58,7 @@ public class Controlador {
 
 	public static float obtenerSaldoUsuario(String dni) {
 	    // Obtener la implementación del DAO
-	    Dao imp = new ImplementacionBaseDeDatos();
+	    Dao imp = (Dao) new ImplementacionBaseDeDatos();
 	    
 	    // Llamar al método en la implementación de la base de datos para obtener el saldo del usuario por su DNI
 	    Usuario usuario = imp.obtenerUsuarioPorDNI(dni);
@@ -74,7 +75,7 @@ public class Controlador {
 
 	public static void actualizarSaldoUsuario(String dni, float saldoActualizado) {
 	    // Obtener la implementación del DAO
-	    Dao imp = new ImplementacionBaseDeDatos();
+	    Dao imp = (Dao) new ImplementacionBaseDeDatos();
 	    
 	    // Obtener el usuario por su DNI
 	    Usuario usuario = obtenerUsuarioPorDNI(dni);
@@ -106,6 +107,47 @@ public class Controlador {
 	            return false; // Usuario no encontrado
 	        }
 	    }
+
+	  public static List<String> obtenerDNIsNoAdministradores() {
+		    // Crear una lista para almacenar los DNIs de usuarios no administradores
+		    List<String> dnisNoAdmin = new ArrayList<>();
+		    
+		    // Obtener la implementación del DAO
+		    Dao imp = new ImplementacionBaseDeDatos();
+		    
+		    // Obtener la lista de todos los usuarios
+		    List<Usuario> usuarios = imp.consultaUsuarios();
+		    
+		    // Iterar sobre los usuarios para filtrar los no administradores
+		    for (Usuario usuario : usuarios) {
+		        if (!usuario.isEsAdmin()) {
+		            // Agregar el DNI del usuario no administrador a la lista
+		            dnisNoAdmin.add(usuario.getDni());
+		        }
+		    }
+		    
+		    return dnisNoAdmin;
+		}
+
+		public static List<String> obtenerTodosDNIs() {
+		    // Crear una lista para almacenar todos los DNIs
+		    List<String> todosDNIs = new ArrayList<>();
+		    
+		    // Obtener la implementación del DAO
+		    Dao imp = new ImplementacionBaseDeDatos();
+		    
+		    // Obtener la lista de todos los usuarios
+		    List<Usuario> usuarios = imp.consultaUsuarios();
+		    
+		    // Iterar sobre los usuarios para obtener sus DNIs
+		    for (Usuario usuario : usuarios) {
+		        // Agregar el DNI del usuario a la lista
+		        todosDNIs.add(usuario.getDni());
+		    }
+		    
+		    return todosDNIs;
+		}
+
 
 	
 

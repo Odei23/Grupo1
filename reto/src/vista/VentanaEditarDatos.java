@@ -133,8 +133,7 @@ public class VentanaEditarDatos extends JDialog {
         	txta.setText(usuario.getDni());
             textField_1.setText(usuario.getNombre());
             textField_2.setText(usuario.getApellido());
-            textField_3.setText(usuario.getFechaNac().toString()); // Suponiendo que la fecha se muestra como String
-            textField_4.setText(usuario.getContrasena());
+            textField_3.setText(usuario.getFechaNac().toString()); 
         }
     }
 
