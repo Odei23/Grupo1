@@ -1,5 +1,7 @@
 package modelo;
 
+import java.awt.font.ImageGraphicAttribute;
+
 public class Pokemon {
 
 	private int codigo_pokemon;
@@ -8,6 +10,10 @@ public class Pokemon {
 	private String color;
 	private int num_evo;
 	private boolean legendario;
+	private int precio_pokemon;
+	private int stock_pokemon;
+	private String imagen_pokemon;
+	
 	public int getCodigo_pokemon() {
 		return codigo_pokemon;
 	}
@@ -44,11 +50,36 @@ public class Pokemon {
 	public void setLegendario(boolean legendario) {
 		this.legendario = legendario;
 	}
+	
+	
+	public int getPrecioPokemon() {
+		return precio_pokemon;
+	}
+	public void setPrecioPokemon(int precio_pokemon) {
+		this.precio_pokemon = precio_pokemon;
+	}
+	public int getStock_pokemon() {
+		return stock_pokemon;
+	}
+	public void setStock_pokemon(int stock_pokemon) {
+		this.stock_pokemon = stock_pokemon;
+	}
+	
+	
+	
+	public String getImagen_pokemon() {
+		return imagen_pokemon;
+	}
+	public void setImagen_pokemon(String imagen_pokemon) {
+		this.imagen_pokemon = imagen_pokemon;
+	}
 	@Override
 	public String toString() {
 		return "Pokemon [codigo_pokemon=" + codigo_pokemon + ", nombre=" + nombre + ", tipo=" + tipo + ", color="
-				+ color + ", num_evo=" + num_evo + ", legendario=" + legendario + "]";
+				+ color + ", num_evo=" + num_evo + ", legendario=" + legendario + ", precioPokemon=" + precio_pokemon
+				+ ", stock_pokemon=" + stock_pokemon + ", imagen_pokemon=" + imagen_pokemon + "]";
 	}
+	
 	
 	
 

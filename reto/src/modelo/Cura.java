@@ -3,24 +3,34 @@ package modelo;
 public class Cura {
 
 	
-	private String nombre;
-	private float precioCura;
-	public String getNombre() {
-		return nombre;
+	private String nombre_cura;
+	private float codigo_objeto;
+	private String imagen_cura;
+	public String getNombre_cura() {
+		return nombre_cura;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre_cura(String nombre_cura) {
+		this.nombre_cura = nombre_cura;
 	}
-	public float getPrecioCura() {
-		return precioCura;
+	public float getCodigo_objeto() {
+		return codigo_objeto;
 	}
-	public void setPrecioCura(float precioCura) {
-		this.precioCura = precioCura;
+	public void setCodigo_objeto(float codigo_objeto) {
+		this.codigo_objeto = codigo_objeto;
+	}
+	public String getImagen_cura() {
+		return imagen_cura;
+	}
+	public void setImagen_cura(String imagen_cura) {
+		this.imagen_cura = imagen_cura;
 	}
 	@Override
 	public String toString() {
-		return "Cura [nombre=" + nombre + ", precioCura=" + precioCura + "]";
+		return "Cura [nombre_cura=" + nombre_cura + ", codigo_objeto=" + codigo_objeto + ", imagen_cura=" + imagen_cura
+				+ "]";
 	}
+	
+	
 	
 	
 	

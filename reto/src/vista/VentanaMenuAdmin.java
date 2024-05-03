@@ -81,7 +81,7 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		});
 		btnInsertarPokemon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				insertarPokemon(dni);
 			}
 		});
 		btnInsertarPokemon.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
@@ -103,6 +103,16 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 	
 
 
+	protected void insertarPokemon(String dni) {
+		this.setVisible(false);
+        VInsertarPokemon vIP = new VInsertarPokemon(dni);
+        vIP.setVisible(true);				
+	}
+
+
+
+
+
 	protected void VEditarUsuarios(String dni) {
 		
 		this.setVisible(false);
@@ -111,19 +121,11 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		
 	}
 
-
-
-
-
 	protected void visualizarUsuarios(String dni) {
 		this.setVisible(false);
         VVisualizarUsuarios venVU = new VVisualizarUsuarios(dni);
         venVU.setVisible(true);		
 	}
-
-
-
-
 
 	protected void cerrarSesion() {
 		this.setVisible(false);
