@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.List;
 
+import modelo.Pokemon;
 import modelo.Usuario;
 
 public interface Dao {
@@ -16,4 +17,12 @@ public interface Dao {
 	public Usuario obtenerUsuarioPorDNI(String dni);
 
 	public Usuario consultaUsuario(String dni, String contrasena);
+
+	public List<Pokemon> obtenerListaPokemon();
+
+	public void actualizarPokemon(Pokemon pokemonComprado);
+
+	public List<Pokemon> obtenerPokemonPorUsuario(String dni);
+
+	public String obtenerRutaImagenPokemon(int codigoPokemon);
 }

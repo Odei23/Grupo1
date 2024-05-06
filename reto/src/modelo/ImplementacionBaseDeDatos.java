@@ -33,12 +33,20 @@ public class ImplementacionBaseDeDatos implements Dao {
     private final String UPDATE_POKEMON = "UPDATE pokemon SET nombre=?, tipo=?, color=?, num_evo=?, precio_pokemon=?, stock_pokemon=?, imagen_pokemon=? WHERE codigo_pokemon=?";
     private final String SELECT_CODIGOS_POKEMON = "SELECT codigo_pokemon FROM pokemon";
     private final String SELECT_POKEMON_POR_CODIGO = "SELECT * FROM pokemon WHERE codigo_pokemon=?";
+    
+    
+    
+    private final String UPDATE_CURA = "UPDATE curas SET nombre_curas=?, codigo_objeto=?, imagen_curas=? WHERE codigo_objeto=?";
+    private final String SELECT_CODIGO_OBJETO = "SELECT codigo_objeto FROM curas";
+    private final String SELECT_CURAS_POR_CODIGO = "SELECT * FROM cura WHERE codigo_objeto=?";
+
     public ImplementacionBaseDeDatos() {
         openConnection(); // Llamar al método openConnection para inicializar la conexión
     }
 
     // Método para abrir la conexión
-    public void openConnection() {
+ // Método para abrir la conexión
+    public Connection openConnection() {
         fichConfBundle = ResourceBundle.getBundle("modelo.config");
         this.url = fichConfBundle.getString("URL");
         this.user = fichConfBundle.getString("USER");
@@ -47,6 +55,7 @@ public class ImplementacionBaseDeDatos implements Dao {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conect = DriverManager.getConnection(url, user, passwd);
+            return conect; // Devolver la conexión abierta
         } catch (ClassNotFoundException e) {
             System.out.println("Error al cargar el controlador JDBC");
             e.printStackTrace();
@@ -54,7 +63,10 @@ public class ImplementacionBaseDeDatos implements Dao {
             System.out.println("Error al intentar abrir la conexión a la BD");
             e.printStackTrace();
         }
+
+        return null; // En caso de error, devuelve null
     }
+
 
 
     @Override
@@ -290,6 +302,8 @@ public class ImplementacionBaseDeDatos implements Dao {
     }
 
     public void altaPokemon(Pokemon pokemon) {
+        openConnection(); // Abre la conexión antes de ejecutar la consulta
+
         try {
             stat = conect.prepareStatement(INSERT_POKEMON);
             stat.setString(1, pokemon.getNombre());
@@ -303,10 +317,14 @@ public class ImplementacionBaseDeDatos implements Dao {
             stat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnection(); // Cierra la conexión después de usarla
         }
     }
 
     public void actualizarPokemon(Pokemon pokemon) {
+        openConnection(); // Abre la conexión antes de ejecutar la consulta
+
         try {
             stat = conect.prepareStatement(UPDATE_POKEMON);
             stat.setString(1, pokemon.getNombre());
@@ -321,9 +339,10 @@ public class ImplementacionBaseDeDatos implements Dao {
             stat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            closeConnection(); // Cierra la conexión después de usarla
         }
     }
-
     public List<Integer> obtenerCodigosPokemon() {
         List<Integer> codigos = new ArrayList<>();
         openConnection(); // Asegúrate de abrir la conexión aquí
@@ -376,5 +395,142 @@ public class ImplementacionBaseDeDatos implements Dao {
         }
     }
 
+    public List<Pokemon> obtenerListaPokemon() {
+        List<Pokemon> pokemonList = new ArrayList<>();
+        try (Connection con = openConnection();
+             PreparedStatement stat = con.prepareStatement("SELECT * FROM pokemon");
+             ResultSet rs = stat.executeQuery()) {
 
-}
+            while (rs.next()) {
+                Pokemon pokemon = new Pokemon();
+                pokemon.setCodigo_pokemon(rs.getInt("codigo_pokemon"));
+                pokemon.setNombre(rs.getString("nombre"));
+                pokemon.setTipo(rs.getString("tipo"));
+                pokemon.setColor(rs.getString("color"));
+                pokemon.setNum_evo(rs.getInt("num_evo"));
+                pokemon.setPrecioPokemon(rs.getInt("precio_pokemon"));
+                pokemon.setStock_pokemon(rs.getInt("stock_pokemon"));
+                pokemon.setImagen_pokemon(rs.getString("imagen_pokemon"));
+                pokemonList.add(pokemon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pokemonList;
+    }
+
+    @Override
+    public List<Pokemon> obtenerPokemonPorUsuario(String dni) {
+        List<Pokemon> pokemonList = new ArrayList<>();
+        openConnection(); // Abre la conexión antes de ejecutar la consulta
+
+        try {
+            String sql = "SELECT * FROM pokemon p JOIN compra c ON p.codigo_pokemon = codigo_pokemon WHERE c.dni = ?";
+            stat = conect.prepareStatement(sql);
+            stat.setString(1, dni);
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                Pokemon pokemon = new Pokemon();
+                pokemon.setCodigo_pokemon(rs.getInt("codigo_pokemon"));
+                pokemon.setNombre(rs.getString("nombre"));
+                pokemon.setTipo(rs.getString("tipo"));
+                pokemon.setColor(rs.getString("color"));
+                pokemon.setNum_evo(rs.getInt("num_evo"));
+                pokemon.setPrecioPokemon(rs.getInt("precio_pokemon"));
+                pokemon.setStock_pokemon(rs.getInt("stock_pokemon"));
+                pokemon.setImagen_pokemon(rs.getString("imagen_pokemon"));
+                pokemonList.add(pokemon);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(); // Cierra la conexión después de usarla
+        }
+        return pokemonList;
+    }
+
+	public void actualizarCura(Cura cura) {
+		openConnection(); // Abre la conexión antes de ejecutar la consulta
+
+        try {
+            stat = conect.prepareStatement(UPDATE_CURA);
+            stat.setString(1, cura.getNombre_cura());
+            stat.setString(2, cura.getCodigo_objeto());
+            stat.setString(3, cura.getImagen_cura());
+            
+
+            stat.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(); // Cierra la conexión después de usarla
+        }
+    }
+
+	public List<Integer> obtenerCodigosCuras() {
+	    List<Integer> codigos = new ArrayList<>();
+	    openConnection(); // Asegúrate de abrir la conexión aquí
+
+	    try {
+	        stat = conect.prepareStatement(SELECT_CODIGO_OBJETO);
+	        ResultSet rs = stat.executeQuery();
+	        while (rs.next()) {
+	            codigos.add(rs.getInt("codigo_cura")); // <-- This line causes the error
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return codigos;
+	}
+
+
+	public Cura obtenerCurasPorCodigo(String codigo_objeto) {
+		Cura cura = null;
+        try {
+            stat = conect.prepareStatement(SELECT_CURAS_POR_CODIGO);
+            stat.setString(1, codigo_objeto);
+            ResultSet rs = stat.executeQuery();
+            if (rs.next()) {
+                cura = new Cura();
+                cura.setCodigo_objeto(rs.getString("codigo_objeto"));
+                cura.setNombre_cura(rs.getString("nombre_curas"));
+                cura.setImagen_cura(rs.getString("imagen_curas"));
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cura;
+    }
+
+	
+	@Override
+	public String obtenerRutaImagenPokemon(int codigoPokemon) {
+	    String rutaImagen = null;
+	    openConnection(); // Abre la conexión antes de ejecutar la consulta
+
+	    try {
+	        String sql = "SELECT imagen_pokemon FROM pokemon WHERE codigo_pokemon = ?";
+	        stat = conect.prepareStatement(sql);
+	        stat.setInt(1, codigoPokemon);
+	        ResultSet rs = stat.executeQuery();
+	        if (rs.next()) {
+	            rutaImagen = rs.getString("imagen_pokemon");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        closeConnection(); // Cierra la conexión después de usarla
+	    }
+
+	    return rutaImagen;
+	}
+
+
+    
+    
+	}		
+	
+
+
+
