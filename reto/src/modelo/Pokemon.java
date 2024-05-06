@@ -13,7 +13,8 @@ public class Pokemon {
 	private int precio_pokemon;
 	private int stock_pokemon;
 	private String imagen_pokemon;
-	
+    private String rutaImagen; // Atributo para almacenar la ruta de la imagen
+
 	public int getCodigo_pokemon() {
 		return codigo_pokemon;
 	}
@@ -73,6 +74,15 @@ public class Pokemon {
 	public void setImagen_pokemon(String imagen_pokemon) {
 		this.imagen_pokemon = imagen_pokemon;
 	}
+	
+	public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
 	@Override
 	public String toString() {
 		return "Pokemon [codigo_pokemon=" + codigo_pokemon + ", nombre=" + nombre + ", tipo=" + tipo + ", color="

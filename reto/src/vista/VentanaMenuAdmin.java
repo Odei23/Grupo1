@@ -53,6 +53,11 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 		JButton btnInsertarObjeto = new JButton("INSERTAR OBJETO");
 		btnInsertarObjeto.setFont(new Font("Microsoft YaHei", Font.BOLD, 16));
 		btnInsertarObjeto.setBounds(39, 205, 240, 115);
+		btnInsertarObjeto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vObjetos(dni);
+			}
+		});
 		contentPanel.add(btnInsertarObjeto);
 		
 		JButton btnComprarObjeto = new JButton("VISUALIZAR OBJETO");
@@ -101,6 +106,17 @@ public class VentanaMenuAdmin extends JDialog implements ActionListener{
 
 
 	
+
+
+	protected void vObjetos(String dni) {
+
+		this.setVisible(false);
+		VVObjetos vvo = new VVObjetos(dni);
+		vvo.setVisible(true);			
+	}
+
+
+
 
 
 	protected void insertarPokemon(String dni) {

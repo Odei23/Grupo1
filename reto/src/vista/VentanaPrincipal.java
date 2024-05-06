@@ -36,15 +36,6 @@ public class VentanaPrincipal extends JFrame {
     private JLabel logo;
     private JLabel gif;
 
-    public static void main(String[] args) {
-        try {
-            VentanaPrincipal dialog = new VentanaPrincipal();
-            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public VentanaPrincipal() {
         setBounds(100, 100, 909, 607);
