@@ -1,14 +1,10 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.MediaTracker;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.*;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import modelo.Pokemon;
 
 public class VVisualizarObjetos extends JDialog {
@@ -16,34 +12,32 @@ public class VVisualizarObjetos extends JDialog {
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
 
-    public VVisualizarObjetos(List<Pokemon> pokemonObtenidos) {
-        setBounds(100, 100, 800, 600);
+    public VVisualizarObjetos(List<Pokemon> pokemonComprados) {
+        setBounds(100, 100, 450, 300);
         getContentPane().setLayout(new BorderLayout());
-        
-        contentPanel.setLayout(new GridLayout(0, 3));
-        
-        JScrollPane scrollPane = new JScrollPane(contentPanel);
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
+        contentPanel.setLayout(new FlowLayout());
+        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        getContentPane().add(contentPanel, BorderLayout.CENTER);
 
-        for (Pokemon pokemon : pokemonObtenidos) {
-            JPanel pokemonPanel = new JPanel(new BorderLayout());
-            
-            try {
-                ImageIcon icon = new ImageIcon(pokemon.getRutaImagen());
-                JLabel imageLabel = new JLabel(icon);
-                pokemonPanel.add(imageLabel, BorderLayout.CENTER);
-            } catch (Exception ex) {
-                JLabel errorLabel = new JLabel("Error al cargar la imagen: " + ex.getMessage());
-                pokemonPanel.add(errorLabel, BorderLayout.CENTER);
-                ex.printStackTrace();
-            }
+        // Mostrar los Pokémon comprados en la ventana
+        for (Pokemon pokemon : pokemonComprados) {
+            JLabel lblPokemon = new JLabel("Nombre: " + pokemon.getNombre() + ", Tipo: " + pokemon.getTipo());
+            contentPanel.add(lblPokemon);
+        }
 
-
-            JLabel nameLabel = new JLabel(pokemon.getNombre());
-            nameLabel.setHorizontalAlignment(JLabel.CENTER);
-            pokemonPanel.add(nameLabel, BorderLayout.SOUTH);
-
-            contentPanel.add(pokemonPanel);
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        getContentPane().add(buttonPane, BorderLayout.SOUTH);
+        {
+            JButton okButton = new JButton("OK");
+            okButton.setActionCommand("OK");
+            buttonPane.add(okButton);
+            getRootPane().setDefaultButton(okButton);
+        }
+        {
+            JButton cancelButton = new JButton("Cancel");
+            cancelButton.setActionCommand("Cancel");
+            buttonPane.add(cancelButton);
         }
     }
 }

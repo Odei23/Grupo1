@@ -449,36 +449,35 @@ public class ImplementacionBaseDeDatos implements Dao {
         return pokemonList;
     }
 
-	public void actualizarCura(Cura cura) {
-		openConnection(); // Abre la conexión antes de ejecutar la consulta
-
+    public void actualizarCura(Cura cura) {
         try {
+            String UPDATE_CURA = "UPDATE cura SET nombre_cura=?, stock_cura=?, precio_cura=?, imagen_cura=? WHERE codigo_objeto=?";
             stat = conect.prepareStatement(UPDATE_CURA);
             stat.setString(1, cura.getNombre_cura());
-            stat.setString(2, cura.getCodigo_objeto());
-            stat.setString(3, cura.getImagen_cura());
-            
-
+            stat.setInt(2, cura.getStock_cura());
+            stat.setInt(3, cura.getPrecio_cura());
+            stat.setString(4, cura.getImagen_cura());
+            stat.setString(5, cura.getCodigo_objeto());
+          
             stat.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            closeConnection(); // Cierra la conexión después de usarla
         }
     }
 
-	public List<Integer> obtenerCodigosCuras() {
-	    List<Integer> codigos = new ArrayList<>();
-	    openConnection(); // Asegúrate de abrir la conexión aquí
-
+	public List<String> obtenerCodigosCura(String dni) {
+	    List<String> codigos = new ArrayList<>();
 	    try {
-	        stat = conect.prepareStatement(SELECT_CODIGO_OBJETO);
+	        String SELECT_CURA_CODIGOS = "SELECT codigo_objeto FROM cura";
+	        stat = conect.prepareStatement(SELECT_CURA_CODIGOS);
 	        ResultSet rs = stat.executeQuery();
 	        while (rs.next()) {
-	            codigos.add(rs.getInt("codigo_cura")); // <-- This line causes the error
+	            codigos.add(rs.getString("codigo_objeto"));
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();
+	        // Manejar la excepción apropiadamente, por ejemplo, lanzando una excepción o devolviendo null
+	        // dependiendo de los requisitos del programa
 	    }
 	    return codigos;
 	}
@@ -503,31 +502,82 @@ public class ImplementacionBaseDeDatos implements Dao {
         return cura;
     }
 
-	
-	@Override
-	public String obtenerRutaImagenPokemon(int codigoPokemon) {
-	    String rutaImagen = null;
-	    openConnection(); // Abre la conexión antes de ejecutar la consulta
+	 public List<Pokemon> obtenerPokemonComprados(String dni) {
+	        List<Pokemon> pokemonComprados = new ArrayList<>();
+	        // Obtener la lista completa de Pokémon asociados al usuario
+	        List<Pokemon> pokemonList = obtenerPokemonPorUsuario(dni);
 
-	    try {
-	        String sql = "SELECT imagen_pokemon FROM pokemon WHERE codigo_pokemon = ?";
-	        stat = conect.prepareStatement(sql);
-	        stat.setInt(1, codigoPokemon);
-	        ResultSet rs = stat.executeQuery();
-	        if (rs.next()) {
-	            rutaImagen = rs.getString("imagen_pokemon");
+	        // Filtrar solo los Pokémon que han sido marcados como comprados
+	        for (Pokemon pokemon : pokemonList) {
+	            if (pokemon.isComprado()) {
+	                pokemonComprados.add(pokemon);
+	            }
 	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        closeConnection(); // Cierra la conexión después de usarla
+
+	        return pokemonComprados;
 	    }
 
-	    return rutaImagen;
-	}
+	 public List<String> obtenerCodigosCuras(String dni) {
+		    List<String> codigos = new ArrayList<>();
+		    try {
+		        String SELECT_CURA_CODIGOS = "SELECT codigo_objeto FROM cura";
+		        stat = conect.prepareStatement(SELECT_CURA_CODIGOS);
+		        ResultSet rs = stat.executeQuery();
+		        while (rs.next()) {
+		            codigos.add(rs.getString("codigo_objeto"));
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        // Manejar la excepción apropiadamente, por ejemplo, lanzando una excepción o devolviendo null
+		        // dependiendo de los requisitos del programa
+		    }
+		    return codigos;
+		}
 
+	 public Cura obtenerCuraPorCodigo(String codigo) {
+		    Cura cura = null;
+		    try {
+		        String SELECT_CURA_POR_CODIGO = "SELECT * FROM cura WHERE codigo_objeto=?";
+		        stat = conect.prepareStatement(SELECT_CURA_POR_CODIGO);
+		        stat.setString(1, codigo);
+		        ResultSet rs = stat.executeQuery();
+		        if (rs.next()) {
+		            cura = new Cura();
+		            cura.setCodigo_objeto(rs.getString("codigo_objeto"));
+		            cura.setNombre_cura(rs.getString("nombre_cura"));
+		            cura.setPrecio_cura(rs.getInt("precio_cura"));
+		            cura.setStock_cura(rs.getInt("stock_cura"));
+		            cura.setImagen_cura(rs.getString("imagen_cura"));
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        // Manejar la excepción apropiadamente, por ejemplo, lanzando una excepción o devolviendo null
+		        // dependiendo de los requisitos del programa
+		    }
+		    return cura;
+		}
 
-    
+	public List<Cura> obtenerListaCura() {
+		  List<Cura> curaList = new ArrayList<>();
+	        try (Connection con = openConnection();
+	             PreparedStatement stat = con.prepareStatement("SELECT * FROM cura");
+	             ResultSet rs = stat.executeQuery()) {
+
+	            while (rs.next()) {
+	                Cura cura = new Cura();
+	                cura.setCodigo_objeto(rs.getString("codigo_objeto"));
+	                cura.setNombre_cura(rs.getString("nombre_cura"));
+	                cura.setStock_cura(rs.getInt("stock_cura"));
+	                cura.setPrecio_cura(rs.getInt("precio_cura"));
+	                cura.setImagen_cura(rs.getString("imagen_cura"));
+	                curaList.add(cura);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        return curaList;
+	    }
+	
     
 	}		
 	

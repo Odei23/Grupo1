@@ -2,17 +2,23 @@ package modelo;
 
 public class Cura {
 
-	
 	private String codigo_objeto;
+	private String nombre_cura;
 	private int precio_cura;
 	private int stock_cura;
-	private String nombre_cura;
 	private String imagen_cura;
+	
 	public String getCodigo_objeto() {
 		return codigo_objeto;
 	}
-	public void setCodigo_objeto(String codigo_objeto) {
-		this.codigo_objeto = codigo_objeto;
+	public void setCodigo_objeto(String codigo) {
+		this.codigo_objeto = codigo;
+	}
+	public String getNombre_cura() {
+		return nombre_cura;
+	}
+	public void setNombre_cura(String nombre_cura) {
+		this.nombre_cura = nombre_cura;
 	}
 	public int getPrecio_cura() {
 		return precio_cura;
@@ -26,12 +32,6 @@ public class Cura {
 	public void setStock_cura(int stock_cura) {
 		this.stock_cura = stock_cura;
 	}
-	public String getNombre_cura() {
-		return nombre_cura;
-	}
-	public void setNombre_cura(String nombre_cura) {
-		this.nombre_cura = nombre_cura;
-	}
 	public String getImagen_cura() {
 		return imagen_cura;
 	}
@@ -40,8 +40,8 @@ public class Cura {
 	}
 	@Override
 	public String toString() {
-		return "Cura [codigo_objeto=" + codigo_objeto + ", precio_cura=" + precio_cura + ", stock_cura=" + stock_cura
-				+ ", nombre_cura=" + nombre_cura + ", imagen_cura=" + imagen_cura + "]";
+		return "Cura [nombre_cura=" + nombre_cura + ", codigo_objeto=" + codigo_objeto + ", imagen_cura=" + imagen_cura
+				+ "]";
 	}
 	
 	

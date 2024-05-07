@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import modelo.Usuario;
+import modelo.Cura;
 import modelo.ImplementacionBaseDeDatos;
 import modelo.Pokemon;
 
@@ -19,17 +20,15 @@ public class Controlador {
     public static Usuario usuarioExiste(String dni, String contrasena) {
         Dao imp = (Dao) new ImplementacionBaseDeDatos();
        
-        return imp.consultaUsuario(dni, contrasena);  // Usuario no encontrado
+        return imp.consultaUsuario(dni, contrasena);
     }
 
     public static boolean usuarioEsAdmin(String dni, String contrasena) {
         Dao imp = (Dao) new ImplementacionBaseDeDatos();
         List<Usuario> usuarios = imp.consultaUsuarios();
 
-        // Buscar al usuario por DNI y contraseña
         for (Usuario usuario : usuarios) {
             if (usuario.getDni().equals(dni) && usuario.getContrasena().equals(contrasena)) {
-                // Verificar si el usuario es administrador
                 return usuario.isEsAdmin();
             }
         }
@@ -225,34 +224,77 @@ public class Controlador {
 		    // Obtener la implementación del DAO
 		    Dao imp = new ImplementacionBaseDeDatos();
 		    
-		    // Obtener la lista de Pokémon comprados por el usuario
-		    List<Pokemon> pokemonComprados = imp.obtenerPokemonPorUsuario(dni);
-		    
-		    // Iterar sobre los Pokémon comprados y establecer la ruta de la imagen para cada uno
-		    for (Pokemon pokemon : pokemonComprados) {
-		        // Obtener la ruta de la imagen del Pokémon por su código
-		        String rutaImagen = obtenerRutaImagenPokemon(pokemon.getCodigo_pokemon());
-		        
-		        // Verificar si se encontró la ruta de la imagen
-		        if (rutaImagen != null && !rutaImagen.isEmpty()) {
-		            // Establecer la ruta de la imagen para el Pokémon
-		            pokemon.setRutaImagen(rutaImagen);
-		        } else {
-		            // Manejar la situación si no se encontró la ruta de la imagen
-		            System.out.println("No se encontró la ruta de la imagen para el Pokémon con código: " + pokemon.getCodigo_pokemon());
-		        }
-		    }
-		    
-		    return pokemonComprados;
+		    // Llamar al método en la implementación de la base de datos para obtener los Pokémon comprados por el usuario
+		    return imp.obtenerPokemonPorUsuario(dni);
 		}
 
-		// Método para obtener la ruta de imagen de un Pokémon por su código
-		private static String obtenerRutaImagenPokemon(int codigoPokemon) {
-		    // Obtener la implementación del DAO
+		public static List<Pokemon> getPokemonComprados() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public static void realizarCompraCura(String dni, String codigo_objeto, int cantidadDeseada) {
+			// Obtener la implementación del DAO
 		    Dao imp = new ImplementacionBaseDeDatos();
 		    
-		    // Llamar al método en la implementación del DAO para obtener la ruta de la imagen del Pokémon por su código
-		    return imp.obtenerRutaImagenPokemon(codigoPokemon);
+		    // Obtener el usuario por su DNI
+		    Usuario usuario = imp.obtenerUsuarioPorDNI(dni);
+		    
+		    // Obtener la lista de Pokémon
+		    List<Cura> curaList = imp.obtenerListaCura();
+		    
+		    // Buscar el Pokémon por su código
+		 // Buscar el Pokémon por su código
+		    Cura curaComprado = null;
+		    for (Cura cura : curaList) {
+		        if (cura.getCodigo_objeto().equals(codigo_objeto)) {
+		            curaComprado = cura;
+		            break;
+		        }
+		    }
+
+		    
+		    // Verificar si se encontró el usuario y el Pokémon
+		    if (usuario != null && curaComprado != null) {
+		        // Calcular el total de la compra
+		        int totalCompra = curaComprado.getPrecio_cura() * cantidadDeseada;
+		        
+		        // Verificar si el usuario tiene suficiente saldo para la compra
+		        if (usuario.getSaldo() >= totalCompra) {
+		            // Verificar si hay suficiente stock disponible
+		            if (cantidadDeseada <= curaComprado.getStock_cura()) {
+		                // Restar el saldo del usuario y actualizar el stock del Pokémon
+		                float saldoActualizado = usuario.getSaldo() - totalCompra;
+		                int stockActualizado = curaComprado.getStock_cura() - cantidadDeseada;
+		                
+		                // Actualizar el saldo del usuario y el stock del Pokémon en la base de datos
+		                usuario.setSaldo(saldoActualizado);
+		                curaComprado.setStock_cura(stockActualizado);
+		                
+		                // Actualizar la información en la base de datos
+		                imp.actualizarUsuario(usuario);
+		                imp.actualizarCura(curaComprado);
+		                
+		                // Mostrar mensaje de compra exitosa
+		                JOptionPane.showMessageDialog(null, "Compra realizada con éxito.");
+		            } else {
+		                // Mostrar mensaje de error por stock insuficiente
+		                JOptionPane.showMessageDialog(null, "Stock insuficiente para realizar la compra.");
+		            }
+		        } else {
+		            // Mostrar mensaje de error por saldo insuficiente
+		            JOptionPane.showMessageDialog(null, "Saldo insuficiente para realizar la compra.");
+		        }
+		    } else {
+		        // Manejar la situación si el usuario o el Pokémon no fueron encontrados
+		        JOptionPane.showMessageDialog(null, "Usuario o Cura no encontrado.");
+		    }
 		}
+
+
+
+
+	
+//DEEEE
 
 }
