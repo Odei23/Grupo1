@@ -1,8 +1,6 @@
 package modelo;
 
 public class Objeto {
-
-	
 	private String codigo_objeto;
 	private int precio_obejto;
 	private String tipo_objeto;
@@ -36,8 +34,4 @@ public class Objeto {
 		return "Objeto [codigo_objeto=" + codigo_objeto + ", precio_obejto=" + precio_obejto + ", tipo_objeto="
 				+ tipo_objeto + ", stock=" + stock + "]";
 	}
-	
-	
-	
-	
 }

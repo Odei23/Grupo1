@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.List;
 
+import modelo.Cura;
 import modelo.Pokemon;
 import modelo.Usuario;
 
@@ -24,5 +25,9 @@ public interface Dao {
 
 	public List<Pokemon> obtenerPokemonPorUsuario(String dni);
 
-	public String obtenerRutaImagenPokemon(int codigoPokemon);
+	public List<Pokemon> obtenerPokemonComprados(String dni);
+
+	public List<Cura> obtenerListaCura();
+
+	public void actualizarCura(Cura curaComprado);
 }

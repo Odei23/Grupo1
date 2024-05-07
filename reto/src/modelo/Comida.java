@@ -2,7 +2,6 @@ package modelo;
 
 public class Comida {
 
-	
 	private String nombre_comida;
 	private float codigo_objeto;
 	private String imagen_comida;
@@ -30,7 +29,4 @@ public class Comida {
 				+ imagen_comida + "]";
 	}
 
-	
-	
-	
 }
